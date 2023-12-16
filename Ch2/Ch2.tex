@@ -1,0 +1,374 @@
+
+\chapter{Exterior algebra}
+
+\section{Tensor product}\label{sec:tensor product}
+
+The motivation for our next topic comes from wanting to form the product of two vectors. This product is called the tensor product, and will be an element of some new vector space.
+
+\begin{definition}[Multilinear map]
+    Let $V_1, \cdots, V_k$ be vector spaces over $\mathbf{F}$. A function $f : V_1 \times \cdots \times V_m \to \mathbf{F}$ is called a \emph{multilinear map} (in specific, \emph{$k$-linear map}) if for every $1 \leq j \leq k$ we have
+    \begin{align*}
+        f(v_1, \cdots, v_j + w_j, \cdots, v_k)
+        &= f(v_1, \cdots, v_j, \cdots, v_k) + f(v_1, \cdots,w_j, \cdots, v_k),\\
+        f(v_1, \cdots, \lambda v_j, \cdots, v_k)
+        &= \lambda f(v_1, \cdots, v_j, \cdots, v_k),
+    \end{align*}
+for every $v_j, w_j \in V_j$ and every $\lambda \in \mathbf{F}$. We denote the set of all $k$-linear maps from $V_1 \times \cdots \times V_k$ to $\mathbf{F}$ by $\mathcal{L}(V_1\times \cdots \times V_k, \mathbf{F})$.
+\end{definition}
+
+\begin{remark}
+    $1$-linear map is called the linear map, and $2$-linear map is called the bilinear map. This is easy to see that $\mathcal{L}(V_1 \times \cdots \times V_k, \mathbf{F})$ is a vector space over $\mathbf{F}$ with two operations, addition $+$ and multiplication $\cdot$, which defined by
+    \begin{align*}
+        (f + g)(v_1, \cdots, v_k) &= f(v_1, \cdots, v_k) + g(v_1, \cdots, v_k),\\
+        (\lambda f)(v_1, \cdots, v_k) &= \lambda f(v_1, \cdots, v_k)
+    \end{align*}
+for every $f, g \in \mathcal{L}(V_1 \times \cdots \times V_k, \mathbf{F})$ and every $\lambda \in \mathbf{F}$.
+\end{remark}
+
+From the dual space, we have a commutative diagram, which describes the relationship between linear map $T \in \mathcal{L}(V, W)$, linear functional $f \in W^*$, and dual map $T^*f \in V^*$:
+
+\[
+  \begin{tikzcd}
+    V \arrow{r}{T} \arrow[swap]{dr}{T^*f} & W \arrow{d}{f} \\
+     & \mathbf{F}
+  \end{tikzcd}
+\]
+
+You may probably noticed that the space of multilinear maps $\mathcal{L}(V_1\times\cdots\times V_k, \mathbf{F})$ is just the dual space $(V_1 \times \cdots \times V_k)^*$, this inspire us to generalize above commutative diagram to the multilinear map. Appendix \ref{A:dual space} gives a quick review of the dual space.
+
+\subsection{Tensor product of two vector spaces}
+
+We begin by the special case of the tensor product of two vector spaces.
+
+\begin{definition}[Tensor product of two vector spaces]
+    Let $V,W$ be vector spaces over $\mathbf{F}$, let $f \in V^* = \mathcal{L}(V, \mathbf{F})$ and $g \in W^* = \mathcal{L}(W, \mathbf{F})$. The \emph{tensor product} $f \otimes g$, of $1$-linear maps, is defined by $f \otimes g(v, w) = f(v)\cdot g(w)$ for every $v \in V$ and $w \in W$. We denote $V^* \otimes W^*$ to be the vector space with elements of the form $f \otimes g$ for $f \in V^*$ and $g \in W^*$.
+\end{definition}
+
+This is easy to see that $f \otimes g$ is a bilinear map on $V \times W$, i.e., $f \otimes g \in \mathcal{L}(V \times W, \mathbf{F})$.
+
+\begin{lemma}\label{lem:basis, dimension of tensor product}
+    Let $V, W$ be vector spaces over $\mathbf{F}$, and let $(v_i)_{1 \leq i \leq n}$ and $(w_j)_{1 \leq j \leq m}$ be bases of $V$ and $W$, respectively. Suppose that $(v_i^*)_{1 \leq i \leq n}$ and $(w_j^*)_{1 \leq j \leq m}$ are bases of $V^*$ and $W^*$, respectively. Then $(v_i^* \otimes v_j^*)_{1 \leq i \leq n, 1 \leq j \leq m}$ is a basis of $V^* \otimes W^*$. Furthermore, we have $\dim(V^* \otimes W^*) = (\dim{V^*})(\dim{W^*})$ and $V^* \otimes W^* = \mathcal{L}(V \times W, \mathbf{F})$.
+\end{lemma}
+
+\begin{proof}
+    For arbitrary $f \in V^*$ and $g \in W^*$ such that $f \otimes g \in V^* \otimes W^*$, we have
+    \begin{align*}
+        f \otimes g(v, w)
+        &= \Bigl(\sum_{i = 1}^{n}f(v_i)v_i^*(v)\Bigr)\Bigl(\sum_{j = 1}^{m}g(w_j)w_j^*(w)\Bigr)\\
+        &= \sum_{i = 1}^{n}\sum_{j = 1}^{m}f(v_i)g(w_j)v_i^*(v)w_j^*(w)\\
+        &= \sum_{i = 1}^{n}\sum_{j = 1}^{m}f(v_i)g(w_j) v_i^*\otimes w_j^*(v, w)
+    \end{align*}
+    for every $v \in V$, $w \in W$. Thus every element of $V^* \otimes W^*$ can be represented as a linear combination of $(v_i^* \otimes w_j^*)_{1 \leq i \leq n, 1 \leq j \leq m}$.
+    
+    We now show that $(v_i^* \otimes w_j^*)_{1 \leq i \leq n, 1 \leq j \leq m}$ is linearly independent. Let $\lambda_{ij} \in \mathbf{F}$ for $1 \leq i \leq n, 1 \leq j \leq m$ such that
+    \begin{align*}
+        \sum_{i = 1}^{n}\sum_{j = 1}^{m}\lambda_{ij}v_i^* \otimes w_j^* = 0.
+    \end{align*}
+    Since $(\sum_{i = 1}^{n}\sum_{j = 1}^{m}\lambda_{ij}v_i^* \otimes w_j^*)(v_i, w_j) = \lambda_{ij}$ for every $1 \leq i \leq n, 1 \leq j \leq m$, this requires that $\lambda_{ij}$ all equals to zero. Thus $(v_i^* \otimes w_j^*)_{1 \leq i \leq n, 1 \leq j \leq m}$ is a basis of $V^* \otimes W^*$, and we have $\dim(V^* \otimes W^*) = nm = (\dim{V^*})(\dim{W^*})$.
+
+    Since $V^* \otimes W^*$ is a subspace of $\mathcal{L}(V \times W, \mathbf{F})$ and $\dim{\mathcal{L}(V \times W, \mathbf{F})} = nm$, this implies that $V^* \otimes W^* = \mathcal{L}(V \times W, \mathbf{F})$. This complete the proof.
+\end{proof}
+
+\begin{remark}
+    Since $V$ and $W$ are the dual spaces of $V^*$ and $W^*$, respectively, we can analogously define the tensor product $V \otimes W$. Then we have $V \otimes W = \mathcal{L}(V^* \times W^*, \mathbf{F})$.
+\end{remark}
+
+A typical element of $V \otimes W$ is a linear combination of elements of the form $v \otimes w$. In other words, given any bilinear map $f$ from $V \times W$ to a space $Y$, we can find a linear map $T$ from $V \otimes W$ to $Y$ such that $f(v, w) = T(v \otimes w)$ for every $v,w$.
+
+\begin{theorem}
+    Suppose $T : V \times W \to V \otimes W$ is the bilinear map obtain from the tensor product $\otimes$, i.e., for $v \in V$, $w \in W$,
+    \begin{align*}
+        T(v, w) = v \otimes w.
+    \end{align*}
+    Then for any bilinear map $g : V \times W \to \mathbf{F}$, there exists a unique linear map $f : V \otimes W \to \mathbf{F}$ such that $g = f \circ T : V \times W \to \mathbf{F}$.
+\end{theorem}
+
+\begin{proof}
+    Let $(v_i)_{1 \leq i \leq m}$ and $(w_j)_{1 \leq j \leq n}$ be the bases of $V$ and $W$, respectively. Define a linear map $f : V \otimes W \to \mathbf{F}$ as following
+    \begin{align*}
+        f(v_i \otimes w_i) = T(v_i, w_i)
+    \end{align*}
+    for every $1 \leq i \leq m, 1 \leq j \leq n$. Let $v = \sum_{i = 1}^{m}a_iv_i \in V$ and $w = \sum_{j = 1}^{n}b_jw_j \in W$. Then
+    \begin{align*}
+        f(v \otimes w)
+        = \sum_{i = 1}^{m}\sum_{j = 1}^{n}a_ib_jf(v_i \otimes w_j)
+        = \sum_{i = 1}^{m}\sum_{j = 1}^{n}a_ib_jT(v_i, w_j)
+        = T(v, w).
+    \end{align*}
+    Therefore $g = f \circ T : V \times W \to \mathbf{F}$, and it is clear that $f$ is unique.
+\end{proof}
+
+\subsection{Tensor product}
+
+\begin{definition}[Tensor product]
+    Let $f \in \mathcal{L}(V_1 \times \cdots \times V_r, \mathbf{F})$ and $g \in \mathcal{L}(V_1 \times \cdots \times V_s, \mathbf{F})$. The \emph{tensor product} $f \otimes g$ is defined by
+    \begin{align*}
+        f \otimes g(v_1, \cdots, v_r, w_1, \cdots, w_s) = f(v_1, \cdots, v_r) \cdot g(w_1, \cdots, w_s)
+    \end{align*}
+    for every $v_i \in V_i$, $1 \leq i \leq r$, and every $w_j \in W_j$, $1 \leq j \leq s$. Obviously, $f \otimes g$ is a $(r + s)$-linear map on $V_1 \times \cdots \times V_r \times W_1 \times \cdots \times W_s$.
+\end{definition}
+
+\begin{theorem}[Associativity of tensor product]
+    Let $f \in \mathcal{L}(U_1 \times\cdots\times U_r, \mathbf{F})$, $g \in \mathcal{L}(V_1 \times\cdots\times V_s, \mathbf{F})$, and $h \in \mathcal{L}(W_1 \times\cdots\times W_t, \mathbf{F})$. Then $(f \otimes g) \otimes h = f \otimes (g \otimes h)$.
+\end{theorem}
+
+\subsection{Tensors}
+
+\begin{definition}[Tensor]
+    Let $V$ be an $n$-dimensional vector space over $\mathbf{F}$ with dual space $V^*$. The elements in the tensor product
+    \begin{align*}
+        V_s^r := \underbrace{V \otimes \cdots \otimes V}_{r \text{ terms}} \otimes \underbrace{V^* \otimes \cdots \otimes V^*}_{s \text{ terms}}
+    \end{align*}
+    are called \emph{$(r, s)$-type tensors}, where $r$ is the \emph{contravariant order} and $s$ is the \emph{covariant order}. We denote $\mathcal{T}^r(V) := V^r_0$.
+\end{definition}
+
+\begin{remark}
+    In particular, the elements in $V_0^r$ are called \emph{$r$-contravariant tensors}, and those in $V_s^0$ are called \emph{$s$-covariant tensors}. We also have $V_0^0 = \mathbf{F}$, $V_0^1 = V$, and $V_1^0 = V^*$. The elements of $V$ are called \emph{contravectors}, and the elements of $V^*$ are called \emph{covectors}.
+\end{remark}
+
+By Lemma \ref{lem:basis, dimension of tensor product}, we have $\dim{V_s^r} = n^{r + s}$ if $\dim{V} = n$, and
+    \begin{align*}
+        V_s^r = \mathcal{L}(\underbrace{V^* \times \cdots \times V^*}_{r \text{ terms}} \times \underbrace{V \times \cdots \times V}_{s \text{ terms}}, \mathbf{F}).
+    \end{align*}
+Thus a $(r + s)$-linear map on $V^r_s$ is also a $(r + s)$-type tensor. In particular, a $r$-linear map $f \in \mathcal{L}(V_0^r, \mathbf{F})$ is a $r$-contravariant tensor.
+
+
+\section{Alternating tensors}
+
+Denote the permutation group of the set $\{1, \cdots, r\}$ by $\mathcal{S}_r$.
+
+\begin{definition}[Permutation action]
+    Let $f \in \mathcal{T}^r(V)$. We define the \emph{permutation action} of $f$ by
+    \begin{align*}
+        \sigma f(v_1^*, \cdots, v_r^*)
+        = f(v_{\sigma(1)}^*, \cdots, v_{\sigma(r)}^*),
+    \end{align*}
+    where $v_i^* \in V^*$.
+
+    \begin{itemize}
+        \item We say that $f$ is \emph{alternating}, if for every $\sigma \in \mathcal{S}_r$ we have $\sigma f = \sgn{\sigma} \cdot f$.
+        \item We say that $f$ is \emph{symmetric}, if for every $\sigma \in \mathcal{S}_r$ we have $\sigma f = f$.
+    \end{itemize}
+    We see that $f$ is a $r$-contravariant tensor, and we denote the set of all alternating $r$-contravariant tensors by $\Lambda^r(V)$, and the set of all symmetric $r$-contravariant tensors by $P^r(V)$.
+\end{definition}
+
+\begin{lemma}\label{lem:property of permutation action}
+    Let $\sigma, \tau \in \mathcal{S}_r$, and $f, g \in \mathcal{T}^r(V)$. Then
+    \begin{enumerate}
+        \item (Linearity) $\sigma(af + bg) = a\sigma f + b\sigma g$ for $a, b \in \mathbf{F}$.
+        \item (Composite) $\tau(\sigma f) = (\tau \circ \sigma)f$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    (i) Since $af + bg \in \mathcal{T}^r(V)$, we have
+    \begin{align*}
+        a\sigma f + b\sigma g
+        &= a\sigma f(v_1^*, \cdots, v_r^*) + b\sigma g(v_1^*, \cdots, v_r^*)\\
+        &= af(v_{\sigma(1)}^*, \cdots, v_{\sigma(r)}^*) + bg(v_{\sigma(1)}^*, \cdots, v_{\sigma(r)}^*)\\
+        &= (af + bg)(v_{\sigma(1)}^*, \cdots, v_{\sigma(r)}^*)\\
+        &= \sigma(af + bg)(v_1^*, \cdots, v_r^*)\\
+        &= \sigma(af + bg).
+    \end{align*}
+
+    (ii) For every $v_1^*, \cdots, v_r^* \in V^*$, we have
+    \begin{align*}
+        \tau(\sigma f)
+        &= \tau f(v_{\sigma(1)}^*, \cdots, v_{\sigma(r)}^*)\\
+        &= f(w_1^*, \cdots, w_r^*)\\
+        &= f(v_{\tau(\sigma(1))}^*, \cdots, v_{\tau(\sigma(r))}^*)\\
+        &= f(v_{(\tau \circ \sigma)(1)}^*, \cdots, v_{(\tau \circ \sigma)(r)}^*)\\
+        &= (\tau \circ \sigma)f,
+    \end{align*}
+    where $w_i^* = v_{\sigma(i)}^*$ for $1 \leq i \leq r$.
+\end{proof}
+
+\begin{definition}
+    Let $f \in \mathcal{T}^r(V)$. We define the \emph{alternating map} $A_r : \mathcal{T}^r(V) \to \mathcal{T}^r(V)$ as
+    \begin{align*}
+        A_r(f) := \frac{1}{r!}\sum_{\sigma \in \mathcal{S}_r}\sgn{\sigma} \cdot \sigma f.
+    \end{align*}
+    We define the \emph{symmetric map} $S_r : \mathcal{T}^r(V) \to \mathcal{T}^r(V)$ as
+    \begin{align*}
+        S_r(f) := \frac{1}{r!}\sum_{\sigma \in \mathcal{S}_r}\sigma f.
+    \end{align*}
+\end{definition}
+
+Following lemma shows that $A_r(f)$ and $S_r(f)$ is indeed alternating and symmetric, respectively.
+
+\begin{lemma}
+    Suppose $f \in \mathcal{T}^r(V)$. Then $A_r(f)$ is alternating and $S_r(f)$ is symmetric.
+\end{lemma}
+
+\begin{proof}
+    Let $\tau \in \mathcal{S}_r$. By Lemma \ref{lem:property of permutation action}, Lemma \ref{lem:property of sign}, and $\sgn\tau = (\sgn\tau)^{-1}$ we have
+    \begin{align*}
+        \tau(A_r(f))
+        &= \tau\Bigl(\frac{1}{r!}\sum_{\sigma \in \mathcal{S}_r}\sgn{\sigma} \cdot \sigma f\Bigr)\\
+        &= \frac{1}{r!}\sum_{\sigma \in \mathcal{S}_r}\sgn{\sigma} \cdot (\tau \circ \sigma) f\\
+        &= (\sgn{\tau})^{-1}\frac{1}{r!}\sum_{\sigma \in \mathcal{S}_r}\sgn(\tau \circ \sigma) \cdot (\tau \circ \sigma) f\\
+        &= (\sgn{\tau})\frac{1}{r!}\sum_{\sigma \in \mathcal{S}_r}\sgn(\tau \circ \sigma) \cdot (\tau \circ \sigma) f\\
+        &= (\sgn{\tau})A_r(f),
+    \end{align*}
+    the last equation holds for that $\tau \circ \sigma$ runs through $\mathcal{S}_r$ as $\sigma$ does. Similarly, we have
+    \begin{align*}
+        \tau(S_r(f))
+        &= \tau\Bigl(\frac{1}{r!}\sum_{\sigma \in \mathcal{S}_r}\sigma f\Bigr)\\
+        &= \frac{1}{r!}\sum_{\sigma \in \mathcal{S}_r}(\tau \circ \sigma)f\\
+        &= S_r(f).
+    \end{align*}
+This complete the proof.
+\end{proof}
+
+
+\section{Exterior algebra}
+
+Due to E. Cartan's systematic development of the method of exterior differentiation, the alternating tensors have played an important role in the study of manifolds. An alternating $r$-contravariant tensor is also called an \emph{exterior vector of degree $r$} or an \emph{exterior $r$-vector}. The space $\Lambda^r(V)$ is called the \emph{exterior space} of $V$ of degree $r$.
+
+More important, there exists an operation, the exterior (wedge) product, for exterior vectors such that the product of two exterior vectors is another exterior vector.
+
+\begin{definition}[Exterior product]
+    %Suppose $\xi$ is an exterior $k$-vector, and $\eta$ an exterior $l$-vector. 
+    Let $\xi \in \Lambda^{k}(V)$ and $\zeta \in \Lambda^{\ell}(V)$. We define the \emph{exterior product} (also is called the \emph{wedge product}) of $\xi$ and $\zeta$ to be a $(k + \ell)$-vector by
+    \begin{align*}
+        \xi \wedge \zeta := A_{k + \ell}(\xi \otimes \zeta),
+    \end{align*}
+    where $A_{k + \ell}$ is the alternating map.
+\end{definition}
+
+Following lemma gives the properties of exterior product.
+
+\begin{lemma}
+    Let $\xi, \xi_1, \xi_2 \in \Lambda^k(V), \eta, \eta_1, \eta_2 \in \Lambda^l(V), \zeta \in \Lambda^h(V)$. Then
+    \begin{enumerate}
+        \item (Distributive law) $(\xi_1 + \xi_2) \wedge \eta = \xi_1 \wedge \zeta + \xi_2 \wedge \zeta$, and $\xi \wedge (\eta_1 + \eta_2) = \xi \wedge \eta_1 + \xi \wedge \eta_2$.
+        \item (Anticommutativity) $\xi \wedge \eta = (-1)^{kl}\eta \wedge \xi$.
+        \item (Associativity) $(\xi \wedge \eta) \wedge \zeta = \xi \wedge (\eta \wedge \zeta)$.
+    \end{enumerate}
+\end{lemma}
+
+
+\begin{subappendices}
+
+\section{Dual space}\label{A:dual space}
+
+This section gives a quick review of dual space. We begin by the definition of dual space, which is a special vector space.
+\begin{definition}[Dual space]
+    Let $V$ be a vector space over $\mathbf{F}$, let $f : V \to \mathbf{F}$ be a linear map (it has a special name, linear functional). The set of all linear functionals on $V$, denote $V^* := \mathcal{L}(V, \mathbf{F})$, is called the \emph{dual space} of $V$.
+\end{definition}
+
+\begin{lemma}\label{lem:dimension of dual space}
+    If $V$ is an $n$-dimensional vector space over $\mathbf{F}$, then $V^*$ is also an $n$-dimensional vector space over $\mathbf{F}$.
+\end{lemma}
+
+\begin{proof}
+    Let $v_1, \cdots, v_n$ be a basis of $V$. For every $v \in V$ there are $a_1, \cdots, a_n \in \mathbf{F}$ such that
+    \begin{align*}
+        v = \sum_{i = 1}^{n}a_iv_i.
+    \end{align*}
+    Then for linear functional $f \in \mathcal{L}(V, \mathbf{F})$, which is an element of $V^*$, we have
+    \begin{align*}
+        f(v) = \sum_{i = 1}^{n}a_if(v_i).
+    \end{align*}
+    This means that the linear functional $f$ is determined by its values $f(v_i)$ on the basis. We may define linear functionals $v_i^* \in V^*$ such that
+    \begin{align*}
+        v_i^*(v_j) = \delta_{j}^{i}
+    \end{align*}
+    for every $1 \leq j \leq n$, where $\delta_j^i$ is the Kronecker $\delta$-symbol. Then $v_i^*(v) = a_i$, we thus write $f(v)$ in the form
+    \begin{align*}
+        f(v) = \sum_{i = 1}^{n}f(v_i)v_i^*(v)
+    \end{align*}
+    for $f(v_i) \in \mathbf{F}$, and thus
+    \begin{align*}
+        f = \sum_{i = 1}^{n}\lambda_iv_i^*
+    \end{align*}
+    where $\lambda_i = f(a_i)$ for some $a_i \in \mathbf{F}$. This says that every element of $V^*$ can be expressed as a linear combination of $v_1^*, \cdots, v_n^*$. Thus $\spans(v_1^*, \cdots, v_n^*) = V^*$.
+
+    Now, the only task is to show that $v_1^*, \cdots, v_n^*$ is linearly independent. Let $a_1, \cdots, a_n \in \mathbf{F}$ such that
+    \begin{align*}
+        a_1v_1^* + \cdots + a_nv_n^* = 0.
+    \end{align*}
+    Since $(a_1v_1^* + \cdots + a_nv_n^*)(v_i) = a_i$ for every $1 \leq i \leq n$, this implies $a_i = 0$ for every $1 \leq i \leq n$, as desired.
+\end{proof}
+
+From the proof of Lemma \ref{lem:dimension of dual space}, the dual basis is well-defined.
+\begin{definition}[Dual bais]
+    Let $V$ be a vector space over $\mathbf{F}$, and let $V^*$ be a dual space of $V$. If $v_1, \cdots, v_n$ is a basis of $V$, then the  \emph{dual basis} $v_1^*, \cdots, v_n^*$ of $v_1, \cdots, v_n$ is defined by
+    \begin{align*}
+        v_i^*(v_j) := \delta_j^i
+    \end{align*}
+    for every $1 \leq j \leq n$, where $\delta_j^i$ is the Kronecker $\delta$-symbol. Furthermore, the dual basis of a basis of $V$ is a basis of $V^*$.
+\end{definition}
+
+In the definition below, note that if $T$ is a linear map from $V$ to $W$ then $T^*$ is a linear map from $W^*$ to $V^*$.
+\begin{definition}[Dual map]
+    Let $V,W$ be vector spaces over $\mathbf{F}$, and let $V^*$ and $W^*$ be dual spaces of $V$ and $W$, respectively. If $T \in \mathcal{L}(V, W)$, then the \emph{dual map} of $T$ is the linear map $T^* \in \mathcal{L}(W^*, V^*)$ defined by $T^*f := f \circ T$ for $f \in W^*$.
+\end{definition}
+
+This is easy to show that $T^*$ is indeed a linear map from $V$ to $\mathbf{F}$, i.e., $T^*f \in V^*$, and the proof is omitted here.
+
+Following lemma gives the properties of dual map.
+\begin{lemma}
+    Let $U$, $V$ and $W$ be vector spaces over $\mathbf{F}$. Then
+    \begin{enumerate}
+        \item $(S + T)^* = S^* + T^*$ for every $S,T \in \mathcal{L}(V, W)$.
+        \item $(\lambda T)^* = \lambda T^*$ for every $\lambda \in \mathbf{F}$ and every $T \in \mathcal{L}(V, W)$.
+        \item $(ST)^* = T^*S^*$ for every $T \in \mathcal{L}(U, V)$ and every $S \in \mathcal{L}(V, W)$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    The proof omitted
+\end{proof}
+
+
+\section{Permutations}
+In this section we introduce the particular kind of tensors with which we shall be concerned - the alternating tensors - and derive some of their properties. In order to do this, we need some basic facts about permutations.
+
+\begin{definition}[Permutation]
+    A \emph{permutation} of a finite set $X$ is a bijection $\sigma : X \to X$. We denote the set of all permutations on $X$ by $S_X$. We abbreviate $S_X$ as $S_n$ for $X = \{1, \cdots, n\}$.
+\end{definition}
+
+\begin{definition}[Elementary permutation]
+    Let $1 \leq i \leq n$, let $\alpha_{i} \in S_n$ is defined by $\alpha_i(i) = i + 1$ and $\alpha_i(i + 1) = i$, and $\alpha_i(j) = j$ for $j \neq i$ and $j \neq i + 1$. We call $\alpha_i$ an \emph{elementary permutation}.
+\end{definition}
+
+Following lemma shows that every permutation can be described by the elementary permutations, in other words, we can obtain arbitrary permutation with elementary permutations step by step.
+
+\begin{lemma}
+    If $\sigma \in S_n$, then $\sigma$ equals a composite of elementary permutations.
+\end{lemma}
+
+\begin{proof}
+    Given $0 \leq i \leq n$. We say that $\sigma$ fixes the first $i$ integers if $\sigma(j) = j$ for every $0 \leq j \leq i$. We see that if $\sigma$ is an identity, then $\sigma = \alpha_j \circ \alpha$ for every $0 \leq j < n$.
+
+    We first show that if $\sigma$ fixes the first $i - 1$ integers, then $\sigma$ can be written as the composite $\sigma = \pi \circ \sigma'$, where $\pi$ is a composite of elementary permutations and $\sigma'$ fixes the first $i$ integers.
+
+    Since $\sigma$ fixes the first $i - 1$ integers, $\sigma(i)$ taking the value $\sigma(i) = i$ or $\sigma(i) = j > i$. If $\sigma(i) = i$, let $\sigma' = \sigma$ and let $\pi$ be identity, we obtain the claim. While if $\sigma(i) = j$ for $j > i$, we set $\sigma' = \alpha_i \circ \cdots \circ \alpha_{j - 1} \circ \sigma$. Obviously, $\sigma'$ fixes the first $i - 1$ integers, and also fixes $i$ for that $\sigma(i) = j$ and $(\alpha_i \circ \cdots \circ \alpha_{j - 1})(j) = i$ by definition of elementary permutation. Since $\alpha_j = \alpha_j^{-1}$ for every $1 \leq j \leq n$. We have $\sigma = \alpha_{j - 1}\circ \cdots \circ \alpha_i \circ \sigma$.
+
+    Now we use the induction. When $\sigma$ fixes the first $n$ integers, the claim is trivial. Inductively suppose that $\sigma$ fixes the first $0$ integers, $\sigma$ will taking the form $\sigma = \pi_0 \circ \cdots \circ \pi_n \circ \sigma'$, where $\sigma'$ fixes the first $n$ integers and $\pi_1, \cdots, \pi_n$ are composites of elementary permutations. This shows that every permutation equals a composite of elementary permutations.
+\end{proof}
+
+\begin{definition}[Sign of permutation]
+    Let $\sigma \in S_n$. A pair $(i, j)$ is called an \emph{inversion} in $\sigma$ if we have $\sigma(i) > \sigma(j)$ and $i < j$. We define the sign of permutation $\sigma$ by
+    \begin{align*}
+        \sgn{\sigma} := \left\{\begin{array}{ll}
+            -1&\text{if the number of inversions in $\sigma$ is odd,}\\
+            1&\text{if the number of inversions in $\sigma$ is even.}
+        \end{array}\right.
+    \end{align*}
+    We call $\sigma$ an \emph{odd permutation} if $\sgn{\sigma} = -1$, and \emph{even permutation} if $\sgn{\sigma} = 1$.
+\end{definition}
+
+
+\begin{lemma}\label{lem:property of sign}
+    Let $\sigma, \tau \in S_n$.
+    \begin{enumerate}
+        \item If $\sigma$ equals a composite of $m$ elementary permutations, then $\sgn{\sigma} = (-1)^m$.
+        \item $\sgn(\sigma \circ \tau) = (\sgn{\sigma}) \cdot (\sgn{\tau})$.
+        \item $\sgn{\sigma^{-1}} = \sgn{\sigma}$.
+        \item If $p \neq q$, and if $\tau$ is the permutation that exchanges $p$ and $q$ and leaves all other integers fixed, then $\sgn{\tau} = -1$.
+    \end{enumerate}
+\end{lemma}
+
+\end{subappendices}

@@ -1,0 +1,594 @@
+
+\chapter{Differentiation in several variable calculus}
+
+\section{Derivatives}
+
+\subsection{Directional derivative and differentiability}
+
+First, let us recall how the derivative in one-dimension is defined.
+
+\begin{definition}
+    Let $E$ be a subset of $\mathbf{R}$, $f : E \to \mathbf{R}$ be a function, $L \in \mathbf{R}$, and let $a$ be an interior point of $E$. We say that $f$ is \emph{differentiable at $a$ with derivative} $f'(a) := L$ if we have
+    \begin{align}\label{eq:derivative in 1-d(1)}
+        \lim_{h \to 0}\frac{f(a + t) - f(a)}{t}
+    \end{align}
+converges to $L$. This is equivalent to
+    \begin{align}\label{eq:derivative in 1-d(2)}
+        \lim_{h \to 0}\frac{f(a + t) - f(a) - L\cdot t}{t} = 0.
+    \end{align}
+\end{definition}
+
+The following facts are an immediate consequence:
+\begin{enumerate}
+    \item Differentiable functions are continuous.
+    \item Composites of differentiable functions are differentiable.
+\end{enumerate}
+
+We seek now to define the derivative of a function $f : E \to \mathbf{R}^n$ for $E \subset \mathbf{R}^n$. We cannot simply replace $a$ and $t$ in the definition just given by points of $\mathbf{R}^m$ in (\ref{eq:derivative in 1-d(1)}), for we cannot divide a point of $\mathbf{R}^m$ by a point of $\mathbf{R}^n$ when $m > 1$. Here is a first attempt at a definition.
+
+\begin{definition}[Directional derivative]
+    Let $E \subset \mathbf{R}^n$, $f : E \to \mathbf{R}^m$ be a function, let $a$ be an interior point of $E$, and let $v \in \mathbf{R}^n$. If the limit
+    \begin{align*}
+        \lim_{t \to 0}\frac{f(a + tv) - f(a)}{t}
+    \end{align*}
+    exists, we say that $f$ is \emph{differentiable in the direction $v$ at $a$}, and denote the above limit by $D_vf(a)$.
+\end{definition}
+
+The directional derivative is not a suitable generalization of the concept of derivative, since it would not follow that differentiability implies continuity or that composites of differentiable functions are differentiable. However, it is closely related to the partial derivative, which we will define later.
+
+Observe the equation (\ref{eq:derivative in 1-d(2)}) that $L$ is a linear map from $\mathbf{R}$ to $\mathbf{R}$. This leads to the following definition.
+
+\begin{definition}[Differentiability]
+    Let $E \subset \mathbf{R}^n$, $f : E \to \mathbf{R}^m$ be a function, let $a$ be an interior point of $E$, and let $L : \mathbf{R}^n \to \mathbf{R}^m$ be a linear map. We say that $f$ is \emph{differentiable at $a$ with derivative $Df(a) := L$} if we have
+    \begin{align*}
+        \lim_{h \to 0}\frac{\|f(a + h) - f(a) - Lh\|}{\|h\|} = 0.
+    \end{align*}
+\end{definition}
+
+Before we proceed further, we have to check a basic fact, which is that a function can have \emph{at most one} derivative at any point of its domain.
+
+\begin{lemma}[Uniqueness of derivatives]
+    Let $E \subset \mathbf{R}^n$. If $f : E \to \mathbf{R}^m$ is differentiable at $a$, then there is a unique linear map $L : \mathbf{R}^n \to \mathbf{R}^m$ such that
+    \begin{align*}
+        \lim_{h \to 0}\frac{\|f(a + h) - f(a) - Lh\|}{\|h\|} = 0.
+    \end{align*}
+\end{lemma}
+
+\begin{proof}
+    Suppose for sake of contradiction that there are two linear maps $L_1, L_2$ such that $L_1 \neq L_2$ and both are derivatives of $f$, then there is non-zero element $v \in \mathbf{R}^n$ such that $L_1v \neq L_2v$. Let $t$ be a positive real number, we have $tv \to 0$ as $t \to 0$. Let $F(h) = f(a + h) - f(a)$, we have
+        \begin{align*}
+            \lim_{t \to 0}\frac{\|L_1(tv) - L_2(tv)\|}{\|tv\|}
+            &= \lim_{t \to 0}\frac{\|L_1(tv) - F(tv) + F(tv) - L_1(tv)\|}{\|tv\|}\\
+            &\leq \lim_{t \to 0}\frac{\|L_1(tv) - F(tv)\|}{\|tv\|} + \lim_{t \to 0}\frac{\|F(tv) - L_1(tv)\|}{\|tv\|}
+            = 0.
+        \end{align*}
+Then
+        \begin{align*}
+            0 = \lim_{t \to 0}\frac{\|L_1(tv) - L_2(tv)\|}{\|tv\|}
+            = \lim_{t \to 0}\frac{\|L_1v - L_2v\|}{\|v\|},
+        \end{align*}
+implies $L_1v = L_2v$, a contradiction.
+\end{proof}
+
+We now show that this definition is stronger than the directional derivative, and that it is indeed a suitable definition of differentiability. Specifically, we verify the following facts:
+\begin{enumerate}
+    \item Differentiability of $f$ at $a$ implies the existence of all the directional derivatives of $f$ at $a$.
+    \item Differentiable functions are continuous.
+    \item Composites of differentiable functions are differentiable.
+\end{enumerate}
+
+For the first fact, we have following important lemma.
+
+\begin{lemma}\label{lem:differentiability implies directional derivative}
+    Let $E \subset \mathbf{R}^n$, $f : E \to \mathbf{R}^m$ be a function, let $a$ be an interior point of $E$, and let $v \in \mathbf{R}^n$. If $f$ is differentiable at $a$, then $f$ is also differentiable in the direction $v$ at $a$, and
+        \begin{align*}
+            D_vf(a) = Df(a)v.
+        \end{align*}
+\end{lemma}
+
+\begin{proof}
+    If $v = 0$, we have $D_vf(a) = Df(a)v = 0$. Let $v \neq 0$, we have $\|v\| > 0$. By the definition, we have
+        \begin{align*}
+            \lim_{t \to 0}\frac{\|f(a + tv) - f(a) - Df(a)(tv)\|}{\|tv\|}
+            = 0.
+        \end{align*}
+    If $t > 0$, above limit implies by multiply $\|v\|$
+        \begin{align*}
+            \lim_{t \to 0}\Big\|\frac{f(a + tv) - f(a)}{t} - Df(a)v\Big\| = 0.
+        \end{align*}
+    If $t < 0$, we reach the same conclusion by multiply $-\|v\|$. Thus $D_vf(a) = Df(a)v$.
+\end{proof}
+
+For the second fact, we show that the differentiable functions are continuous.
+
+\begin{proposition}
+    Let $E \subset \mathbf{R}^n$, $f : E \to \mathbf{R}^m$ be a function, and let $a$ be an interior point of $E$. If $f$ is differentiable at $a$, then $f$ is continuous at $a$.
+\end{proposition}
+
+\begin{proof}
+    Use the definition and the triangular inequality, we have
+        \begin{align*}
+            \|f(a + h) - f(a)\|
+            \leq \|h\|Df(a) + Lh.
+        \end{align*}
+    If $f$ is differentiable at $a$ and $h \to 0$, we have
+        \begin{align*}
+            \lim_{h \to 0}\|f(a + h) - f(a)\| = 0.
+        \end{align*}
+    Thus $f$ is continuous at $a$.
+\end{proof}
+
+We shall deal with composites of differentiable functions in the next section.
+
+\subsection{Partial derivative and Jacobian matrix}
+Now we show how to calculate $Df(a)$, provided it exists. We first introduce the notion of the partial derivatives of a function. We define the partial derivative to be the directional derivative in the direction $e_j$, where $e_j$ are the standard basis of $\mathbf{R}^n$.
+
+\begin{definition}[Partial derivative]
+    Let $E \subset \mathbf{R}^n$, let $f : E \to \mathbf{R}^m$ be a function, let $a$ be an interior point of $E$, and let $e_1, \cdots, e_n$ be a standard basis of $\mathbf{R}^n$. Then the \emph{partial derivative of $f$ with respect to $e_j$ at $a$}, denoted $D_jf(a)$, is defined by
+        \begin{align*}
+            D_jf(a) := \lim_{t \to 0}\frac{f(a + te_j) - f(a)}{t}
+        \end{align*}
+    provided of course that the limit exists. Otherwise, we leave $D_jf(a)$ undefined. The function $f$ is called \emph{partial differentiable at $a$} if every $D_1f(a), \cdots, D_nf(a)$ exist.
+\end{definition}
+
+\begin{remark}
+    Informally, given $f(x_1, \cdots, x_j, \cdots, x_n)$, the partial derivative $D_jf(a)$ can be obtained by holding all the variables other than $x_j$ fixed, and then applying the single-variable calculus derivative in the $x_j$ variable.
+\end{remark}
+
+The Lemma \ref{lem:differentiability implies directional derivative} has an important corollary that ensures one can write directional derivatives in terms of partial derivatives.
+
+\begin{corollary}\label{lem:representation of directional derivatives}
+    Let $E \subset \mathbf{R}^n$, $f : \mathbf{R}^n \to \mathbf{R}^m$ be a function, let $a$ be an interior point of $E$. If $f$ is differentiable at $a$, then for $v = (v_1, \cdots, v_n) \in \mathbf{R}^n$ we have
+    \begin{align*}
+        Df(a)v = \sum_{j = 1}^nv_jD_jf(a).
+    \end{align*}
+\end{corollary}
+
+\begin{proof}
+    By Lemma \ref{lem:differentiability implies directional derivative} and the definition of partial derivative, we have
+        \begin{align*}
+            Df(a)v
+            = Df(a)\sum_{j = 1}^nv_je_j
+            = \sum_{j = 1}^nv_jDf(a)e_j
+            = \sum_{j = 1}^nv_jD_jf(a),
+        \end{align*}
+    as desired.
+\end{proof}
+
+
+\begin{lemma}\label{lem:derivative of coordinate function}
+    Let $E \subset \mathbf{R}^n$, let $f : E \to \mathbf{R}^m$ with $f = (f_1, \cdots, f_m)$, and let $a$ be an interior point of $E$. The function $f$ is differentiable at $a$ if and only if each coordinate function $f_j$ for $1 \leq j \leq m$ is differentiable at $a$.
+\end{lemma}
+
+\begin{proof}
+    Since
+        \begin{align*}
+            \lim_{h \to 0}\frac{\|f(a + h) - f(a) - Lh\|}{\|h\|} = 0
+        \end{align*}
+    is equivalent to for every $1 \leq j \leq m$,
+        \begin{align*}
+            \lim_{h \to 0}\frac{\|f_j(a + h) - f_j(a) - Lh\|}{\|h\|} = 0,
+        \end{align*}
+    as desired.
+\end{proof}
+
+\begin{remark}
+    This lemma tells us that
+    \begin{align*}
+        Df(a) = \left(\begin{matrix}
+            Df_1(a)\\
+            \vdots\\
+            Df_m(a)\\
+        \end{matrix}\right)
+    \end{align*}
+when $f$ is differentiable at $a$ with the form of column vector in $\mathbf{R}^m$.
+\end{remark}
+
+It is often convenient to consider the matrix which is uniquely determined by the linear map $Df(a) : \mathbf{R}^n \to \mathbf{R}^m$ and the standard basis of $\mathbf{R}^n$ and $\mathbf{R}^m$. This $m \times n$ matrix is called the \emph{Jacobian matrix of $f$ at $a$}, following lemma gives the form of Jacobian matrix.
+
+\begin{lemma}
+    Let $E \subset \mathbf{R}^n$, $f : E \to \mathbf{R}^m$ be a function, and let $a$ be an interior point of $E$. If $f$ is differentiable at $a$, then
+        \begin{align*}
+            Df(a) = \left(\begin{matrix}
+                D_1f_1(a)   &   D_2f_1(a)   &   \cdots  &   D_nf_1(a)\\
+            D_1f_2(a)   &   D_2f_2(a)   &   \cdots  &   D_nf_2(a)\\
+            \vdots      &   \vdots      &   \ddots  &   \vdots\\
+            D_1f_m(a)   &   D_2f_m(a)   &   \cdots  &   D_nf_m(a)\\
+            \end{matrix}\right)
+        \end{align*}
+    This matrix is called the \emph{Jacobian matrix} of $f$ at $a$.
+\end{lemma}
+
+\begin{proof}
+    We already know that there is an $m \times n$ matrix determined by $Df(a)$ with respect to the standard basis of $\mathbf{R}^n$ and $\mathbf{R}^m$. Let $e_1, \cdots, e_n$ and $e_1, \cdots, e_m$ be standard bases of $\mathbf{R}^n$ and $\mathbf{R}^m$, respectively. Then we have $Df(a)e_j = \sum_{j = 1}^{m}a_{ij}e_j$, we only need to verify that $a_{ij} = D_if_j(a)$ for every $1 \leq i \leq m$, $1 \leq j \leq n$.
+
+    By Lemma \ref{lem:differentiability implies directional derivative}, Corollary \ref{lem:representation of directional derivatives}, Lemma \ref{lem:derivative of coordinate function}, and the linearity of $Df(a)$, we have
+    \begin{align*}
+        Df(a)e_j
+        &= (Df_1(a), \cdots, Df_m(a))e_j\\
+        &= (Df_1(a)e_j, \cdots, Df_m(a)e_j)\\
+        &= (D_jf_1(a), \cdots, D_jf_m(a))\\
+        &= \sum_{i = 1}^{m}D_jf_i(a)e_i.
+    \end{align*}
+Therefore, $a_{ij} = D_jf_i(a)$, as desired.
+\end{proof}
+
+Lemma \ref{lem:differentiability implies directional derivative} shows that the differentiability of $f$ at a point guarantees the existence of the directional derivatives, but the converse is false. However, if the partial derivatives are continuous, we can recover the differentiability of $f$. We given the following handy theorem:
+
+\begin{theorem}
+    Let $E \subset \mathbf{R}^n$, $f : E \to \mathbf{R}^m$ be a function, $a$ be an interior point of $F \subset E$. $f$ is differentiable at $a$ if and only if all the partial derivatives $D_jf(a)$ exist on $F$ and are continuous at $a$.
+\end{theorem}
+
+\begin{proof}
+    The ``only if'' part follows easily from Lemma \ref{lem:differentiability implies directional derivative}. We show the ``if'' part.
+
+    Let $L : \mathbf{R}^n \to \mathbf{R}^m$ be the linear map
+        \begin{align*}
+            Lh := \sum_{j = 1}^{n}h_jD_jf(a)
+        \end{align*}
+where $h = (h_1, \cdots, h_n) \in \mathbf{R}^n$. We have to prove that
+        \begin{align*}
+            \lim_{h \to 0}\frac{\|f(a + h) - f(a) - Lh\|}{\|h\|} = 0.
+        \end{align*}
+
+    Let $\varepsilon > 0$. It will suffice to find a radius $\delta > 0$ such that
+        \begin{align*}
+            \|f(a + h) - f(a) - Lh\| \leq \varepsilon \|h\|
+        \end{align*}
+for every $a + h \in B(a, \delta)$.
+
+    Because $a$ is an interior point of $F$, there exists a ball $B(a, r) \subset F$. Because each partial derivative $D_jf(a)$ is continuous on $F$, there thus exists an $0 < \delta_j < r$ such that $\|D_jf(a + h) - D_jf(a)\| \leq \varepsilon/nm$ for every $a + h \in B(a, \delta_j)$. If we take $\delta = \min(\delta_1, \cdots, \delta_n)$, then we thus have $\|D_jf(a + h) - D_jf(a)\| \leq \varepsilon/nm$ for every $a + h \in B(a, \delta_j)$ and every $1 \leq j \leq n$.
+
+    Let $a + h \in B(a, \delta)$, and write $h = h_1e_1 + \cdots + h_ne_n$. Our task is to show that
+        \begin{align*}
+            \Big\|f(a + h_1e_1 + \cdots + h_ne_n) - f(a) - \sum_{j = 1}^{n}h_jD_jf(a)\Big\| \leq \varepsilon\|h\|.
+        \end{align*}
+Write $f$ in components as $f = (f_1, \cdots, f_m)$. From the mean value theorem, we have
+        \begin{align*}
+            f_i(a + h_1e_1) - f_i(a) = D_1f_i(a + t_ie_1)h_1
+        \end{align*}
+for some $t_i \in (0, h_1)$. Then by the triangular inequality,
+        \begin{align*}
+            \|f(a + h_1e_1) - f(a) - D_1f(a)h_1\|
+            &\leq \sum_{i = 1}^{m}|f_i(a + h_1e_1) - f_i(a) - D_1f_i(a)h_1|\\
+            &= \sum_{i = 1}^{m}|D_1f_i(a + t_ie_1) - D_1f_i(a)|\cdot|h_1|\\
+            &\leq \sum_{i = 1}^{m}\|D_1f(a + t_ie_1) - D_1f(a)\|\cdot\|h\|\\
+            &\leq \|h\|\sum_{i = 1}^{m}\varepsilon/nm\\
+            &= \varepsilon\|h\|/n.
+        \end{align*}
+A similar argument gives
+        \begin{align*}
+            \|f(a + h_1e_1 + h_2e_2) - f(a + h_1e_1) - D_2f(a)h_2\|
+            \leq \varepsilon\|h\|/n,
+        \end{align*}
+and so forth up to
+        \begin{align*}
+            \|f(a + h_1e_1 + \cdots + h_ne_n) - f(a + h_1e_1 + \cdots + h_{n - 1}e_{n - 1}) - D_nf(a)h_2\|
+            \leq \varepsilon\|h\|/n.
+        \end{align*}
+
+If we sum these $n$ inequalities and use the triangle inequality $\|x + y\| \leq \|x\| + \|y\|$, we obtain
+        \begin{align*}
+            \Big\|f(a + h_1e_1 + \cdots + h_ne_n) - f(a) - \sum_{j = 1}^{n}h_jD_jf(a)\Big\| \leq \varepsilon\|h\|
+        \end{align*}
+as desired.
+\end{proof}
+
+\section{The chain rule}
+
+\subsection{Several calculus chain rule}
+We are now ready to prove the fact that composites of differentiable functions are differentiable, which is called the several variable calculus chain rule, or the chain rule for short.
+
+\begin{theorem}[Several calculus chain rule]
+    Let $E \subset \mathbf{R}^n$, and $F \subset \mathbf{R}^m$. Let $f : E \to F$ be a function, and let $g : F \to \mathbf{R}^p$ be another function. Let $a$ be interior point of $E$. Suppose that $f$ is differentiable at $a$, and that $f(a)$ is the interior point of $F$. Suppose also that $g$ is differentiable at $f(a)$. Then $f \circ g : E \to \mathbf{R}^p$ is also differentiable at $a$, and we have the formula
+        \begin{align*}
+            D(g \circ f)(a) = Dg(f(a))Df(a).
+        \end{align*}
+\end{theorem}
+
+\begin{proof}
+    Let $b = f(a)$, let $S = Df(a)$, $T = Dg(f(a))$, and let
+        \begin{align*}
+            F(h) &:= f(a + h) - f(a) - Sh,\\
+            G(k) &:= g(b + k) - g(b) - Tk.
+        \end{align*}
+    From the definition of differentiability, we have
+        \begin{align*}
+            \lim_{h \to 0}\frac{\|F(h)\|}{\|h\|} = 0,
+            \quad \text{and}\quad
+            \lim_{k \to 0}\frac{\|G(k)\|}{\|k\|} = 0.
+        \end{align*}
+    We want to show that
+        \begin{align*}
+            \lim_{h \to 0}\frac{\|(g \circ f)(a + h) - (g \circ f)(a) - (TS)h\|}{\|h\|} = 0.
+        \end{align*}
+    Since
+        \begin{align*}
+            (g \circ f)(a + h) - (g \circ f)(a) - (TS)h
+            &= g(f(a + h)) - g(b) - T(Sh)\\
+            &= g(f(a + h)) - g(b) - T(f(a + h) - f(a) - F(h))\\
+            &= g(f(a + h)) - g(b) - T(f(a + h) - f(a)) + T(F(h)).
+        \end{align*}
+    Let $k = f(a + h) - f(a)$, we have $T(f(a + h) - f(a)) = g(f(a + h)) - g(b) - G(f(a + h) - f(a))$, then
+        \begin{align*}
+            (g \circ f)(a + h) - (g \circ f)(a) - (TS)h
+            &= G(f(a + h) - f(a)) + T(F(h)).
+        \end{align*}
+It suffices to show that
+        \begin{align*}
+            \lim_{h \to 0}\frac{\|G(f(a + h) - f(a))\|}{\|h\|} = 0
+            \quad\text{and}\quad
+            \lim_{h \to 0}\frac{\|T(F(h))\|}{\|h\|} = 0.
+        \end{align*}
+    We use the fact that linear map is bounded, i.e., for a linear map $T : \mathbf{R}^n \to \mathbf{R}^m$, there is a number $M > 0$ such that $\|Tx\| \leq M\|x\|$ for every $x \in \mathbf{R}^n$. Then for the first part, we see that
+        \begin{align*}
+            \lim_{h \to 0}\frac{\|G(f(a + h) - f(a))\|}{\|h\|}
+            &= \lim_{h \to 0}\frac{\|G(f(a + h) - f(a))\|}{\|f(a + h) - f(a)\|}\frac{\|f(a + h) - f(a)\|}{\|h\|}\\
+            &\leq \lim_{h \to 0}\frac{\|G(f(a + h) - f(a))\|}{\|f(a + h) - f(a)\|}\Big(\frac{\|F(h)\|}{\|h\|} + M\Big)\\
+            &= 0.
+        \end{align*}
+    And for the second part,
+        \begin{align*}
+            \lim_{h \to 0}\frac{\|T(F(h))\|}{\|h\|}
+            = \lim_{h \to 0}\frac{\|T(F(h))\|}{\|F(h)\|}\frac{\|F(h)\|}{\|h\|}
+            \leq \lim_{h \to 0}M\frac{\|F(h)\|}{\|h\|} = 0,
+        \end{align*}
+    as desired.
+\end{proof}
+
+\begin{remark}
+    In the linear algebra, we usually write $Dg(f(a))Df(a)$ instead of $Dg(f(a)) \circ Df(a)$ for the composite of linear maps. Recall that the composite of linear maps is corresponding to the multiplication of matrices, thus we have $D(g \circ f)(a) = Dg(f(a)) \circ Df(a)$ when the derivatives are given by the linear maps, and $D(g \circ f)(a) = Dg(f(a))Df(a)$ when the derivatives are given by the Jacobian matrices.
+\end{remark}
+
+
+\subsection{The mean-value theorem}
+
+As an application of the chain rule, we generalize the mean-value theorem of single-variable calculus.
+
+\begin{theorem}[Mean-value theorem]\label{thm:mean-value}
+    Let $E$ be a convex open subset of $\mathbf{R}^n$, let $f : E \to \mathbf{R}^m$ be differentiable on $E$. Suppose that there is a real number $M$ such that $\|Df(x)\| \leq M$ for every $x \in E$. Then
+    \begin{align*}
+        \|f(x) - f(y)\| = M\|x - y\|
+    \end{align*}
+    for every $x, y \in E$.
+\end{theorem}
+
+\begin{proof}
+    Let $F(t) := f(tx + (1 - t)y)$ for $t \in [0, 1]$. Since $E$ is convex, we see that $tx + (1 - t)y \in E$ for $t \in [0, 1]$. By the chain rule, $F$ is differentiable and $F'(t) = Df(tx + (1 - t)y))(x - y)$. By the mean-value theorem of single-variable calculus, there is a $t_0 \in [0, 1]$ such that
+        \begin{align*}
+            \|f(x) - f(y)\| = \|F(1) - F(0)\| = \|F'(t_0)\|
+            \leq M\|x - y\|,
+        \end{align*}
+    as desired.
+\end{proof}
+
+\begin{proposition}\label{lem:corollaries of chain rule}
+\quad
+    \begin{enumerate}
+        \item Let $U$ be a connected, open subset of $\mathbf{R}^n$, $f : U \to \mathbf{R}^m$ be a function. If $f$ is differentiable on $U$ and $Df(x) = 0$ for every $x \in U$, then $f$ is a constant function.
+        \item Let $T : \mathbf{R}^n \to \mathbf{R}^m$ be a linear map. Then $T$ is continuously differentiable at every point of $\mathbf{R}^n$, and we have $DT(x) = T$ for every $x \in \mathbf{R}^n$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    (i) Let $c \in \mathbf{R}^m$, and let
+        \begin{align*}
+            S := \{x \in U : f(x) = c\}.
+        \end{align*}
+    We want to show that $S = U$. If we can prove that $S$ is closed and open subset of $U$, then the claim follows since the subset of connected set is open and closed if and only if it equals to $U$ or $\emptyset$. Since the differentiability implies the continuity, and $\{c\}$ is closed, then $S = f^{-1}(\{c\})$ is also closed. For the other hand, let $a \in S$, there is $\varepsilon > 0$ such that $B(a, \varepsilon) \subset U$. Because $Df(x) = 0$ for every $x \in U$, by Theorem \ref{thm:mean-value}, we have $\|f(x) - f(a)\| \leq 0$ for every $x \in B(a, \varepsilon)$, this implies that $f(x) = f(a) = c$. Thus $B(a, \varepsilon) \subset S$ and $S$ is open. Since $S$ is nonempty, we only have $S = U$, as desired.
+
+    (ii) For every $x \in \mathbf{R}^n$, we have
+        \begin{align*}
+            \lim_{h \to 0}\frac{\|T(x + h) - Tx - Th\|}{\|h\|}
+            = \lim_{h \to 0}\frac{\|Tx + Th - Tx - Th\|}{\|h\|}
+            = 0.
+        \end{align*}
+    Thus by definition, $T$ is differentiable at $x$ with derivative $DT(x) = T$.
+\end{proof}
+
+\section{Continuous differentiability}
+
+We now investigate what happens if one differentiates a function twice.
+
+\begin{definition}[Continuous differentiability]
+    Let $E$ be an open subset of $\mathbf{R}^n$, and let $f : E \to \mathbf{R}^m$ be a function. We say that $f$ is \emph{continuously differentiable} if the partial derivatives $D_1f, \cdots, D_nf$ exists and are continuous on $E$. We say that $f$ is $C^k$ or \emph{$k$-times continuously differentiable} if all the partial derivatives of $f$ of order less than or equal to $k$ exist and are continuous function on $E$. A function $f$ is called $C^\infty$ or \emph{smooth} or \emph{infinitely differentiable} if $f$ is $C^k$ for all $k \geq 0$.
+\end{definition}
+
+There is an important theorem in calculus concerning continuous differentiability.
+
+\begin{theorem}[Clairaut-Schwartz's theorem]
+    Let $E$ be an open subset of $\mathbf{R}^n$, and let $f : E \to \mathbf{R}^m$ be $C^2$ on $E$. Then we have
+    \begin{align*}
+        D_jD_if(a) = D_iD_jf(a)
+    \end{align*}
+    for all $1 \leq i,j \leq n$.
+\end{theorem}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{theorem}[Taylor's theorem]
+    
+\end{theorem}
+
+\section{The inverse function theorem}
+\subsection{The contraction mapping theorem}
+
+Before we turn to the next topic - namely, the inverse function theorem - we need to develop a useful fact from the theory of complete metric spaces, namely the contraction mapping theorem.
+
+\begin{definition}[Contraction]
+    Let $(X, d)$ be a metric space, and  let $f : X \to X$ be a map. We say that $f$ is a \emph{contraction} if there exists a constant $0 < c < 1$ such that
+    \begin{align*}
+        d(f(x), f(y)) \leq cd(x, y)
+    \end{align*}
+    for every $x, y \in X$.
+\end{definition}
+
+\begin{definition}[Fixed points]
+    Let $f : X \to X$ be a map, and $x \in X$. We say that $x$ is a \emph{fixed point} of $f$ if $f(x) = x$.
+\end{definition}
+
+We now give the contraction mapping theorem, it is also called the \emph{Banach's fixed point theorem}.
+
+\begin{theorem}[Contraction mapping theorem]
+    Let $(X, d)$ be a complete metric space, and $f : X \to X$ be a contraction. Then $f$ has \emph{exactly} one fixed point.
+\end{theorem}
+
+\begin{proof}
+    The uniqueness is trivial, for if $f(x) = x$ and $f(y) = y$, then $d(x, y) \leq cd(x, y)$ if and only if $d(x, y) = 0$.
+
+    We prove the existence of a fixed point. Pick an arbitrary point $x_0 \in X$, and we define the sequence of $x_n$ recursively that $x_{n} = f(x_{n - 1})$ for $n \geq 1$. Choose $0 < c < 1$ such that $d(x_{n + 1}, x_{n}) \leq d(x_{n}, x_{n - 1})$ for $n \geq 1$. Use the induction we have
+        \begin{align*}
+            d(x_{n + 1}, x_{n}) \leq c^nd(x_1, x_0)
+        \end{align*}
+    for $n \geq 1$. For arbitrary $1 \leq n < m$, we have
+        \begin{align*}
+            d(x_n, x_m)
+            \leq \sum_{k = n}^{m - 1}d(x_{k + 1}, x_k)
+            \leq c^{k}d(x_1, x_0)
+            \leq \frac{c^k}{1 - c}d(x_1, x_0).
+        \end{align*}
+    Thus $(x_n)_{n = 0}^{\infty}$ is a Cauchy sequence. Since $X$ is complete, $\lim_{n \to \infty}x_n = x$ for some $x \in X$. This shows that $f(x) = x$, as desired.
+\end{proof}
+
+\begin{remark}
+    The contraction mapping theorem is one example of a \emph{fixed point theorem} - a theorem which guarantees, assuming certain conditions, that a map will have a fixed point.
+\end{remark}
+
+
+We shall give one consequence of the contraction mapping theorem which is important for our application to the inverse function theorem. %Basically, this says that any map $f$ on a ball which is a ``small'' perturbation of the identity map, remains one-to-one and cannot create any internal holes in the ball,
+
+\begin{lemma}\label{lem:lemma of the inverse function theorem}
+    Let $B(0, r) \subset \mathbf{R}^n$, and let $g : B(0, r) \to \mathbf{R}^n$ be a map such that $g(0) = 0$ and
+        \begin{align*}
+            \|g(x) - g(y)\| \leq \frac{1}{2}\|x - y\|
+        \end{align*}
+    for all $x, y \in B(0, r)$. Then the function $f : B(0, r) \to \mathbf{R}^n$ defined by $f(x) := x + g(x)$ is one-to-one, and furthermore the image $f(B(0, r))$ of this map contains the ball $B(0, r/2)$.
+\end{lemma}
+
+\begin{proof}
+    We first show that $f$ is one-to-one. Suppose for sake of contradiction that we have two different point $x, y \in B(0, r)$ such that $f(x) = f(y)$. This means that $x + g(x) = y + g(y)$ and $\|g(x) - g(y)\| = \|x - y\|$. From the hypothesis, this requires that $\|x - y\| = 0$, i.e., $x = y$, a contradiction. Thus $f$ is one-to-one.
+
+    We now show that $B(0, r/2) \subset f(B(0, r))$. Let $y \in B(0, r/2)$ be arbitrary. If we can find a point $x \in B(0, r)$ such that $f(x) = y$, i.e., $y - g(x) = x$, and if we can prove that $x$ is a fixed point of the map $x \mapsto y - g(x)$, then the claim follows.
+
+    Let $F : B(0, r) \to B(0, r)$ to be the function $F(x) := y - g(x)$. If $x \in B(0, r)$, then
+        \begin{align*}
+            \|F(x)\| \leq \|y\| + \|g(x)\| < \frac{r}{2} + \frac{1}{2}\|x\| < \frac{r}{2} + \frac{r}{2} = r,
+        \end{align*}
+    so $F$ does indeed map $B(0, r)$ to itself. The same argument shows that for a sufficiently small $\varepsilon > 0$, $F$ maps the closed ball $\overline{B(0, r - \varepsilon)}$ to itself. For any $x, x' \in B(0, r)$ we have
+        \begin{align*}
+            \|F(x) - F(x')\|
+            = \|g(x') - g(x)\|
+            \leq \frac{1}{2}\|x' - x\|.
+        \end{align*}
+    Thus $F$ is a contraction on $B(0, r)$, and hence on the complete space $\overline{B(0, r - \varepsilon)}$. By the contraction mapping theorem, $F$ has a fixed point, as desired.
+\end{proof}
+
+\subsection{The inverse function theorem}
+
+Let $U$ be an open subset of $\mathbf{R}^n$, $a \in U$, and let $f : U \to \mathbf{R}^m$ be differentiable at $a$. If $f$ is injective and $V = f(U)$ be open in $\mathbf{R}^m$, then $f$ is bijective and its inverse function $f^{-1} : V \to U$ exists. But this would not necessarily imply that $f^{-1}$ is differentiable at $f(a)$. In fact, if $f$ has a differentiable inverse $f^{-1}$, by the chain rule and Proposition \ref{lem:corollaries of chain rule}(ii), we have
+    \begin{align*}
+        Df^{-1}(f(a))Df(a)
+        = D(f^{-1} \circ f)(a)
+        = DI(a)
+        = I(a),
+    \end{align*}
+where $I : \mathbf{R}^n \to \mathbf{R}^m$ is the identity and linear map. This means $Df^{-1}(f(a))$ is an inverse of $Df(a)$. Thus a necessary condition of $f$ to have a differentiable inverse $f^{-1}$ is that $Df(a)$ is invertible, in other words, $\mathbf{R}^n$ and $\mathbf{R}^m$ have same dimension, i.e., $n = m$. We now prove that the derivative $Df(a)$ is invertible is sufficient for $f$ to have a differentiable inverse, at least locally. This result is called the \emph{inverse function theorem}.
+
+\begin{theorem}[Inverse function theorem]
+    Let $E$ be open subset of $\mathbf{R}^n$, let $f : E \to \mathbf{R}^n$ be a function which is continuously differentiable on $E$, let $a \in E$. Suppose $Df(a)$ is invertible. Then there exists an open set $U \subset E$ containing $a$, and an open set $V \subset \mathbf{R}^n$ containing $f(a)$, such that
+    \begin{enumerate}
+        \item $f$ is a bijection from $U$ to $V$.
+        \item The inverse map $f^{-1} : V \to U$ is differentiable at $f(a)$ with derivative
+        \begin{align*}
+            Df^{-1}(f(a)) = (Df(a))^{-1}.
+        \end{align*}
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\begin{comment}
+    We first observe that if the inverse map $f^{-1}$ is differentiable, the formula $Df^{-1}(f(a)) = (Df(a))^{-1}$ is automatic. To see this, notice that $I = f^{-1} \circ f$ on $U$, where $I : \mathbf{R}^n \to \mathbf{R}^m$ is the identity and linear map. Then use the chain rule at $a$, we have
+        \begin{align*}
+            DI(a) = Df^{-1}(f(a))Df(a).
+        \end{align*}
+    By Proposition \ref{lem:corollaries of chain rule}(ii) that $DI = I$, we thus have $Df^{-1}(f(a)) = (Df(a))^{-1}$.
+\end{comment}
+
+    Observe claim (ii) that if the inverse map $f^{-1}$ is differentiable, the formula $Df^{-1}(f(a)) = (Df(a))^{-1}$ is automatic. To see this, notice that $I = f^{-1} \circ f$ on $U$, where $I : \mathbf{R}^n \to \mathbf{R}^n$ is the identity map. Then use the chain rule at $a$, we have
+        \begin{align*}
+            DI(a) = Df^{-1}(f(a))Df(a).
+        \end{align*}
+    By Proposition \ref{lem:corollaries of chain rule}(ii) that $DI = I$, we thus have $Df^{-1}(f(a)) = (Df(a))^{-1}$.
+
+    We are going to simplify the problem by making three additional assumptions and showing that it suffices to prove the theorem under these assumptions.
+
+    We first assume that $f(a) = 0$. To see that it suffices to prove the theorem under this assumption, let $F(x) := f(x) - f(a)$. If there is an open set $U \subset E$ containing $a$, and an open set $V' \subset \mathbf{R}^n$ containing $F(a) = 0$ such that $F : U \to V'$ is bijective. Let $V := V' + f(a)$, and let $\sigma(x) \mapsto x + f(a)$ be a function, which is obviously bijective, from $V'$ to $V$. Then $\sigma\circ F : U \to V$ is also bijective and $\sigma \circ F = f$.
+
+    Next, one can assume that $a = 0$. To see that it suffices to prove the theorem under this assumption, let $F(x) := f(x + a)$. If there is an open set $U' \subset E$ containing $0$, and an open set $V \subset \mathbf{R}^n$ containing $F(a)$ such that $F : U' \to V$ is bijective. Let $U := U' - a$, and let $\iota(x) \mapsto x - a$ be a bijective function from $U'$ to $U$. Then $F \circ \iota : U \to V$ is also bijective and $F \circ \iota = f$. Thus we now can assume that $f(0) = 0$ and that $f'(0)$ is invertible.
+
+    Finally, one can assume that $Df(0) = I$, where $I : \mathbf{R}^n \to \mathbf{R}^n$ is the identity map. To see this assumption, let $F(x) := (Df(0))^{-1}f(x)$. Without loss of generality, we have $F(0) = 0$ and that
+        \begin{align*}
+            DF(0) = (Df(0))^{-1}Df(0) = I.
+        \end{align*}
+    If there exists an open set $U'$ containing $0$, and an open set $V'$ containing $0$ such that $F$ is a bijection from $U'$ to $V'$, and that $F^{-1} : V' \to U'$ is differentiable at $0$ with derivative $I$. Then by $f(x) = Df(0)F(x)$, we have $f$ is a bijection from $U'$ to $V$, for that if we let $V = Df(0) \cdot V'$ and $\tau(x) := Df(0)x$ which is bijection, and hence $f = F \circ \tau$.
+
+    Together our assumptions, it suffices to consider the special case $a = 0$, $f(a) = f(0) = 0$, and $Df(0) = I$. All we have to do now is prove the inverse function theorem under these three assumptions.
+
+    We show that $f$ is locally bijective around $0$. We use Lemma \ref{lem:lemma of the inverse function theorem} to show that $f$ is one-to-one. Let $g : E \to \mathbf{R}^n$ be the function defined as $g(x) := f(x) - x$. Then $g(0) = 0$ and $Dg(0) = 0$ (this is comes from our simplification). In particular, $D_jg(0) = 0$ for $j = 1, \cdots, n$. Since $g$ is continuously differentiable, there exists a ball $B(0, r) \subset E$ such that
+        \begin{align*}
+        \|D_jg(x)\| \leq \frac{1}{2n^2}
+        \end{align*}
+for every $x \in B(0, r)$. In particular, for any $x \in B(0, r)$ and $v = (v_1, \cdots, v_n) \in \mathbf{R}^n$ we have
+        \begin{align*}
+            \|D_vg(x)\|
+            = \Big\|\sum_{j = 1}^{n}v_jD_jg(x)\Big\|
+            \leq \sum_{j = 1}^{n}|v_j|\|D_jg(x)\|
+            \leq \sum_{j = 1}^{n}\|v\|\frac{1}{2n^2}
+            \leq \frac{1}{2n}\|v\|.
+        \end{align*}
+    By the fundamental theorem of calculus, for every $x, y \in B(0, r)$ we have
+        \begin{align*}
+            g(y) - g(x) &= \int_{0}^{1}\frac{d}{dt}g(x + t(y - x))dt\\
+            &= \int_{0}^{1}D_{y - x}g(x + t(y - x))dt\\
+            &\leq \int_{0}^{1}\frac{1}{2n}\|y - x\|dt\\
+            &= \frac{1}{2n}\|y - x\|.
+        \end{align*}
+    Since every component of $g(y) - g(x)$ has magnitude at most $\frac{1}{2n}\|y - x\|$, and hence $g(y) - g(x)$ itself has magnitude at most $\frac{1}{2}\|y - x\|$. Then by Lemma \ref{lem:lemma of the inverse function theorem}, $f(x) = x + g(x)$ is one-to-one on $B(0, r)$, and $B(0, r/2) \subset f(B(0, r))$. In particular, we have an inverse map $f^{-1} : B(0, r/2) \to B(0, r)$.
+
+    Applying the contraction bound with $y = 0$ we obtain that $\|g(x)\| \leq \frac{1}{2}\|x\|$ for every $x \in B(0, r)$, and so by the triangle inequality
+        \begin{align*}
+            \frac{1}{2}\|x\| \leq \|f(x)\| \leq \frac{3}{2}\|x\|
+        \end{align*}
+for every $x \in B(0, r)$.
+
+    Set $V : = B(0, r/2)$ and $U := f^{-1}(B(0, r/2))$. Then by construction $f$ is a bijection from $U$ to $V$. $V$ is clearly open, and $U = f^{-1}(V)$ is also open since $f$ is continuous.
+
+    Now we want to show that $f^{-1} : V \to U$ is differentiable at $0$ with derivative $I^{-1} = I$. In other words, we wish to show that
+        \begin{align*}
+            \lim_{h \to 0}\frac{\|f^{-1}(0 + h) - f^{-1}(0) - Ih\|}{\|h\|}
+            = \lim_{h \to 0}\frac{\|f^{-1}(h) - h\|}{\|h\|}
+            = 0,
+        \end{align*}
+since $f(0) = 0$ implies $f^{-1}(0) = 0$.
+
+Above limit holds, if for any sequence $(x_n)_{n = 1}^{\infty}$ in $V$ converges to $0$, we have
+        \begin{align*}
+            \lim_{n \to \infty}\frac{\|f^{-1}(x_n) - x_n\|}{\|x_n\|} = 0.
+        \end{align*}
+    Write $y_n := f^{-1}(x_n)$. Then $y_n \in B(0, r)$ and $x_n = f(y_n)$. In particular, we have
+        \begin{align*}
+            \frac{1}{2}\|y_n\| \leq \|x_n\| \leq \frac{3}{2}\|y_n\|.
+        \end{align*}
+    Since $\|x_n\|$ goes to $0$, $\|y_n\|$ also goes to $0$, and their ratio remains bounded. It will thus suffice to show that
+        \begin{align*}
+            \lim_{n \to \infty}\frac{\|y_n - f(y_n)\|}{\|y_n\|} = 0.
+        \end{align*}
+    But since $y_n \to 0$, and $f$ is differentiable at $0$, we have
+        \begin{align*}
+            \lim_{n \to \infty}\frac{\|y_n - f(y_n)\|}{\|y_n\|}
+            = \lim_{n \to \infty}\frac{\|f(y_n) - f(0) - Df(0)y_n\|}{\|y_n\|} = 0
+        \end{align*}
+    as desired.
+\end{proof}
