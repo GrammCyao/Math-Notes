@@ -1,0 +1,25 @@
+
+\chapter{Submersions, immersions, and embeddings}
+
+\section{Maps of constant rank}
+
+\begin{definition}
+    Let $M$ and $N$ be smooth manifolds. Let $F : M \to N$ be a smooth map, and let $p \in M$.
+    \begin{itemize}
+        \item We define the \emph{rank of $F$ at $p$} to be the rank of the linear map $dF_p : T_pM \to T_{F(p)}N$. If $F$ has same rank $r$ at every point of $M$, then we say that it has \emph{constant rank}, and denote $\rank{F} = r$.
+        \item The smooth map $F$ is called a \emph{smooth submersion} if $F_p$ is surjective at every point of $M$, i.e., $\rank{F} = \dim{N}$.
+        \item The smooth map $F$ is called a \emph{smooth immersion} if $F_p$ is injective at every point of $M$, i.e., $\rank{F} = \dim{M}$.
+    \end{itemize}
+\end{definition}
+
+\begin{theorem}[Rank theorem]
+    Let $M$ and $N$ be smooth manifold of dimension $m$ and $n$, respectively. Let $F : M \to N$ be a smooth map with constant rank $r$. For every $p \in M$ there exist charts $(U, \varphi)$ for $M$ centered at $p$ and $(V, \psi)$ for $N$ centered at $F(p)$ such that $F(U) \subset V$ and
+        \begin{align*}
+            \psi \circ F \circ \varphi^{-1} (x_1, \cdots, x_r, x_{r + 1}, \cdots, x_m)
+            = (x_1, \cdots, x_r, \under{0, \cdots, 0}).
+        \end{align*}
+\end{theorem}
+
+
+
+

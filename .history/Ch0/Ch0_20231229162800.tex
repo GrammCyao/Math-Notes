@@ -1,0 +1,149 @@
+
+\chapter{Foundation}
+
+\section{Na\"ive set theory}
+
+We begin with na\"ive set theory. A \emph{set} $A$ is an unordered collection of objects. If $x$ is an object and if $x$ lies in $A$, we say that $x$ is an element of $A$, and we write
+    \begin{align*}
+        x \in A,
+    \end{align*}
+otherwise, we write
+    \begin{align*}
+        x \notin A.
+    \end{align*}
+
+If $A, B$ are sets and if every element of $A$ is an element of $B$, we say that $A$ is a \emph{subset} of $B$, and we write
+    \begin{align*}
+        A \subset B.
+    \end{align*}
+
+
+\begin{axiom}[Axiom of extension]
+    Two sets $A$ and $B$ are equal, denoted $A = B$, if and only if they have same elements.
+\end{axiom}
+
+\begin{axiom}[Axiom scheme of specification]
+    Let $A$ be a set, and for each $x \in A$, let $P(x)$ be a property pertaining to $x$. Then there exists a set 
+    \begin{align*}
+        \{x \in A : P(x) \text{ is true}\},
+    \end{align*}
+    whose elements are precisely those elements $x$ in $A$ for which $P(x)$ is true. In other words, for any object $y$,
+        \begin{align*}
+            y \in \{x \in A : P(x) \text{ is true}\}
+            \Longleftrightarrow 
+            (y \in A \text{ and } P(y) \text{ is true}).
+        \end{align*}
+\end{axiom}
+
+This axiom is also known as the \emph{axiom scheme of separation}.
+
+The axiom of specification assures the existence of empty set which without any elements at all. If $A$ is a set, the \emph{empty set} $\emptyset$ is defined to be the set
+        \begin{align*}
+            \emptyset := \{x \in A : x \neq x\}.
+        \end{align*}
+The axiom of extension implies that there can be only one set with no elements.
+
+
+\begin{axiom}[Axiom of pairing]
+    Let $a$ and $b$ be objects. Then there exists a set $\{a, b\}$ whose only elements are $a$ and $b$.
+\end{axiom}
+
+If $A$ is a set such that $a \in A$ and $b \in A$ for arbitrary objects $a, b$, then we can apply the axiom of specification to $A$ with the property ``$x = a$ or $x = b$''. We obtain a set $\{x \in A : x = a \text{ or } x = b\}$ which contains just $a$ and $b$, the axiom of extension assures that such a set is unique, such a set is called the \emph{pair}. Similarly, $\{a, a\}$ is an unordered pair, denoted $\{a\}$, and is called the \emph{singleton}.
+
+\begin{axiom}[Axiom of union]
+    Let $A$ be a set, all of whose elements are sets. Then there exists a set $\bigcup A$ whose elements are precisely those objects which are elements of the elements of $A$. In other words, for any object $x$,
+        \begin{align*}
+            x \in \bigcup A
+            \Longleftrightarrow
+            (x \in S \text{ for some } S \in A).
+        \end{align*}
+\end{axiom}
+
+\begin{comment}
+If $A$ is a set which elements are sets, we usually call it a \emph{collection} instead of a set. By the axiom of union, for every collection $A$ there exists a set $U$ such that if $x \in S$ for some $S \in A$, then $x \in U$. We can apply the axiom of specification to form the set
+    \begin{align*}
+        \{x \in U : x \in S \text{ for some } S \in A\},
+    \end{align*}
+note that the axiom of extension guarantees its uniqueness.
+\end{comment}
+
+Now we can define some important operations on sets, namely unions, intersections and difference sets.
+\begin{comment}
+The \emph{unions} $S_1 \cup S_2$ of two sets is defined to be
+    \begin{align*}
+        S_1 \cup S_2 := \bigcup\{S_1, S_2\}.
+    \end{align*}
+This equivalent to say that for each $x \in S_1 \cup S_2$ we have $x \in S_1$ or $x \in S_2$. Observe that the existence and uniqueness of $S_1 \cup S_2$ are guaranteed by the axioms of pairing, union, and extension.
+\end{comment}
+
+\begin{definition}[Unions]
+    The \emph{union} $S_1 \cup S_2$ of two sets is defined to be the set
+    \begin{align*}
+        S_1 \cup S_2 := \bigcup\{S_1, S_2\}.
+    \end{align*}
+\end{definition}
+This equivalent to say that for each $x \in S_1 \cup S_2$ we have $x \in S_1$ or $x \in S_2$. Observe that the existence and uniqueness of $S_1 \cup S_2$ are guaranteed by the axioms of pairing, union, and extension. Here are some basic facts about unions.
+
+\begin{proposition}[Basic properties of unions]
+    Let $A, B$ be sets.
+    \begin{enumerate}
+        \item (Minimality) $A \cup \emptyset = A$.
+        \item (Commutativity) $A \cup B = B \cup A$.
+        \item (Associativity) $A \cup (B \cup C) = (A \cup B) \cup C$.
+        \item (Idempotence) $A \cup A = A$.
+        \item $A \subset B$ if and only if $A \cup B = B$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Proof omitted.
+%(i) Suppose that $x \in A \cup \emptyset$. Then we either have $x \in A$ or $x \in \emptyset$. Since $x \notin \emptyset$, we only have $x \in A$. Thus $A \cup \emptyset \subset A$. Conversely, suppose $x \in A$. Then $x \in A \cup \emptyset$ by definition.
+\end{proof}
+
+From the axiom scheme of specification, we can define the intersections.
+\begin{definition}[Intersections]
+    The \emph{intersection} $S_1 \cap S_2$ of two sets is defined to be the set
+    \begin{align*}
+        S_1 \cap S_2 := \{x \in S_1 : x \in S_2\}.
+    \end{align*}
+\end{definition}
+
+Here are some basic facts about unions.
+
+\begin{proposition}[Basic properties of intersections]
+    Let $A, B$ be sets.
+    \begin{enumerate}
+        \item (Minimality) $A \cap \emptyset = \emptyset$.
+        \item (Commutativity) $A \cap B = B \cap A$.
+        \item (Associativity) $A \cap (B \cap C) = (A \cap B) \cap C$.
+        \item (Idempotence) $A \cap A = A$.
+        \item $A \subset B$ if and only if $A \cap B = A$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Proof omitted.
+\end{proof}
+
+\begin{proposition}[Distributive laws]
+    Let $A, B$ and $C$ be sets. Then we have
+        \begin{align*}
+            A \cap (B \cup C) &= (A \cap B) \cup (A \cap C),\\
+            A \cup (B \cap C) &= (A \cup B) \cap (A \cup C).
+        \end{align*}
+\end{proposition}
+
+\begin{proof}
+    We prove the first one. If $x \in A \cap (B \cup C)$, then $x \in A$ and $x \in (B \cup C)$. Then $x \in (B \cup C)$
+\end{proof}
+
+Similarly, the difference sets can be defined with the axiom scheme of specification.
+
+\begin{definition}[Difference sets]
+    The \emph{difference set} $A \setminus B$ (or $A - B$) is defined to be the set $A$ with any elements of $B$ removed:
+    \begin{align*}
+        A \setminus B := \{x \in A : x \notin B\}.
+    \end{align*}
+\end{definition}
+
+

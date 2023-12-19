@@ -1,0 +1,220 @@
+
+\chapter{Tangent spaces}
+
+\begin{comment}
+    \begin{definition}[Germ]
+        Let $C^\infty_p$ be the set of all smooth function defined on some neighborhood of $p$. Let $f, g \in C^\infty_p$ with domains $U$ and $V$, respectively. We define the equivalence relation $f \sim g$ if there exists an open set $W \subset V \cap U$ such that $f = g$ on $W$. We denote the equivalence class of $f$ by $[f]$, which is called a \emph{$C^\infty$-germ} of $f$ at $p$.
+    \end{definition}
+    \end{comment}
+
+\section{An intuition: Geometric tangent space}
+
+\begin{definition}[Geometric tangent space]
+    Let $p \in \mathbf{R}^n$. We define the \emph{geometric tangent space} of $\mathbf{R}^n$ at $p$ to be the set of all pairs $(p, v)$ for $v \in \mathbf{R}^n$, and denote it by $\mathbf{R}^n_p$. The element of $\mathbf{R}^n_p$ is called the \emph{geometric tangent vector}, we abbreviate $(p, v)$ as $v_p$.
+\end{definition}
+
+We think the tangent vector $v_p$ as an arrow goes from the initial point $p$ to the end point $p + v$. Obviously, $\mathbf{R}^n_p$ is a vector space with natural operations
+    \begin{align*}
+        v_p + w_p = (v + w)_p
+        \quad\text{and}\quad
+        cv_p = (cv)_p,
+    \end{align*}
+where $v_p, w_p \in \mathbf{R}^n_p$ and $c \in \mathbf{R}$.
+
+For each geometric tangent vector $v_p \in \mathbf{R}^n_p$, the directional derivative at $p$ gives a map of vector spaces
+    \begin{align*}
+        D_v : C^\infty_p \to \mathbf{R},
+    \end{align*}
+which takes a differentiable function $f \in C^\infty_p$ to a real number $D_vf(p) \in \mathbf{R}$. If we denote $D_v|_p f := D_vf(p)$, then we have the properties
+    \begin{align*}
+        D_v|_p(a f + bg) = aD_v|_pf + bD_v|_pg
+    \end{align*}
+and
+    \begin{align*}
+        D_v|_p(fg) = g(p)D_v|_pf + f(p)D_v|_pg,
+    \end{align*}
+where $f, g \in C^\infty_p$ and $a, b \in \mathbf{R}$. We generalize this to following definition.
+
+\begin{definition}[Derivation at point]
+    Let $p \in \mathbf{R}^n$. A linear map $w : C^\infty(\mathbf{R}^n) \to \mathbf{R}$ is called a \emph{derivation} at $p$ of $C^\infty(\mathbf{R}^n)$ if it satisfies
+    \begin{align*}
+        w(fg) = f(p)w g + g(p)w f,
+    \end{align*}
+    for every $f, g \in C^\infty(\mathbf{R}^n)$. The set of all derivations at $p$ of $C^\infty(\mathbf{R}^n)$ is denoted by $T_p\mathbf{R}^n$.
+\end{definition}
+
+Clearly, $T_p\mathbf{R}^n$ is a vector space under the operations
+    \begin{align*}
+        (v + w)f = v f + w f
+        \quad\text{and}\quad
+        (cw)f = c(w f),
+    \end{align*}
+where $v, w \in T_p\mathbf{R}^n$ and $c \in \mathbf{R}$.
+
+\begin{proposition}\label{lem:basis of tangent space on R^n}
+    Let $(e_i)_{1 \leq i \leq n}$ be a standard basis of $\mathbf{R}^n$. Then for every $p \in \mathbf{R}^n$, $(D_{j}|_p)_{1 \leq j \leq n}$ is a basis of $T_p\mathbf{R}^n$. In particular, we have $\dim{T_p\mathbf{R}^n} = n$.
+\end{proposition}
+
+\begin{comment}
+\begin{proof}
+    We verify that $(D_{e_j}|_p)_{1 \leq j \leq n}$ spans $T_p\mathbf{R}^n$. Since $p$ can be written as $p = a_je_j$ for $a_j \in \mathbf{R}$. Let $f \in C^\infty(\mathbf{R}^n)$. By Taylor's theorem, we have
+    \begin{align*}
+        f(x) = f(p) + \sum_{j = 1}^{n}D_{e_j}f(p)(x_j - p_j) + \sum_{i, j = 1}^{n}(x_i - p_i)(x_j - p_j)\int_{0}^{1}(1 - t)D_{e_i}D_{e_j}f(p + t(x - p))dt.
+    \end{align*}
+    Then
+    \begin{align*}
+        wf &= w(f(p)) + \sum_{j = 1}^{n}w((x_j - p_j)D_{e_j}|_pf)\\
+        &= \sum_{j = 1}^{n}(w(x_j) - w(a_j))D_{e_j}|_pf\\
+        &= \sum_{j = 1}^{n}w(x_j)D_{e_j}|_pf.
+    \end{align*}
+\end{proof}
+\end{comment}
+
+
+\section{Tangent spaces}
+
+\begin{definition}[Tangent space]
+    Let $M$ be a smooth manifold, let $p \in M$. A linear map $v : C^\infty(M) \to \mathbf{R}$  is called a \emph{derivation at $p$} if it satisfies
+    \begin{align*}
+        v(fg) = f(p)vg + g(p)vf
+    \end{align*}
+for every $f,g \in C^\infty(M)$. The set of all derivations of $C^\infty(M)$ at $p$, denoted by $T_pM$, is a vector space called the \emph{tangent space to $M$ at $p$}. The element of $T_pM$ is called a \emph{tangent vector at $p$}.
+\end{definition}
+
+Tangent vectors have following properties.
+
+\begin{lemma}
+    Let $M$ be a smooth manifold, let $p \in M$ and $v \in T_pM$, and let $f, g \in C^\infty(M)$.
+    \begin{enumerate}
+        \item If $f$ is a constant function, then $vf = 0$.
+        \item If $f(p) = g(p) = 0$, then $v(fg) = 0$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    (i) It suffices to prove that $f(x) = 1$ implies $vf = 0$ since $v(c \cdot 1) = cv(1)$. Let $f \equiv 1$, from the definition, we have $vf = v(ff) = f(p)vf + f(p)vf = 2vf$. This implies that $vf = 0$, as desired.
+
+    (ii) From the definition, $v(fg) = f(p)vg + g(p)vf = 0$.
+\end{proof}
+
+In the case of a smooth map between Euclidean spaces, the total derivative of the map at a point is a linear map that represents the ``best linear approximation'' to the map near the given point. In the manifold case there is a similar linear map, but it makes no sense to talk about a linear map between manifolds. Instead, it will be a linear map between tangent spaces.
+
+\begin{definition}[Differential]
+    Let $M$ and $N$ be smooth manifolds, and let $F : M \to N$ be a smooth map. The \emph{differential of $F$ at $p$} is a map $dF_p : T_pM \to T_{F(p)}N$ as follows. Given $v \in T_pM$, we let $dF_p(v)$ be the derivation at $F(p)$ that acts on $f \in C^\infty(N)$ by the rule
+    \begin{align*}
+        dF_p(v)(f) = v(f \circ F).
+    \end{align*}
+\end{definition}
+
+\begin{remark}
+    Note that if $f \in C^{\infty}(N)$, then $f \circ F : M \to \mathbf{R}$ is also smooth (thanks for Theorem \ref{lem:construction of smooth maps}). Thus $f \circ F \in C^\infty(M)$, and $v(f \circ F)$ makes sense.
+\end{remark}
+
+
+Some properties of differential are given by following.
+
+\begin{proposition}\label{lem:property of differential}
+    Let $M, N$ and $P$ be smooth manifolds, and let $F : M \to N$ and $G : N \to P$ be smooth maps. Let $p \in M$. Then
+    \begin{enumerate}
+        \item $dF_p : T_pM \to T_{F(p)}N$ is indeed a derivation at $F(p)$.
+        \item $dF_p : T_pM \to T_{F(p)}N$ is linear.
+        \item $d(G \circ F)_p = dG_{F(p)} \circ dF_p : T_pM \to T_{G \circ F(p)}P$.
+        \item $d(\id_M)_p = \id_{T_pM} : T_pM \to T_pM$.
+        \item If $F$ is a diffeomorphism, then $dF_p : T_pM \to T_{F(p)}N$ is an isomorphism, and $(dF_p)^{-1} = d(F^{-1})_{F(p)}$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    (i) Let $v \in T_pM$ and let $f, g \in C^\infty(N)$. Then
+        \begin{align*}
+            dF_p(v)(fg)
+            &= v((fg) \circ F)\\
+            &= v((f \circ F)(g \circ F))\\
+            &= (f \circ F)(p)v(g \circ F) + (g \circ F)(p)v(f \circ F)\\
+            &= f(F(p))dF_p(v)(g) + g(G(p))dF_p(v)(f).
+        \end{align*}
+
+    (ii) Let $v \in T_pM$ and let $f,g \in C^\infty(N)$ and $\alpha, \beta \in \mathbf{R}$. Then
+        \begin{align*}
+            dF_p(v)(\alpha f + \beta g)
+            &= v((\alpha f + \beta g) \circ F)\\
+            &= v(\alpha(f \circ F) + \beta(g \circ F))\\
+            &= \alpha v(f \circ F) + \beta v(g \circ F)\\
+            &= \alpha dF_p(v)(f) + \beta dF_p(v)(g).
+        \end{align*}
+
+    (iii) Let $v \in T_pM$ and let $f \in C^\infty(P)$ be a smooth map at $G(F(p))$. Then
+        \begin{align*}
+            d(G \circ F)_p(v)(f)
+            &= v(f \circ (G \circ F))\\
+            &= v((f \circ G) \circ F)\\
+            &= dF_p(v)(f \circ G)\\
+            &= dG_{F(p)}(dF_p(v))(f)\\
+            &= (dG_{F(p)} \circ dF_p)(v)(f).
+        \end{align*}
+
+    (iv) Let $v \in T_pM$ and $f \in C^\infty(M)$. Then
+        \begin{align*}
+            d(\id_M)_p(v)(f)
+            = v(f \circ \id_M)
+            = vf
+            = (\id_Mv)f.
+        \end{align*}
+
+    (v) Suppose $F : M \to N$ is diffeomorphism, then it has an inverse $F^{-1} : N \to M$ such that $F \circ F^{-1} = \id_N$ and $F^{-1} \circ F = \id_M$. Then by (iii) and (iv) shown in above, we have
+        \begin{align*}
+            dF_p \circ d(F^{-1})_{F(p)}
+            = d(F \circ F^{-1})_{F(p)}
+            = d(\id_N)_{F(p)}
+            = \id_{T_pN},
+        \end{align*}
+    and
+        \begin{align*}
+            d(F^{-1})_{F(p)} \circ dF_p
+            = d(F^{-1} \circ F)_p
+            = d(\id_M)_p
+            = \id_{T_pM}.
+        \end{align*}
+    Thus, $dF_p$ is an isomorphism, and $(dF_p)^{-1} = d(F^{-1})_{F(p)}$.
+\end{proof}
+
+We now can prove a weak version of \emph{invariance of dimension} (see Theorem \ref{lem:topological invariance of dimension}).
+
+\begin{corollary}[Invariance of dimension]
+    If an open set $U \subset \mathbf{R}^n$ is diffeomorphic to an open set $V \subset \mathbf{R}^m$, then $n = m$.
+\end{corollary}
+
+\begin{proof}
+    Let $F : U \to V$ be a diffeomorphism and let $p \in U$. By Proposition \ref{lem:property of differential}(v), $dF_p$ is an isomorphism of tangent spaces. Since there are vector space isomorphisms $T_pU \backsimeq \mathbf{R}^n$ and $T_{F(p)}V \backsimeq \mathbf{R}^m$, we must have that $n = m$.
+\end{proof}
+
+\section{Applications}
+
+Let $M$ be a smooth $n$-manifold, and let $(U, \varphi)$ be a smooth coordinate chart on $M$. By Proposition \ref{lem:chart map is diffeomorphism}, $\varphi : U \to \varphi(U)$ is a diffeomorphism, then by Proposition \ref{lem:property of differential}(v), we see that $d\varphi_p : T_pM \to T_{\varphi(p)}\mathbf{R}^n$ is a vector space isomorphism.
+
+By Proposition \ref{lem:basis of tangent space on R^n}, $(D_{j}|_{\varphi(p)})_{1 \leq j \leq n}$ is a basis of $T_p\mathbf{R}^n$. Thus, $T_pM$ has same dimension $n$ with $T_p\mathbf{R}^n$. Therefore, the preimage of $(D_{j}|_{\varphi(p)})_{1 \leq j \leq n}$ under the isomorphism form a basis of $T_pM$. Specifically, we denote
+    \begin{align*}
+        D_{j}|_p := (d\varphi_p)^{-1}(D_{j}|_{\varphi(p)}).
+    \end{align*}
+Then for $f \in C^\infty(\mathbf{R}^n)$, we have
+    \begin{align*}
+        d\varphi_{p}(D_{j}|_p)f
+        &= D_{j}|_p(f \circ \varphi)\\
+        &= (d\varphi_p)^{-1}(D_{j}|_{\varphi(p)})(f \circ \varphi)\\
+        &= d(\varphi^{-1})_{\varphi(p)}(D_{j}|_{\varphi(p)})(f \circ \varphi)\\
+        &= D_{j}|_{\varphi(p)}(f \circ \varphi \circ \varphi^{-1})\\
+        &= D_{j}|_{\varphi(p)}(f).
+    \end{align*}
+
+
+Consider a smooth map $F : U \to V$, where $U \subset \mathbf{R}^n$ and $V \subset \mathbf{R}^m$ are open subsets of Euclidean spaces. For any $p \in U$, we determine the matrix of $dF_p : T_p\mathbf{R}^n \to T_{F(p)}\mathbf{R}^m$ in terms of the standard bases. Then for every $f \in C^\infty(V)$, we have
+    \begin{align*}
+        dF_p(D_j|_p)f
+        &= D_j|_p(f \circ F)
+        = D_j|_{F(p)}fD_j|_pF
+        &= \sum_{j = 1}^{n}
+    \end{align*}
+
+
+
+
