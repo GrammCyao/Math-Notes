@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.1.17)  16 DEC 2023 15:33
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.1.17)  19 DEC 2023 15:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -719,30 +719,30 @@ Writing index file "Math Notes".idx
 (./Math Notes.aux (./Ch1/Ch1.aux) (./Ch2/Ch2.aux) (./Ch3/Ch3.aux) (./Ch4/Ch4.aux))
 \openout1 = `"Math Notes.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 18.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 18.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -783,7 +783,7 @@ Invalid UTF-8 byte or sequence at line 10 replaced by U+FFFD.
 Invalid UTF-8 byte or sequence at line 22 replaced by U+FFFD.
 File: fc-english.def 2016/01/12
 )
-Package hyperref Info: Link coloring ON on input line 20.
+Package hyperref Info: Link coloring ON on input line 18.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
  (/usr/local/texlive/2020/texmf-dist/tex/latex/refcount/refcount.sty
@@ -793,22 +793,22 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count347
 )
-LaTeX Info: Redefining \ref on input line 20.
-LaTeX Info: Redefining \pageref on input line 20.
-LaTeX Info: Redefining \nameref on input line 20.
+LaTeX Info: Redefining \ref on input line 18.
+LaTeX Info: Redefining \pageref on input line 18.
+LaTeX Info: Redefining \nameref on input line 18.
  (./Math Notes.out) (./Math Notes.out)
 \@outlinefile=\write7
 \openout7 = `"Math Notes.out"'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 32.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 30.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 32.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 30.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 32.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 30.
  (/usr/local/texlive/2020/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) (/usr/local/texlive/2020/texmf-dist/tex/generic/stringenc/se-ascii-print.def
@@ -1131,50 +1131,62 @@ Package mdframed Info: mdframed works in twoside mode on input line 147.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 147.
-Package mdframed Info: mdframed works in twoside mode on input line 155.
+Package mdframed Info: mdframed works in twoside mode on input line 153.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 155.
- (./graph/SmoothFunction.tex) [29]
-Package mdframed Info: mdframed works in twoside mode on input line 171.
+(mdframed)              on input line 153.
+Package mdframed Info: mdframed works in twoside mode on input line 167.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 171.
-Package mdframed Info: mdframed works in twoside mode on input line 192.
+(mdframed)              on input line 167.
+Package mdframed Info: mdframed works in twoside mode on input line 181.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 192.
+(mdframed)              on input line 181.
+ [29] (./graph/SmoothFunction.tex)
+Package mdframed Info: mdframed works in twoside mode on input line 197.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 197.
+Package mdframed Info: mdframed works in twoside mode on input line 218.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 218.
+Package mdframed Info: Not enough space on this page on input line 220.
+ [30]
+Package mdframed Info: Not enough space on this page on input line 220.
  (./graph/SmoothMaps.tex)
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-Package mdframed Info: mdframed works in twoside mode on input line 217.
+Package mdframed Info: mdframed works in twoside mode on input line 243.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 217.
-[30]
-Package mdframed Info: mdframed works in twoside mode on input line 247.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 247.
-Package mdframed Info: mdframed works in twoside mode on input line 259.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 259.
+(mdframed)              on input line 243.
  [31]
-Package mdframed Info: Not enough space on this page on input line 267.
-Package mdframed Info: mdframed works in twoside mode on input line 279.
+Package mdframed Info: mdframed works in twoside mode on input line 273.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 279.
+(mdframed)              on input line 273.
 Package mdframed Info: mdframed works in twoside mode on input line 285.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 285.
-) [32]
+ [32]
+Package mdframed Info: mdframed works in twoside mode on input line 309.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 309.
+Package mdframed Info: mdframed works in twoside mode on input line 315.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 315.
+) [33]
 \openout2 = `Ch4/Ch4.aux'.
 
- (./Ch4/Ch4.tex
+ (./Ch4/Ch4.tex [34
+
+
+
+
+]
 Chapter 4.
 Package mdframed Info: mdframed works in twoside mode on input line 12.
 Package mdframed Info: mdframed detected package amsthm 
@@ -1184,12 +1196,7 @@ Package mdframed Info: mdframed works in twoside mode on input line 35.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 35.
-[33
-
-
-
-
-]
+[35]
 Package mdframed Info: mdframed works in twoside mode on input line 51.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
@@ -1210,27 +1217,27 @@ Package mdframed Info: mdframed works in twoside mode on input line 113.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 113.
- [34]
+ [36]
 Package mdframed Info: Not enough space on this page on input line 122.
 Package mdframed Info: mdframed works in twoside mode on input line 180.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 180.
- [35]
+ [37]
 Package mdframed Info: Not enough space on this page on input line 182.
-) [36]
+) [38]
 No file "Math Notes".ind.
 (./Math Notes.aux (./Ch1/Ch1.aux) (./Ch2/Ch2.aux) (./Ch3/Ch3.aux) (./Ch4/Ch4.aux))
 Package rerunfilecheck Info: File `"Math Notes".out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
  ) 
 Here is how much of TeX's memory you used:
- 26867 strings out of 477220
- 510469 string characters out of 5830449
- 865398 words of memory out of 5000000
- 46001 multiletter control sequences out of 15000+600000
+ 26878 strings out of 477220
+ 510693 string characters out of 5830449
+ 864636 words of memory out of 5000000
+ 46012 multiletter control sequences out of 15000+600000
  421060 words of font info for 111 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  142i,20n,144p,1015b,1222s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Math Notes.pdf (40 pages).
+Output written on Math Notes.pdf (42 pages).

@@ -1,0 +1,306 @@
+
+\chapter{Manifold}
+
+What is manifold? A good example to keep in mind is the surface of a smooth ball. If you look at a small portion of it from very close up, then it looks like a portion of a flat plane. More generally, an $n$-dimensional manifold, is a geometrical object that looks ``locally'' like $n$-dimensional \emph{Euclidean space}.
+
+%In this chapter we give the basic definitions and properties of a smooth manifold and of smooth maps between manifolds. %Initially, the only way we have to verify that a space is a manifold is to exhibit a collection of $C^\infty$-compatible charts covering the space. %In Section \ref{undefined} we describe a set of sufficient conditions under which a quotient topological space becomes a manifold, giving us a second way to construct manifolds.
+
+\section{Topological manifolds}
+
+We first introduce topological manifolds, the most basic type of manifolds. A topological manifold is a space whose each point is surrounded by a region that can be identified with parts of Euclidean space. We may hope that there is a ``nice'' one-to-one map $\varphi$ from the neighborhood into $\mathbf{R}^n$. Then $\varphi$ allows us to use the coordinates in $\mathbf{R}^n$ to label points in the neighborhood: if $p$ belongs to the neighborhood, then one can label it with the coordinates of $\varphi(p)$. This condition is given by the locally Euclidean. The function $\varphi$ is called a coordinate chart of the neighborhood.
+
+\begin{definition}[Topological manifold]
+    %Suppose $M$ is a Hausdorff space. If for any $x \in M$, there exists a neighborhood $U$ of $x$ such that $U$ is homeomorphic to an open set in $\mathbf{R}^n$, then $M$ is called an \emph{$n$-dimensional topological manifold} (or \emph{$n$-manifold} for short).
+    Suppose $M$ is a topological space. We say that $M$ is an \emph{$n$-dimensional topological manifold} (or a \emph{topological $n$-manifold}) if it has the following properties:
+    \begin{enumerate}
+        \item $M$ is \emph{Hausdorff}: for every distinct points $x, y \in M$, there exists disjoint open sets $U, V$ such that $x \in U$ and $y \in V$.
+        \item $M$ is \emph{second-countable}: $M$ has a countable basis.
+        \item $M$ is \emph{locally Euclidean of dimension $n$}: for every $x \in M$, there exists a neighborhood $U$ of $x$ such that $U$ is homeomorphic to an open set in $\mathbf{R}^n$.
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    For the dimension of a topological manifold to be well-defined, we need to know that for $n \neq m$ an open subset of $\mathbf{R}^n$ is not homeomorphic to an open subset of $\mathbf{R}^m$. This fact, called \emph{invariance of dimension}, is indeed true but is not easy to prove directly. Thus, we will not prove the theorem and just leave it here.
+
+\begin{quotation}
+    \begin{theorem}[Topological invariance of dimension]\label{lem:topological invariance of dimension}
+        A nonempty $n$-dimensional topological manifold cannot be homeomorphic to an $m$-dimensional manifold unless $m = n$.
+    \end{theorem}
+\end{quotation}
+\end{remark}
+
+Now, here is a straightforward but central observation. Suppose that $M$ is a topological manifold of dimension $n$, $U$ and $V$ are two neighborhoods in $M$ that intersect, and suppose that functions $\varphi : U \to \mathbf{R}^n$ and $\psi : V \to \mathbf{R}^n$ are used to give them each a coordinate chart. Then the intersection $U \cap V$ is given two coordinate charts, and this gives us an identification between the open regions $\varphi(U \cap V)$ and $\psi(U \cap V)$ of $\mathbf{R}^n$: given a point $p$ in the first region, the corresponding point in the second is $\psi(\varphi^{-1}(p))$. This composition of maps tells us how the coordinates from one of the charts on the intersecting region relate to those of the other.
+
+\begin{definition}[$C^\infty$-compatible chart]\label{def:compatible chart}
+    Let $M$ be a topological $n$-manifold. 
+    \begin{itemize}
+        \item A \emph{coordinate chart} (or \emph{chart}) on $M$ is a pair $(U, \varphi)$, where $U$ is an open subset of $M$ and $\varphi : U \to \varphi(U)$ is a homeomorphism from $U$ to an open subset $\varphi(U) \subset \mathbf{R}^n$. We say that $(U, \varphi)$ is \emph{centered} at $p \in U$ if $\varphi(p) = 0$.
+        \item Two charts $(U, \varphi)$ and $(V, \psi)$ of a topological manifold are \emph{$C^\infty$-compatible} if the two maps
+        \begin{align*}
+            \varphi \circ \psi^{-1} : \psi(U \cap V) \to \varphi(U \cap V)
+            \quad\text{and}\quad
+            \psi \circ \varphi^{-1} : \varphi(U \cap V) \to \psi(U \cap V)
+        \end{align*}
+        are $C^\infty$. This two maps are called the \emph{transition maps} between the charts. 
+    \end{itemize}
+\end{definition}
+
+\begin{figure}[h]
+    \centering
+    \input{graph/CompatibleChart}
+    \caption{Transition maps (see Definition \ref{def:compatible chart})}
+\end{figure}
+
+Given a topological $n$-manifold $M$, and a chart $(U, \varphi)$ containing $p \in M$. Since $\varphi$ is a homeomorphism, for any $p \in U$, we can define the coordinate of $p$ to be the coordinate of $\varphi(p) \in \mathbf{R}^n$. Specifically, let $y_1, \cdots, y_n$ be the coordinates on $\mathbf{R}^n$, we let $x_i = y_i \circ \varphi$ be the $i$th component of $\varphi$ and write $\varphi(p) = (x_1(p), \cdots, x_n(p))$. Thus, for $p \in U$, $(x_1(p), \cdots, x_n(p))$ is a point in $\mathbf{R}^n$. The functions $x_1, \cdots, x_n$ are called \emph{local coordinates} on $U$.
+
+Here is some simple examples of topological manifolds.
+
+\begin{example}[Euclidean sapce]
+    The Euclidean space $\mathbf{R}^n$ is covered by a single chart $(\mathbf{R}^n, \id_{\mathbf{R}^n})$, where $\id_{\mathbf{R}^n}$ is the identity map of $\mathbf{R}^n$. Every open subset $U$ of $\mathbf{R}^n$ is also a topological manifold with chart $(U, \id_U)$.
+\end{example}
+
+\begin{example}[Graphs of continuous functions]
+    Let $U \subset \mathbf{R}^n$ be an open subset, and let $f : U \to \mathbf{R}^k$ be a continuous function. The graph of $f$ is the subset of $\mathbf{R}^n \times \mathbf{R}^k$ defined by
+    \begin{align*}
+        \Gamma(f) := \{(x, y) \in \mathbf{R}^n \times \mathbf{R}^k : x \in U, y = f(x)\},
+    \end{align*}
+    with the subspace topology. Let $\pi_1 : \mathbf{R}^n \times \mathbf{R}^k \to \mathbf{R}^n$ denote the projection onto the first component.
+\end{example}
+
+\begin{example}[Spheres]
+    For each $n \geq 0$, the unit $n$-sphere $\mathbf{S}^n$ is Hausdorff and second-countable because it is a topological subspace of $\mathbf{R}^{n + 1}$. To show that it is locally Euclidean, for each $1 \leq i \leq n + 1$, let $U_i^+$ denote the subset of $\mathbf{R}^{n + 1}$ where the $i$th coordinate is positive:
+    \begin{align*}
+        U_i^+ := \{(x_1, \cdots, x_{n + 1}) \in \mathbf{R}^{n + 1} : x_i > 0\}.
+    \end{align*}
+    Similarly, $U_i^-$ is the set where $x_i < 0$.
+
+    Let $\mathbf{B}^n$ be the set of open unit balls in $\mathbf{R}^n$, and let $f : \mathbf{B}^n \to \mathbf{R}$ be the continuous function
+    \begin{align*}
+        f(u) = \sqrt{1 - \|u\|^2}.
+    \end{align*}
+\end{example}
+
+\begin{example}[Projective spaces]
+    
+\end{example}
+
+
+\section{Smooth structures}
+
+There are no constraints on the coordinate chart maps on a topological manifold except that they should be continuous. However, some continuous functions are quite unpleasant, so one typically introduces extra constraints that the coordinate chart maps are infinitely differentiable. If a manifold has a collection of charts for which all the coordinate chart maps are $C^\infty$, then it is said to have a \emph{smooth differentiable structure}, and it is called a \emph{smooth manifold}. Smooth manifolds are especially interesting because they are the natural arena for calculus. Roughly speaking, they are the most general context in which the notion of differentiation to any order makes intrinsic sense.
+
+\begin{comment}
+\begin{definition}[Atlas]
+    A \emph{$C^\infty$-atlas} (or an \emph{atlas}) on a locally Euclidean space $M$ is a collection $\mathfrak{A} = \{(U_\alpha, \varphi_\alpha)\}$ of pairwise $C^\infty$-compatible charts that cover $M$, i.e., such that $M = \bigcup_{\alpha}U_\alpha$.
+\end{definition}
+
+\begin{lemma}
+    Let $\{(U_\alpha, \varphi_\alpha)\}$ be an atlas on a locally Euclidean space. If two charts $(V, \varrho)$ and $(W, \psi)$ are both compatible with the atlas $\{(U_\alpha, \varphi_\alpha)\}$, then they are compatible with each other.
+\end{lemma}
+
+\begin{proof}
+    Let $p \in V \cap W$. We need to show that $\psi \circ \varrho^{-1}$ is $C^\infty$ at $\varrho(p)$. Since $\{(U_\alpha, \varphi_\alpha)\}$ is an atlas for $M$, $p \in U_\alpha$ for some $\alpha$. Then $p \in U_\alpha \cap V \cap W$.
+\end{proof}
+\end{comment}
+
+\begin{definition}[$C^\infty$-differentiable structure]
+    Let $M$ be a topological $n$-manifold. If given a collection of charts $\mathfrak{A} = \{(U_\alpha, \varphi_\alpha)\}$ on $M$ satisfies the following conditions, then we call $\mathfrak{A}$ a \emph{$C^\infty$-differentiable structure} on $M$:
+    \begin{enumerate}
+        \item $\mathfrak{A}$ covers $M$, i.e., $M = \bigcup_\alpha U_\alpha$.
+        \item Any two charts in $\mathfrak{A}$ are $C^\infty$-compatible.
+        \item $\mathfrak{A}$ is \emph{maximal}, i.e., if a chart $(V, \psi)$ is $C^\infty$-compatible with all charts in $\mathfrak{A}$, then $(V, \psi) \in \mathfrak{A}$.
+    \end{enumerate}
+
+    The collection of charts $\mathfrak{A}$ is called a \emph{$C^\infty$-atlas} for $M$ if it satisfying condition (i) and (ii). Therefore, A \emph{$C^\infty$-differentiable structure} on $M$ is a maximal atlas on $M$.
+\end{definition}
+
+\begin{definition}[Smooth manifold]
+    Let $M$ be a topological $n$-manifold. If a $C^\infty$-differentiable structure is given on $M$, then $M$ is called a \emph{$C^\infty$-manifold of dimension $n$} (or a \emph{smooth $n$-manifold}).
+\end{definition}
+
+In practice, to check that a topological manifold $M$ is a smooth manifold, it is not necessary to exhibit a maximal atlas. The existence of any atlas on $M$ will do, because of the following proposition.
+
+\begin{proposition}\label{lem:condition of smooth manifold}
+    Let $M$ be a topological manifold. Every atlas $\mathfrak{A} = \{(U_\alpha, \varphi_\alpha)\}$ for $M$ is contained in a unique maximal atlas.
+\end{proposition}
+
+\begin{proof}
+    Let $\mathfrak{A}$ be a $C^\infty$-atlas for $M$, and let $\mathfrak{M}$ be the set of all charts that are $C^\infty$-compatible with every chart in $\mathfrak{A}$. We first show that $\mathfrak{M}$ is a $C^\infty$-atlas, we need to show that any two charts in $\mathfrak{M}$ are $C^\infty$-compatible with each other. Let $(U, \varphi), (V, \psi) \in \mathfrak{M}$, we need to show that $\psi \circ \varphi^{-1} : \varphi(U \cap V) \to \psi(U \cap V)$ is $C^\infty$.
+
+    \begin{figure}[h]
+        \centering
+        \input{graph/ProofofPropositionX}
+        \caption{Proof of Proposition \ref{lem:condition of smooth manifold}}
+    \end{figure}
+
+    Let $\varphi(p) \in \varphi(U \cap V)$ be arbitrary. Since $\bigcup\mathfrak{A} = M$, there is a chart $(W, \varrho) \in \mathfrak{A}$ such that $p \in W$. Since every chart in $\mathfrak{M}$ is $C^\infty$-compatible with $(W, \varrho)$, both of the maps $\varrho \circ \varphi^{-1}$ and $\psi \circ \varrho^{-1}$ are $C^\infty$. Since $p \in U \cap V \cap W$, we have $\psi \circ \varphi^{-1} = (\psi \circ \varrho^{-1}) \circ (\varrho \circ \varphi^{-1})$ is $C^\infty$ on a neighborhood of $\varphi(p)$. Since $\varphi(p)$ is arbitrary, $\psi \circ \varphi^{-1}$ is $C^\infty$ in a neighborhood of each point of $\varphi(U \cap V)$. This is similar to show that $\varphi \circ \psi^{-1}$ is $C^\infty$ on $\psi(U \cap V)$. Thus $\mathfrak{M}$ is a $C^\infty$-atlas.
+
+    The existence of the maximal atlas $\mathfrak{M}$ is given the definition of $\mathfrak{M}$ and $\mathfrak{A} \subset \mathfrak{M}$. To check that $\mathfrak{M}$ is unique, suppose that $\mathfrak{N}$ be any other maximal atlas that containing $\mathfrak{A}$. Then each charts in $\mathfrak{N}$ is $C^\infty$-compatible with each charts in $\mathfrak{A}$, hence $\mathfrak{N} \subset \mathfrak{M}$. Other hand, since $\mathfrak{N}$ is maximal, we have $\mathfrak{N} \supset \mathfrak{M}$. Thus, $\mathfrak{N} = \mathfrak{M}$.
+\end{proof}
+
+Since a $C^\infty$-atlas for $M$ covers $M$, Proposition \ref{lem:condition of smooth manifold} shows that it suffices to verify $M$ to be a smooth manifold if it satisfying
+\begin{enumerate}
+    \item $M$ is Hausdorff and second countable.
+    \item $M$ has a $C^\infty$-atlas (not necessarily to be maximal).
+\end{enumerate}
+
+\begin{notation}
+    When we say a chart on a manifold, we mean a chart in the differentiable structure of manifold.
+\end{notation}
+
+\subsection{Examples of smooth manifolds}
+
+\begin{example}[Euclidean spaces]
+    The Euclidean space $\mathbf{R}^n$ is a smooth $n$-manifold with the smooth structure determined by the atlas consisting of the single chart $(\mathbf{R}^n, \id_{\mathbf{R}^n})$. We call this the \emph{standard smooth structure on $\mathbf{R}^n$} and the resulting coordinate map \emph{standard coordinates}.
+\end{example}
+
+\begin{example}[Finite-dimensional vector spaces]
+    Let $V$ be a finite-dimensional vector space over $\mathbf{R}^n$. Any norm on $V$ determines a topology, which is independent of the choice of norm. With this topology, $V$ is a topological $n$-manifold, and has a natural smooth structure defined as follows. Every basis $(v_j)_{1 \leq j \leq n}$ for $V$ defines a basis isomorphism $v : \mathbf{R}^n \to V$ by
+        \begin{align}
+            v(x) := \sum_{j = 1}^{n}x_i
+        \end{align}
+\end{example}
+
+\section{Smooth maps}
+
+\subsection{Smooth functions on manifold}
+On a smooth manifold, the concept of a smooth function is well-defined.
+\begin{definition}[Smooth function]
+    Let $M$ be a smooth manifold of dimension $n$, and let $f : M \to \mathbf{R}^d$ be a function. If $p \in M$, We say that $f$ is $C^\infty$ or \emph{smooth at $p$} if there exists a chart $(U, \varphi)$ containing $p$ such that $f \circ \varphi^{-1}$ is $C^\infty$ at $\varphi(p)$ on the open set $\varphi(U) \subset \mathbf{R}^n$. We say that $f$ is \emph{smooth} if it is smooth at every point of $M$. We denote the set of all smooth functions on $M$ by $C^\infty(M)$.
+\end{definition}
+
+\begin{figure}[h]
+    \centering
+    \input{graph/SmoothFunction.tex}
+    \caption{Smooth functions}
+\end{figure}
+
+\begin{remark}
+    The smoothness of a function is independent of the choice of charts and is therefore well-defined (see Proposition \ref{lem:characterisation of smooth real-valued functions}).
+\end{remark}
+
+Smooth real-valued functions are important special case of smooth functions, we give the equivalent characterisation of smooth real-valued functions.
+
+\begin{proposition}[Characterisation of smooth real-valued functions]\label{lem:characterisation of smooth real-valued functions}
+    Let $M$ be a smooth manifold of dimension $n$, and let $f : M \to \mathbf{R}$ be a real-valued function. Then following are equivalent:
+    \begin{enumerate}
+        \item $f$ is $C^\infty$.
+        \item The manifold $M$ has an atlas such that for every chart $(U, \varphi)$ in the atlas, one has $f \circ \varphi^{-1} : \varphi(U) \to \mathbf{R}$ is $C^\infty$.
+        \item For every chart $(V, \psi)$ on $M$, $f \circ \psi^{-1} : \psi(V) \to \mathbf{R}$ is $C^\infty$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    (i) $\Rightarrow$ (iii). Let $(V, \psi)$ be arbitrary chart on $M$ and $p \in V$. By definition, there exists a chart $(U, \varphi)$ containing $p \in U$ such that $f \circ \varphi^{-1}$ is $C^\infty$ at $\varphi(p) \in \varphi(U)$. We see that $f \circ \psi^{-1} = (f \circ \varphi^{-1}) \circ (\varphi \circ \psi^{-1})$ is $C^\infty$ at $\psi(p) \in \psi(U \cap V)$. Since $p \in V$ is arbitrary, $f \circ \psi^{-1}$ is $C^\infty$ on $\psi(V)$.
+
+    (iii) $\Rightarrow$ (ii). This is trivial.
+
+    (ii) $\Rightarrow$ (i). This is immediately comes from the definition.
+\end{proof}
+
+\subsection{Smooth maps between manifolds}
+
+The definition of smooth functions generalizes easily to maps between manifolds.
+
+\begin{definition}[Smooth map]
+    Let $M$ and $N$ be smooth manifolds of dimension $n$ and $m$, respectively. Let $F : M \to N$ be a map. If $p \in M$, we say that $F$ is $C^\infty$ or \emph{smooth at $p$} if there exist charts $(U, \varphi)$ containing $p \in M$ and $(V, \psi)$ containing $F(p) \in N$ such that $F(U) \subset V$ and the composite $\psi \circ F \circ \varphi^{-1}$ is $C^\infty$ at $\varphi(p)$ from $\varphi(U)$ to $\psi(V)$. We say that $F$ is \emph{smooth} if it is smooth at every point of $M$.
+\end{definition}
+
+\begin{figure}[h]
+    \centering
+    \input{graph/SmoothMaps}
+    \caption{Smooth maps}
+\end{figure}
+
+\begin{comment}
+We show now that smoothness implies continuity, and that the smoothness of a map is independent of the choice of charts.
+
+\begin{lemma}\label{lem:smooth map is continuous}
+    Let $M, N$ be smooth manifolds, and let $F : M \to N$ be a smooth map.
+    \begin{enumerate}
+        \item If $(U, \varphi)$ is arbitrary chart containing $p \in M$ and $(V, \psi)$ is arbitrary chart containing $F(p) \in N$, then $\psi\circ F \circ \varphi^{-1}$ is $C^\infty$ on $M$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    (i) Let $p \in M$ be arbitrary. Suppose that $F$ is smooth at $p$. By definition, there are charts $(U, \varphi)$ containing $p \in M$ and $(V, \psi)$ containing $F(p) \in N$ such that $F(U) \subset V$ and the composite $\psi \circ F \circ \varphi^{-1}$ is $C^\infty$ at $\varphi(p)$ from $\varphi(U)$ to $\psi(V)$, hence $F$ is continuous on $\varphi(U)$. Since $\varphi : U \to \varphi(U)$ and $\psi : V \to \psi(V)$ are homeomorphisms, then the composite of continuous maps $F = \psi^{-1} \circ (\psi \circ F \circ \varphi^{-1}) \circ \varphi$ from $U$ to $V$ is also continuous. Since $p$ is arbitrary, $F$ is continuous.
+\end{proof}
+\end{comment}
+
+\begin{proposition}[Characterisation of smooth maps]\label{lem:characterisation of smooth maps}
+    Let $M$ and $N$ be smooth manifolds, and let $F : M \to N$ be a map. Then following are equivalent:
+    \begin{enumerate}
+        \item $F$ is $C^\infty$.
+        \item For every $p \in M$, there exist charts $(U, \varphi)$ containing $p$ and $(V, \psi)$ containing $F(p)$ such that $U \cap F^{-1}(V)$ is open in $M$ and the composite map $\psi \circ F \circ \varphi^{-1}$ is $C^\infty$ from $\varphi(U \cap F^{-1}(V))$ to $\psi(V)$.
+        \item $F$ is continuous and there exist atlases $\mathfrak{A}$ for $M$ and $\mathfrak{B}$ for $N$ such that for every chart $(U_\alpha, \varphi_\alpha) \in \mathfrak{A}$ and $(V_\beta, \psi_\beta) \in \mathfrak{B}$, $\psi_\beta \circ F \circ \varphi_\alpha^{-1}$ is $C^\infty$ from $\varphi_\alpha(U_\alpha \cap F^{-1}(V_\beta))$ to $\psi_\beta(V_\beta)$.
+        %\item For every chart $(U, \varphi)$ on $M$ and $(V, \psi)$ on $N$, the map $\psi \circ F \circ \varphi^{-1}$ is $C^\infty$ from $\varphi(U \cap F^{-1}(V))$ to $\psi(V)$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    (i) $\Rightarrow$ (ii). Suppose $F$ is $C^\infty$. Let $p \in M$ be arbitrary, then there exist charts $(U, \varphi)$ containing $p$ and $(V, \psi)$ containing $F(p)$ such that $F(U) \subset V$ and the composite $\psi \circ F \circ \varphi^{-1}$ is $C^\infty$ at $\varphi(p)$ from $\varphi(U)$ to $\psi(V)$. Since for every $x \in M$ and every chart $(V, \psi)$ such that $F(p) \in V$, we have $x \in U$ and $F(U) \subset V$, $F$ is continuous. This implies that $F^{-1}(V)$ is open in $M$ for $V$ is open in $N$, hence $U \cap F^{-1}(V)$ is open in $M$. Obviously, $p \in U \cap F^{-1}(V)$ for that $F(p) \in V$. Since $\varphi(U \cap F^{-1}(V)) \subset \varphi(U)$, $\psi \circ F \circ \varphi^{-1}$ is also $C^\infty$ at $\varphi(p)$ from $\varphi(U \cap F^{-1}(V))$ to $\psi(V)$. Because $p \in M$ is arbitrary, the claim follows.
+
+    (ii) $\Rightarrow$ (iii).  We only need to show that $F$ is continuous, the remaining part is trivial. Since for every $p \in M$ there is a chart $(V, \psi)$ such that $F(p) \in V$. Then for $p \in U \cap F^{-1}(V)$, we have $F(U \cap F^{-1}(V)) \subset F(U) \cap F(F^{-1}(V)) \subset F(U) \cap V \subset V$. Thus $F$ is continuous. 
+
+    (iii) $\Rightarrow$ (i). Suppose (iii) and let $U = U_\alpha \cap F^{-1}(V_\beta) \subset U_\alpha$. Then we obtain $(U, \varphi_\alpha|_U)$ such that (iii) holds which is easy to prove. From the continuity of $F$, we have $F(U) \subset V_\beta$ is open. This close the proof.
+    \begin{comment}
+    (ii) $\Rightarrow$ (iv). Let $(\widetilde{U}, \widetilde{\varphi})$ and $(\widetilde{V}, \widetilde{\psi})$ be any charts on $M$ and $N$, respectively, such that $\widetilde{U} \cap F^{-1}(\widetilde{V}) \neq \emptyset$. If $p \in \widetilde{U} \cap F^{-1}(\widetilde{V})$. by assumption, there are charts $(U, \varphi)$ containing $p$ and $(V, \psi)$ containing $F(p)$ such that  $\psi \circ F \circ \varphi^{-1}$ is $C^\infty$ from $\varphi(U \cap F^{-1}(V))$ to $\psi(V)$. By the $C^\infty$-compatibility of charts in a differentiable structure, $\varphi \circ \widetilde{\varphi}^{-1} : \widetilde{\varphi}(U \cap \widetilde{U}) \to \varphi(U \cap \widetilde{U})$ and $\widetilde{\psi} \circ \psi^{-1} : \psi(V \cap \widetilde{V}) \to \widetilde{\psi}(V \cap \widetilde{V})$ are $C^\infty$. Thus,
+    \begin{align*}
+        \widetilde{\psi} \circ F \circ \widetilde{\varphi}^{-1}
+        = (\widetilde{\psi} \circ \psi^{-1}) \circ
+        (\psi \circ F \circ \varphi^{-1}) \circ
+        (\varphi \circ \widetilde{\varphi}^{-1})
+    \end{align*}
+    is $C^\infty$ at $\widetilde{\varphi}(p)$. Since $p \in \widetilde{U} \cap F^{-1}(\widetilde{V})$ is arbitrary, so does $\widetilde{\varphi}(p) \in \widetilde{\varphi}(\widetilde{U} \cap F^{-1}(\widetilde{V}))$, we have $\widetilde{\psi} \circ F \circ \widetilde{\varphi}^{-1}$ is $C^\infty$ from $\widetilde{\varphi}(\widetilde{U} \cap F^{-1}(\widetilde{V}))$ to $\widetilde{\psi}(\widetilde{V})$.
+    \end{comment}
+\end{proof}
+
+Above proposition shows that the smoothness implies continuity. As a corollary of above conclusion, we see that the smoothness of maps is independent of the choice of charts.
+
+\begin{corollary}\label{lem:smoothness is independent of chars}
+    Let $M, N$ be smooth manifolds, and let $F : M \to N$ be a smooth map. If $(U, \varphi)$ is arbitrary chart containing $p \in M$ and $(V, \psi)$ is arbitrary chart containing $F(p) \in N$, then $\psi\circ F \circ \varphi^{-1}$ is $C^\infty$ on $M$.
+\end{corollary}
+
+\begin{proof}
+    Let $(\widetilde{U}, \widetilde{\varphi})$ and $(\widetilde{V}, \widetilde{\psi})$ be arbitrary charts for $M$. Suppose that $\widetilde{U} \cap F^{-1}(\widetilde{V}) \neq \emptyset$. Since $F$ is smooth, for $p \in \widetilde{U} \cap F^{-1}(\widetilde{V}) \subset M$, there exist charts $(U, \varphi)$ containing $p$ and $(V, \psi)$ containing $F(p)$ such that $\psi \circ F \circ \varphi^{-1}$ is $C^\infty$ at $\varphi(p)$ on $\varphi(U \cap F^{-1}(V))$. By the $C^\infty$-compatibility of charts in a differentiable structure, we have $\widetilde{\psi} \circ F \circ \widetilde{\varphi}^{-1} = (\widetilde{\psi} \circ \psi^{-1}) \circ (\psi \circ F \circ \varphi^{-1}) \circ (\varphi \circ \widetilde{\varphi}^{-1})$ is $C^\infty$ at $\widetilde{\varphi}(p)$ on $\widetilde{\varphi}(\widetilde{U} \cap F^{-1}(\widetilde{V}))$. Since $(\widetilde{U}, \widetilde{\varphi})$ and $(\widetilde{V}, \widetilde{\psi})$ are arbitrary, the claim follows.
+\end{proof}
+
+\subsection{Constructing smooth maps}
+
+How does one go about constructing smooth maps from one smooth manifold to another? Following theorem gives a number of rules for constructing smooth maps.
+
+\begin{theorem}[Construction of smooth maps]\label{lem:construction of smooth maps}
+    Let $M, N$ and $P$ be smooth manifolds.
+    \begin{enumerate}
+        \item (Constant map) Every constant map $f : M \to N$ is smooth.
+        \item (Identity map) The identity map $\id_M$ is smooth.
+        \item (Composites) If $F : M \to N$ and $G : N \to P$ are smooth, then $G \circ F : M \to P$ is smooth.
+        %\item (Restriction) $F : M \to N$ is smooth if and only if very point $p \in M$ has a neighborhood $U$ such that $F|_U : U \to N$ is smooth.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    (i) Define $f : M \to N$ as $f(p) = c$. Let $p \in M$ be arbitrary, there exist charts $(U, \varphi)$ containing $p \in M$ and $(V, \psi)$ containing $c$. We see that $U \cap f^{-1}(V) = U \cap M = U$ is open in $M$ and $\psi \circ f \circ\varphi^{-1}$ is $C^\infty$ from $\varphi(U)$ to $\psi(V)$. Thus, $f$ is $C^\infty$.
+
+    (ii) Let $p \in M$ be arbitrary, there exist $(U, \varphi)$ containing $p$. Then $U \cap \id_M^{-1}(U) = U$ is open in $M$ and $\varphi \circ \id_M \circ \varphi^{-1}$ is $C^\infty$ from $\varphi(U)$ to $\varphi(U)$. Thus, $\id_M$ is $C^\infty$.
+
+    (iii) By definition, there exist charts $(V, \varrho)$ containing $F(p)$ and $(W, \psi)$ containing $G(F(p))$ such that $G(V) \subset W$ and $\psi \circ G \circ \varrho^{-1}$ is $C^\infty$ from $\varrho(V)$ to $\psi(W)$. Since $F$ is continuous and $F^{-1}(V)$ is a neighborhood of $p \in M$, so there is a chart $(U, \varphi)$ for $M$ such that $p \in U \subset F^{-1}(V)$. By Corollary \ref{lem:smoothness is independent of chars}, $\psi \circ F \circ \varphi^{-1}$ is $C^\infty$ from $\varphi(U)$ to $\psi(V)$. Then we have $(G \circ F)(U) \subset G(U) \subset W$, and $\varrho \circ (G \circ F) \circ \varphi^{-1} = (\varrho \circ G \circ \psi^{-1}) \circ (\psi \circ F \circ \varphi^{-1})$ is $C^\infty$ from $\varphi(U)$ to $\varrho(W)$.
+\end{proof}
+
+\section{Diffeomorphisms}
+
+\begin{definition}[Diffeomorphism]
+    Let $M$ and $N$ be smooth manifolds. A \emph{diffeomorphism from $M$ to $N$} is a bijective smooth map $F : M \to N$ whose inverse $F^{-1}$ is also smooth. We say that $M$ and $N$ are \emph{diffeomorphic} if there exists a diffeomorphism between them.
+\end{definition}
+
+Following proposition gives the relation between diffeomorphism and chart.
+
+\begin{proposition}\label{lem:chart map is diffeomorphism}
+    Let $M$ be a smooth manifold. If $(U, \varphi)$ is a chart on $M$, then $\varphi : U \to \varphi(U)$ is a diffeomorphism. Conversely, if $\varphi : U \to \varphi(U)$ is a diffeomorphism on the open subset $U \subset M$, then $(U, \varphi)$ is a chart in the differentiable structure of $M$.
+\end{proposition}
+
+\begin{proof}
+    Suppose that $(U, \varphi)$ is a chart on $M$, then by definition, $\varphi : U \to \varphi(U)$ is a homeomorphism. We need to show that $\varphi$ and $\varphi^{-1}$ is $C^\infty$. Consider the atlases $\{(U, \varphi)\}$ and $\{(\varphi(U), \id_{\varphi(U)})\}$ which contains single chart. Since $\varphi$ and $\varphi^{-1}$ are continuous, and $\id_{\varphi(U)} \circ \varphi \circ \varphi^{-1}$ and $\varphi \circ \varphi^{-1} \circ \id_{\varphi(U)}$ are identity maps on $\varphi(U)$ and $U$, respectively. Thus, by Theorem \ref{lem:construction of smooth maps}(ii) and Proposition \ref{lem:characterisation of smooth maps}(iii), $\varphi$ and $\varphi^{-1}$ are $C^\infty$.
+
+    Conversely, suppose that $U \subset M$ is open and $\varphi : U \to \varphi(U)$ is diffeomorphism. Then by definition, $\varphi$ and $\varphi^{-1}$ are $C^\infty$. For any chart $(V, \psi)$ in maximal atlas $\mathfrak{A}$ of $M$, we have $\psi$ and $\psi^{-1}$ are $C^\infty$ from above conclusion. Then by Theorem \ref{lem:construction of smooth maps}(iii), $\varphi \circ \psi^{-1} : \psi(U \cap V) \to \varphi(U \cap V)$ and $\psi \circ \varphi^{-1} : \varphi(U \cap V) \to \psi(U \cap V)$ are $C^\infty$. This means that $(U, \varphi)$ is compatible with $(V, \psi)$. Since $(V, \psi)$ is arbitrary, $(U, \varphi) \in \mathfrak{A}$, as desired.
+\end{proof}
