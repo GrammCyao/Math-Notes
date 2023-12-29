@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 \contentsline {chapter}{\numberline {1}Foundation}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Zermelo-Fraenkel Axioms}{1}{section.1.1}%
 \contentsline {chapter}{\numberline {2}Differentiation in several variable calculus}{7}{chapter.2}%
@@ -35,3 +36,38 @@
 \contentsline {section}{\numberline {5.3}Applications}{44}{section.5.3}%
 \contentsline {chapter}{\numberline {6}Submersions, immersions, and embeddings}{47}{appendix.6}%
 \contentsline {section}{\numberline {6.1}Maps of constant rank}{47}{section.6.1}%
+=======
+\contentsline {chapter}{\numberline {1}Differentiation in several variable calculus}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Derivatives}{1}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Directional derivative and differentiability}{1}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Partial derivative and Jacobian matrix}{3}{subsection.1.1.2}%
+\contentsline {section}{\numberline {1.2}The chain rule}{6}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Several calculus chain rule}{6}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}The mean-value theorem}{8}{subsection.1.2.2}%
+\contentsline {section}{\numberline {1.3}Continuous differentiability}{9}{section.1.3}%
+\contentsline {section}{\numberline {1.4}The inverse function theorem}{9}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}The contraction mapping theorem}{9}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}The inverse function theorem}{11}{subsection.1.4.2}%
+\contentsline {chapter}{\numberline {2}Exterior algebra}{15}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Tensor product}{15}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Tensor product of two vector spaces}{16}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Tensor product}{17}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Tensors}{17}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}Alternating tensors}{18}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Exterior algebra}{20}{section.2.3}%
+\contentsline {section}{\numberline {2.A}Dual space}{20}{section.a.2.A}%
+\contentsline {section}{\numberline {2.B}Permutations}{22}{section.a.2.B}%
+\contentsline {chapter}{\numberline {3}Manifold}{25}{appendix.3}%
+\contentsline {section}{\numberline {3.1}Topological manifolds}{25}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Smooth structures}{27}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Examples of smooth manifolds}{29}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}Smooth maps}{29}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Smooth functions on manifold}{29}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Smooth maps between manifolds}{30}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Constructing smooth maps}{32}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Diffeomorphisms}{33}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Tangent spaces}{35}{appendix.4}%
+\contentsline {section}{\numberline {4.1}An intuition: Geometric tangent space}{35}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Tangent spaces}{36}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Applications}{38}{section.4.3}%
+>>>>>>> 53c256507d2a398e47311a8dc90d4ac4dc69f63c
