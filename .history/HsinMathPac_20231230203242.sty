@@ -1,0 +1,116 @@
+%V20231216
+\ProvidesPackage{HsinMathPac}
+
+
+\RequirePackage{bm}%board math
+\RequirePackage{amssymb, amsmath, amsthm, mathrsfs}
+
+
+%draw
+\RequirePackage{tikz-cd}
+\RequirePackage[tikz]{mdframed}
+\usepackage{tcolorbox}
+\usetikzlibrary{patterns}
+
+
+%Other Settings
+%    \makeatletter%公式行间距调整
+%    \renewcommand\normalsize{
+%       \@setfontsize\normalsize\@xpt\@xiipt
+%       \abovedisplayskip 3\p@ \@plus2\p@ \@minus2\p@
+%       \abovedisplayshortskip \z@ \@plus3\p@
+%       \belowdisplayshortskip 3\p@ \@plus2\p@ \@minus2\p@
+%       \belowdisplayskip \abovedisplayskip
+%       \let\@listi\@listI}
+%    \makeatother
+
+\allowdisplaybreaks[4]%公式换页,强度从0-4.
+\newcommand{\remark}{\vspace{.5em}\noindent\textbf{Remark.}~}
+
+
+%计数器
+
+\newcounter{Proposition}[section]
+\renewcommand{\theProposition}{\thesection.\arabic{Proposition}}
+\titleformat{\chapter}[display]{\bfseries\Large}{\filright\MakeUppercase{\chaptertitlename} \huge\arabic{chapter}}{2ex}{\filright\LARGE}
+\titleformat{\section}{\normalfont}{\filright\bfseries\Large\S\thesection}{8pt}{\Large\bfseries}
+%\usepackage{fontspec}
+
+\titleformat{\chapter}[display]{\bfseries\Large}{\filright\MakeUppercase{\chaptertitlename}\Huge\Roman{chapter}}{4ex}{\titlerule[1pt]\vspace{1pt}\titlerule\vspace{1pc}\filright\huge}[\vspace{2ex}\titlerule]
+
+%\titleformat{\section}[frame]{\normalfont}{\filright\bfseries\fbox\thesection\enspace}{8pt}{\Large\bfseries\hspace{2.5em}}
+
+
+%math environment
+
+\newtheoremstyle{defstyle}% ⟨name⟩
+{0em}% ⟨Space above⟩
+{0pt}% ⟨Space below⟩
+{\upshape}% ⟨Body font⟩
+{}% ⟨Indent amount⟩
+{\bfseries}% ⟨Theorem head font⟩
+{.}% ⟨Punctuation after theorem head⟩
+{.5em}% ⟨Space after theorem head⟩
+{}% ⟨Theorem head spec (can be left empty, meaning ‘normal’)⟩
+\theoremstyle{defstyle}
+
+\mdfdefinestyle{mythmstyle}{outerlinewidth = 1, roundcorner = 10pt, leftmargin = 40, rightmargin = 40, backgroundcolor = yellow!20, outerlinecolor = red!70!black, innertopmargin = .5em, skipabove = 1.em, splittopskip = \topskip}
+
+\mdtheorem[style=mythmstyle]{pseudoaxiom}{Pseudo-Axiom}
+
+%Axiom
+\newmdtheoremenv[outerlinewidth = 1, roundcorner = 10pt, leftmargin = 40, rightmargin = 40, backgroundcolor = yellow!20, outerlinecolor = red!70!black, innertopmargin = .5em, skipabove = 1.em, splittopskip = \topskip]{axiom}{Axiom}[chapter]
+
+%Definiton
+\newmdtheoremenv[outerlinewidth = 1, roundcorner = 10pt, leftmargin = 40, rightmargin = 40, backgroundcolor = yellow!40, outerlinecolor = red!70!black, innertopmargin = .5em, skipabove = 1.em, splittopskip = \topskip]{definition}{Definition}[section]
+
+%Notation
+\newmdtheoremenv[outerlinewidth = 1, roundcorner = 10pt, leftmargin = 40, rightmargin = 40, backgroundcolor = yellow!20, outerlinecolor = red!70!black, innertopmargin = .5em, skipabove = 1.em, splittopskip = \topskip]{notation}[definition]{Notation}
+
+%Example
+\newmdtheoremenv[outerlinewidth = 1, roundcorner = 10pt, leftmargin = 40, rightmargin = 40, backgroundcolor = brown!15, outerlinecolor = red!70!black, innertopmargin = .5em, skipabove = 1.em, splittopskip = \topskip ]{example}[definition]{Example}
+
+\newtheoremstyle{thmstyle}% ⟨name⟩
+{0.em}% ⟨Space above⟩
+{0pt}% ⟨Space below⟩
+{\itshape}% ⟨Body font⟩
+{}% ⟨Indent amount⟩
+{\bfseries}% ⟨Theorem head font⟩
+{.}% ⟨Punctuation after theorem head⟩
+{.5em}% ⟨Space after theorem head⟩
+{}% ⟨Theorem head spec (can be left empty, meaning ‘normal’)⟩
+\theoremstyle{thmstyle}
+
+%Proposition
+\newmdtheoremenv[outerlinewidth = 1, roundcorner = 10pt, leftmargin = 40, rightmargin = 40, backgroundcolor = blue!10, outerlinecolor = red!70!black, innertopmargin = .5em, skipabove = 1.em, splittopskip = \topskip,]{proposition}[definition]{Proposition}
+
+%Theorem
+\newmdtheoremenv[outerlinewidth = 1, roundcorner = 10pt, leftmargin = 40, rightmargin = 40, backgroundcolor = blue!10, outerlinecolor = red!70!black, innertopmargin = .5em, skipabove = 1.em, splittopskip = \topskip,]{theorem}[definition]{Theorem}
+
+%Lemma
+\newmdtheoremenv[outerlinewidth = 1, roundcorner = 10pt, leftmargin = 40, rightmargin = 40, backgroundcolor = blue!10, outerlinecolor = red!70!black, innertopmargin = .5em, skipabove = 1.em, splittopskip = \topskip ]{lemma}[definition]{Lemma}
+
+%Corollary
+\newmdtheoremenv[outerlinewidth = 1, roundcorner = 10pt, leftmargin = 40, rightmargin = 40, backgroundcolor = blue!10, outerlinecolor = red!70!black, innertopmargin = .5em, skipabove = 1.em, splittopskip = \topskip,]{corollary}[definition]{Corollary}
+
+
+%Math Symbols
+\DeclareMathOperator{\real}{Re}%real part
+\DeclareMathOperator{\im}{im}%image part
+\DeclareMathOperator{\sgn}{sgn}%sign permutation
+\DeclareMathOperator{\id}{\mathbf{1}}%identity map
+\DeclareMathOperator{\spans}{span}%spans space
+\DeclareMathOperator{\rank}{rank}%rank
+
+
+
+
+
+
+
+
+
+
+
+
+

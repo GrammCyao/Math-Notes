@@ -1,0 +1,356 @@
+
+\chapter{Foundation}
+
+\section{Sets}
+
+\begin{comment}
+We begin with na\"ive set theory. A \emph{set} $A$ is an unordered collection of objects. If $x$ is an object and if $x$ lies in $A$, we say that $x$ is an element of $A$, and we write
+    \begin{align*}
+        x \in A,
+    \end{align*}
+otherwise, we write
+    \begin{align*}
+        x \notin A.
+    \end{align*}
+
+If $A, B$ are sets and if every element of $A$ is an element of $B$, we say that $A$ is a \emph{subset} of $B$, and we write
+    \begin{align*}
+        A \subset B.
+    \end{align*}
+\end{comment}
+
+We present one standard way to define the sets, in terms of the Zermelo-Fraenkel axioms, which were named after Ernst Zermelo (1871 - 1952) and Abraham Fraenkel (1891 - 1965).
+
+\begin{axiom}[Axiom of extension]
+    Two sets $A$ and $B$ are equal, denoted $A = B$, if and only if every element of $A$ is an element of $B$ and vice versa.
+\end{axiom}
+
+The axiom of extension including two fundamental concepts that of set and of element. The axiom of extension assumes that every mathematical object is a set, an element is also an object, it is meaningful to ask whether a set is an element of a set.
+
+If $x$ is an object, we say that $x$ is an element of $A$, and we write
+    \begin{align*}
+        x \in A,
+    \end{align*}
+otherwise, we write
+    \begin{align*}
+        x \notin A.
+    \end{align*}
+
+Notice that we always use the \emph{first-order logic} as our meta-language, thus the axiom of extension can be rewritten as
+    \begin{align*}
+        \forall A\forall B(\forall x(x \in A \Longleftrightarrow x \in B) \Longleftrightarrow A = B).
+    \end{align*}
+But we will not express the statement in this form.
+
+Since we obtain some fundamental concepts, we can define the \emph{subsets}.
+
+\begin{definition}[Subsets]
+    Let $A, B$ be sets. We say that $A$ is a \emph{subset} of $B$, denoted $A \subset B$, if and only if every element of $A$ is also an element of $B$.
+\end{definition}
+
+Some basic facts about subsets is given by following.
+
+\begin{proposition}
+    Let $A, B$ and $C$ be sets.
+    \begin{enumerate}
+        \item (Reflexivity) $A \subset A$.
+        \item (Transitivity) If $A \subset B$ and $B \subset C$, then $A \subset C$.
+        \item (Anti-symmetry) If $A \subset B$ and $B \subset A$, then $A = B$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Proof omitted.
+\end{proof}
+
+\begin{axiom}[Axiom scheme of specification]
+    Let $A$ be a set, and for each $x \in A$, let $P(x)$ be a property pertaining to $x$. Then there exists a set 
+    \begin{align*}
+        \{x \in A : P(x) \text{ is true}\},
+    \end{align*}
+    whose elements are precisely those elements $x$ in $A$ for which $P(x)$ is true. In other words, for any object $y$,
+        \begin{align*}
+            y \in \{x \in A : P(x) \text{ is true}\}
+            \Longleftrightarrow 
+            (y \in A \text{ and } P(y) \text{ is true}).
+        \end{align*}
+\end{axiom}
+
+This axiom is also known as the \emph{axiom scheme of separation}.
+
+The axiom of specification assures the existence of empty set which without any elements at all.
+
+\begin{definition}[Empty set]
+    If $A$ is a set, the \emph{empty set} $\emptyset$ is defined to be the set
+    \begin{align*}
+        \emptyset := \{x \in A : x \neq x\}.
+    \end{align*}
+\end{definition}
+
+Since every object $x$ must obeys $x = x$, thus for arbitrary object $x$ we have $x \notin \emptyset$, the empty set contains no elements. The axiom of extension implies that there can be only one set with no elements.
+
+\begin{lemma}
+    If $\emptyset_1$ and $\emptyset_2$ are empty set, then $\emptyset_1 = \emptyset_2$.
+\end{lemma}
+
+\begin{proof}
+    Suppose for sake of contradiction that $\emptyset_1 \neq \emptyset_2$. Then by the axiom of extension, we either have there is an element $x$ such that $x \in \emptyset_1$ but $x \notin \emptyset_2$ or $x \in \emptyset_2$ but $x \notin \emptyset_1$. But both cases are impossible by the definition, a contradiction.
+\end{proof}
+
+If a set is not equal to the empty set, we call it \emph{non-empty}. The next Lemma asserts that given any non-empty set $A$, we are allowed to ``choose'' an element $x$ of $A$ which demonstrates this non-emptyness.
+
+\begin{lemma}[Single choice]
+    Let $A$ be a non-empty set. Then there exists an object $x$ such that $x \in A$.
+\end{lemma}
+
+\begin{proof}
+    We prove by contradiction. Suppose there does not exist any object $x$ such that $x \in A$. Then for all objects $x$, $x \notin A$. Since we have $x \notin \emptyset$. Thus $x \in A$ equivalent to $x \in \emptyset$, and so $A = \emptyset$ by the axiom of extension.
+\end{proof}
+
+Another basic fact about the empty set is that it is a subset of every set.
+\begin{lemma}
+    If $A$ is a set, then $\emptyset \subset A$. In particular, we have $\emptyset \subset \emptyset$.
+\end{lemma}
+
+\begin{proof}
+    Suppose for sake of contradiction that $\emptyset \subset A$ is false. This means that there is an element of $\emptyset$ which doesn't lies in $A$. But it is impossible for that $\emptyset$ contains no elements, a contradiction. In particular, since the emptyset is a set, hence $\emptyset \subset \emptyset$.
+\end{proof}
+
+
+\begin{axiom}[Axiom of pairing]
+    Let $a$ and $b$ be objects. Then there exists a set $\{a, b\}$ whose only elements are $a$ and $b$.
+\end{axiom}
+
+If $A$ is a set such that $a \in A$ and $b \in A$ for arbitrary objects $a, b$, then we can apply the axiom of specification to $A$ with the property ``$x = a$ or $x = b$''. We obtain a set $\{x \in A : x = a \text{ or } x = b\}$ which contains just $a$ and $b$, the axiom of extension assures that such a set is unique, such a set is called the \emph{pair}. Similarly, $\{a, a\}$ is an unordered pair, denoted $\{a\}$, and is called the \emph{singleton}.
+
+\begin{axiom}[Axiom of union]
+    Let $A$ be a set, all of whose elements are sets. Then there exists a set $\bigcup A$ whose elements are precisely those objects which are elements of the elements of $A$. In other words, for any object $x$,
+        \begin{align*}
+            x \in \bigcup A
+            \Longleftrightarrow
+            (x \in S \text{ for some } S \in A).
+        \end{align*}
+\end{axiom}
+
+\begin{comment}
+If $A$ is a set which elements are sets, we usually call it a \emph{collection} instead of a set. By the axiom of union, for every collection $A$ there exists a set $U$ such that if $x \in S$ for some $S \in A$, then $x \in U$. We can apply the axiom of specification to form the set
+    \begin{align*}
+        \{x \in U : x \in S \text{ for some } S \in A\},
+    \end{align*}
+note that the axiom of extension guarantees its uniqueness.
+\end{comment}
+
+Now we can define some important operations on sets, namely unions, intersections and difference sets.
+\begin{comment}
+The \emph{unions} $S_1 \cup S_2$ of two sets is defined to be
+    \begin{align*}
+        S_1 \cup S_2 := \bigcup\{S_1, S_2\}.
+    \end{align*}
+This equivalent to say that for each $x \in S_1 \cup S_2$ we have $x \in S_1$ or $x \in S_2$. Observe that the existence and uniqueness of $S_1 \cup S_2$ are guaranteed by the axioms of pairing, union, and extension.
+\end{comment}
+
+\begin{definition}[Unions]
+    The \emph{union} $S_1 \cup S_2$ of two sets is defined to be the set
+    \begin{align*}
+        S_1 \cup S_2 := \bigcup\{S_1, S_2\}.
+    \end{align*}
+\end{definition}
+This equivalent to say that for each $x \in S_1 \cup S_2$ we have $x \in S_1$ or $x \in S_2$. Observe that the existence and uniqueness of $S_1 \cup S_2$ are guaranteed by the axioms of pairing, union, and extension. Here are some basic facts about unions.
+
+\begin{proposition}[Basic properties of unions]
+    Let $A, B$ be sets.
+    \begin{enumerate}
+        \item (Minimality) $A \cup \emptyset = A$.
+        \item (Commutativity) $A \cup B = B \cup A$.
+        \item (Associativity) $A \cup (B \cup C) = (A \cup B) \cup C$.
+        \item (Idempotence) $A \cup A = A$.
+        \item $A \subset B$ if and only if $A \cup B = B$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Proof omitted.
+%(i) Suppose that $x \in A \cup \emptyset$. Then we either have $x \in A$ or $x \in \emptyset$. Since $x \notin \emptyset$, we only have $x \in A$. Thus $A \cup \emptyset \subset A$. Conversely, suppose $x \in A$. Then $x \in A \cup \emptyset$ by definition.
+\end{proof}
+
+From the axiom scheme of specification, we can define the intersections.
+\begin{definition}[Intersections]
+    The \emph{intersection} $S_1 \cap S_2$ of two sets is defined to be the set
+    \begin{align*}
+        S_1 \cap S_2 := \{x \in S_1 : x \in S_2\}.
+    \end{align*}
+\end{definition}
+
+Here are some basic facts about unions.
+
+\begin{proposition}[Basic properties of intersections]
+    Let $A, B$ be sets.
+    \begin{enumerate}
+        \item (Minimality) $A \cap \emptyset = \emptyset$.
+        \item (Commutativity) $A \cap B = B \cap A$.
+        \item (Associativity) $A \cap (B \cap C) = (A \cap B) \cap C$.
+        \item (Idempotence) $A \cap A = A$.
+        \item $A \subset B$ if and only if $A \cap B = A$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Proof omitted.
+\end{proof}
+
+\begin{proposition}[Distributive laws]
+    Let $A, B$ and $C$ be sets. Then
+        \begin{align*}
+            A \cap (B \cup C) &= (A \cap B) \cup (A \cap C),\\
+            A \cup (B \cap C) &= (A \cup B) \cap (A \cup C).
+        \end{align*}
+\end{proposition}
+
+\begin{proof}
+    We only prove the first one, the second one is similar. If $x \in A \cap (B \cup C)$, then $x \in A$ and $x \in (B \cup C)$. Since $x \in (B \cup C)$ implies $x \in B$ or $x \in C$. If $x \in B$, then we have $x \in A$ and $x \in B$, and conclude that $x \in A \cap B$. If $x \in C$, then we have $x \in A$ and $x \in C$, and conclude that $x \in A \cap C$. Since we either have $x \in B$ or $x \in C$, thus we either have $x \in A \cap B$ or $x \in A \cap C$. Together our conclusions, we have $x \in (A \cap B) \cup (A \cap C)$. To prove the reverse, we see that either $x \in A \cap B$ or $x \in A \cap C$, this implies we either have both $x \in A$ and $x \in B$ or both $x \in A$ and $x \in C$. Since $x \in A$ is always true, we either have $x \in B$ or $x \in C$. Thus, we conclude that $x \in A$, and $x \in B$ or $x \in C$, i.e., $x \in A \cap (B \cup C)$.
+\end{proof}
+
+Similarly, the difference sets can be defined with the axiom scheme of specification.
+
+\begin{definition}[Difference sets]
+    The \emph{difference set} $A \setminus B$ (or $A - B$) is defined to be the set $A$ with any elements of $B$ removed:
+    \begin{align*}
+        A \setminus B := \{x \in A : x \notin B\}.
+    \end{align*}
+\end{definition}
+
+The basic facts about difference sets can be described as follows.
+
+\begin{proposition}[Basic properties of difference sets]
+    Let $A, B, X$ be sets, and let $A, B$ be subsets of $X$.
+    \begin{enumerate}
+        \item $X \setminus (X \setminus A) = A$.
+        \item $X \setminus \emptyset = X$ and $X \setminus X = \emptyset$.
+        \item $A \cap (X \setminus A) = \emptyset$ and $A \cup (X \setminus A) = X$.
+        \item $A \subset B$ if and only if $X \setminus B \subset X \setminus A$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Proof omitted.
+\end{proof}
+
+\begin{proposition}[De Morgan laws]
+    Let $A, B, X$ be sets, and let $A, B$ be subsets of $X$. Then
+    \begin{align*}
+        X \setminus (A \cup B) &= (X \setminus A) \cap (X \setminus B),\\
+        X \setminus (A \cap B) &= (X \setminus A) \cup (X \setminus B).
+    \end{align*}
+\end{proposition}
+
+\begin{proof}
+    Proof omitted.
+\end{proof}
+
+There is a handy operation of sets which is usually used in mathematical proofs, namely symmetric difference.
+
+\begin{definition}[Symmetric difference]
+    The \emph{symmetric difference} $A \triangle B$ of two sets is defined to be the set
+    \begin{align*}
+        A \triangle B := (A \setminus B) \cup (B \setminus A).
+    \end{align*}
+\end{definition}
+
+There is some properties of symmetric differences.
+
+\begin{proposition}[Basic properties of symmetric differences]
+    Let $A, B, C$ and $X$ be sets, and let $A \subset X$.
+    \begin{enumerate}
+        \item (Commutativity) $A \triangle B = B \triangle A$.
+        \item (Associativity) $A \triangle (B \triangle C) = (A \triangle B) \triangle C$.
+        \item $A \cap (B \triangle C) = (A \cap B) \triangle (A \cap C)$.
+        \item $A \triangle \emptyset = A$ and $A \triangle X = X \setminus A$.
+        \item $A \triangle A = \emptyset$ and $A \triangle (X \setminus A) = X$.
+        \item $A \triangle B = (A \cup B) \setminus (A \cap B)$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Proof omitted.
+\end{proof}
+
+\begin{axiom}[Axiom of powers]
+    Let $X$ be a set. Then the set
+    \begin{align*}
+        \{Y : Y \subset X\}
+    \end{align*}
+    is a set, such a set is called the \emph{power set} of $X$.
+\end{axiom}
+
+\section{Cartesian product}
+
+Another fundamental operation on sets, the \emph{Cartesian product}. We first define the \emph{ordered pair}.
+
+\begin{definition}[Ordered pair]
+    If $a$ and $b$ are any objects, we define the \emph{ordered pair} $(a, b)$ to be the set
+    \begin{align*}
+        (a, b) := \{\{a\}, \{a, b\}\}.
+    \end{align*}
+\end{definition}
+
+We prove that two pairs are equal if and only if both their components match.
+
+\begin{lemma}
+    If $(a, b)$ and $(x, y)$ are ordered pairs, then $(a, b) = (x, y)$ if and only if $a = x$ and $b = y$.
+\end{lemma}
+
+\begin{proof}
+    We first show that $(a, b)$ is singleton if and only if $a = b$. If $(a, b)$ is singleton, then $\{a\} = \{a, b\}$, so that $b \in \{a\}$, and hence $b = a$. Conversely, if $a = b$, then $(a, b) = \{\{a\}\}$ which is singleton.
+
+    Now we return to the lemma. If $a = b$, then both $(a, b)$ and $(x, y)$ are singletons, so that $x = y$. Since $\{x\} \in (a, b)$ and $\{a\} \in (x, y)$, this implies that $a, b, x$ and $y$ are all equal.
+
+    If $a \neq b$, then $(a, b)$ and $(x, y)$ contain exactly one singleton, i.e., $\{a\}$ and $\{x\}$. Thus $a = x$. Furthermore, $(a, b)$ and $(x, y)$ contain exactly one pair, i.e., $\{a, b\}$ and $\{x, y\}$, and thus $\{a, b\} = \{x, y\}$. Since $a = x$ and $b \in \{x, y\}$, we only have $b = y$.
+
+    For the other direction, suppose that $a = x$ and $b = y$. We only need to show that case of $a \neq b$. By the hypothesis, we have $\{a\} = \{x\}$ and $\{a, b\} = \{x, y\}$. Thus $(a, b) = (x, y)$ is hold for that $\{\{a\}, \{a, b\}\} = \{\{x\}, \{x, y\}\}$ is hold. This complete the proof.
+\end{proof}
+
+Now we can introduce the \emph{Cartesian product}.
+
+\begin{definition}[Cartesian product]
+    If $X$ and $Y$ are sets, then we define the \emph{Cartesian product} $X \times Y$ to be the collection of ordered pairs, whose first component lies in $X$ and second component lies in $Y$, i.e.,
+    \begin{align*}
+        X \times Y := \{(x, y) : (x, y) \text{ for some }x \in X \text{ and } y \in Y\}.
+    \end{align*}
+\end{definition}
+
+Here are some properties of Cartesian product.
+
+\begin{proposition}
+    Let $A, B, X, Y$ be sets.
+    \begin{enumerate}
+        \item $(A \cup B) \times X = (A \times X) \cup (B \times X)$.
+        \item $(A \cap B) \times (X \cap Y) = (A \times X) \cap (B \times Y)$.
+        \item $(A \setminus B) \times X = (A \times X) \setminus (B \times X)$.
+        \item $(X \times Y) \setminus (A \times B) = ((X \setminus A) \times Y) \cup (X \times (Y \setminus B))$.
+        \item $A \times B = \emptyset$ if and only if $A = \emptyset$ or $B = \emptyset$.
+        \item If $A \subset X$ and $B \subset Y$, then $A \times B \subset X \times Y$.
+        \item Let $A \times B \neq \emptyset$. If $A \times B \subset X \times Y$, then $A \subset X$ and $B \subset Y$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    %(i) Suppose $(x, y) \in (A \cup B) \times X$, by definition, $(x, y)$ for some $x \in A \cup B$ and $y \in X$. Then we either have $x \in A$ or $x \in B$. If $x \in A$, then $(x, y)$ for some $x \in A$ and $y \in X$, so that $(x, y) \in A \times X$. If $x \in B$, we have $(x, y) \in B \times X$ with similar reasoning. Since we either have $(x, y) \in A \times X$ or $(x, y) \in B \times X$, thus $(x, y) \in (A \times X) \cup (B \times X)$.
+    We only prove (v), (vi) and (vii).
+
+    (v) For the ``if'' part, assume that $A \times B \neq \emptyset$. Then there is $(x, y) \in A \times B$, which means $x \in A$ and $y \in B$. So that $A \neq \emptyset$ and $B \neq \emptyset$, a contradiction. Conversely, assume that neither $A$ nor $B$ is empty, then there is $x \in A$ and $y \in B$. This implies $(x, y) \in A \times B$, a contradiction.
+
+    (vi) Suppose $A \subset X$ and $B \subset Y$, then for every $x \in A$ and every $y \in B$, we have $(x, y) \in A \times B$. Since $x \in X$ and $y \in Y$, we implies that $(x, y) \in X \times Y$. Thus $A \times B \subset X \times Y$.
+
+    (vii) Suppose that $(x, y) \in A \times B$. Suppose for sake of contradiction that there exists $a \in A$ but $a \notin X$. Then $(a, y) \in A \times B$ and $(a, y) \notin X \times Y$, but it is impossible for that $A \times B \subset X \times Y$. Thus $A \subset X$. A same proof shows that $B \subset Y$.
+
+    Note that we requires $A \times B$ be non-empty, this equivalently to say that $A \neq \emptyset$ and $B \neq \emptyset$ from (v). If $A = \emptyset$, we must have $A \times B = \emptyset \subset X \times Y$ for arbitrary $B$. We can let $B \supsetneq Y$, then the premise still hold but the conclusion is not 
+\end{proof}
+
+
+
+
+
+
+
+
+
