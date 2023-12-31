@@ -19,7 +19,11 @@ If $A, B$ are sets and if every element of $A$ is an element of $B$, we say that
     \end{align*}
 \end{comment}
 
+<<<<<<< HEAD
 We present one standard way to define the sets, in terms of the axiomatic set theory.
+=======
+We present one standard way to define the sets, in terms of the Zermelo-Fraenkel axioms, which were named after Ernst Zermelo (1871 - 1952) and Abraham Fraenkel (1891 - 1965).
+>>>>>>> e6bb64aba7ddf37c79b2b571f2bf0d80cf5c2f20
 
 \begin{axiom}[Axiom of extension]\label{axim:extension}
     Two sets $A$ and $B$ are equal, denoted $A = B$, if and only if every element of $A$ is an element of $B$ and vice versa.
@@ -282,6 +286,7 @@ There is some properties of symmetric differences.
     is a set, such a set is called the \emph{power set} of $X$.
 \end{axiom}
 
+<<<<<<< HEAD
 \begin{axiom}[Axiom scheme of replacement]
     Let $A$ be a set. For any object $x \in A$, and any object, suppose we have a statement $P(x, y)$ pertaining to $x$ and $y$, such that for each $x \in A$ there is at most one $y$ for which $P(x, y)$ is true. Then there exists a set $\{y : P(x, y) \text{ is true for some } x \in A\}$, such that for any object $z$,
     \begin{align*}
@@ -353,6 +358,43 @@ We prove that two pairs are equal if and only if both their components match.
 
 \begin{proof}
     We first show that $(a, b)$ is singleton if and only if $a = b$. If $(a, b)$ is singleton, then $\{a\} = \{a, b\}$, so that $b \in \{a\}$, and hence $b = a$. Conversely, if $a = b$, then $(a, b) = \{\{a\}\}$ which is singleton.
+=======
+\section{Cartesian product}
+
+Another fundamental operation on sets, the \emph{Cartesian product}. We first define the \emph{ordered pair}.
+
+\begin{definition}[Ordered pair]
+    If $a$ and $b$ are any objects, we define the \emph{ordered pair} $(a, b)$ to be the set
+    \begin{align*}
+        (a, b) := \{\{a\}, \{a, b\}\}.
+    \end{align*}
+\end{definition}
+
+We prove that two pairs are equal if and only if both their components match.
+
+\begin{lemma}
+    If $(a, b)$ and $(x, y)$ are ordered pairs, then $(a, b) = (x, y)$ if and only if $a = x$ and $b = y$.
+\end{lemma}
+
+\begin{proof}
+    We first show that $(a, b)$ is singleton if and only if $a = b$. If $(a, b)$ is singleton, then $\{a\} = \{a, b\}$, so that $b \in \{a\}$, and hence $b = a$. Conversely, if $a = b$, then $(a, b) = \{\{a\}\}$ which is singleton.
+
+    Now we return to the lemma. If $a = b$, then both $(a, b)$ and $(x, y)$ are singletons, so that $x = y$. Since $\{x\} \in (a, b)$ and $\{a\} \in (x, y)$, this implies that $a, b, x$ and $y$ are all equal.
+
+    If $a \neq b$, then $(a, b)$ and $(x, y)$ contain exactly one singleton, i.e., $\{a\}$ and $\{x\}$. Thus $a = x$. Furthermore, $(a, b)$ and $(x, y)$ contain exactly one pair, i.e., $\{a, b\}$ and $\{x, y\}$, and thus $\{a, b\} = \{x, y\}$. Since $a = x$ and $b \in \{x, y\}$, we only have $b = y$.
+
+    For the other direction, suppose that $a = x$ and $b = y$. We only need to show that case of $a \neq b$. By the hypothesis, we have $\{a\} = \{x\}$ and $\{a, b\} = \{x, y\}$. Thus $(a, b) = (x, y)$ is hold for that $\{\{a\}, \{a, b\}\} = \{\{x\}, \{x, y\}\}$ is hold. This complete the proof.
+\end{proof}
+
+Now we can introduce the \emph{Cartesian product}.
+
+\begin{definition}[Cartesian product]
+    If $X$ and $Y$ are sets, then we define the \emph{Cartesian product} $X \times Y$ to be the collection of ordered pairs, whose first component lies in $X$ and second component lies in $Y$, i.e.,
+    \begin{align*}
+        X \times Y := \{(x, y) : (x, y) \text{ for some }x \in X \text{ and some } y \in Y\}.
+    \end{align*}
+\end{definition}
+>>>>>>> e6bb64aba7ddf37c79b2b571f2bf0d80cf5c2f20
 
     Now we return to the lemma. If $a = b$, then both $(a, b)$ and $(x, y)$ are singletons, so that $x = y$. Since $\{x\} \in (a, b)$ and $\{a\} \in (x, y)$, this implies that $a, b, x$ and $y$ are all equal.
 
@@ -432,13 +474,9 @@ The domain of a function $f$ from $X$ to $Y$ is equal to $X$, but its range need
 There are certain special types of functions which are important to deserve a name.
 
 \begin{definition}[Injective, surjective, and bijective functions]
-    Let $f : X \to Y$ be a function.
+    Let $f$ be a function.
     \begin{itemize}
-        \item A function $f$ is \emph{surjective} or \emph{onto} if $\ran{f} = Y$.
-        \item A function $f$ is \emph{injective} or \emph{one-to-one} if different elements map to different elements, i.e.,
-            \begin{align*}
-                f(x) = f(x') \implies x = x'.
-            \end{align*}
-        \item A function $f$ is \emph{bijective} or \emph{invertible} if it is surjective and injective.
+        \item A function is $f$ is \emph{surjective} or \emph{onto} if $\ran{f} = Y$.
+        \item A function $f$ is \emph{injective} or \emph{one-to-one}
     \end{itemize}
 \end{definition}

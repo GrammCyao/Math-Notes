@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.1.17)  31 DEC 2023 14:06
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2021.1.17)  31 DEC 2023 15:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -979,7 +979,12 @@ Package mdframed Info: mdframed works in twoside mode on input line 426.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 426.
- [8]) [9]
+ [8]
+Package mdframed Info: mdframed works in twoside mode on input line 434.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 434.
+) [9]
 \openout2 = `Ch1/Ch1.aux'.
 
  (./Ch1/Ch1.tex [10
@@ -1428,10 +1433,10 @@ Package rerunfilecheck Info: File `"Math Notes".out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
  ) 
 Here is how much of TeX's memory you used:
- 27092 strings out of 477220
- 514899 string characters out of 5830449
- 869522 words of memory out of 5000000
- 46210 multiletter control sequences out of 15000+600000
+ 27111 strings out of 477220
+ 515316 string characters out of 5830449
+ 869740 words of memory out of 5000000
+ 46229 multiletter control sequences out of 15000+600000
  421060 words of font info for 111 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  142i,20n,144p,1015b,1222s stack positions out of 5000i,500n,10000p,200000b,80000s
