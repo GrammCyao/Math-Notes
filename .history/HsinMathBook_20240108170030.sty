@@ -1,0 +1,45 @@
+%V20231216
+\ProvidesPackage{HsinMathBook}
+
+\RequirePackage{titlesec}
+\linespread{1.2}%(因子=1.5)*基本行间距
+
+\RequirePackage{appendix}
+
+
+\RequirePackage{enumitem}
+\RequirePackage{verbatim}
+\setlist[enumerate]{label=\textnormal{(\roman*)}, leftmargin = 4em, topsep=0em, parsep=0.5ex, itemsep=0em}%全局列表设置%topsep=0em,parsep=0em,itemsep=0em
+\renewcommand{\footnotesize}{\normalsize}
+\RequirePackage{datetime}
+
+\RequirePackage{emptypage}%清除空白页页眉、页脚
+\RequirePackage{fancyhdr}%设置页眉和页脚
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}%章标题
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}%节标题
+\fancyhead[RE]{\large\emph\leftmark}
+\fancyhead[LO]{\large\emph\rightmark}
+\fancyhead[RO]{\large\thepage}
+\fancyhead[LE]{\large\thepage}
+%\fancyhead[RO]{}
+%\fancyhead[LE]{}
+\fancyfoot[C]{}
+\fancypagestyle{plain}{\fancyhf{}}
+\fancyfoot[L]{{\scriptsize\copyright~\textsc{Hsin-Miao Chao}. \today.}}
+\fancyfoot[L]{{\scriptsize\copyright~\textsc{Hsin}. \today.}}
+\renewcommand\headrulewidth{0pt}%清除页眉分割线
+
+\RequirePackage[breaklinks,colorlinks,linkcolor=black,citecolor=black,urlcolor=black,bookmarksnumbered=true,bookmarks=true,bookmarksopen=true]{hyperref}
+
+\RequirePackage{tikz}
+\usetikzlibrary{backgrounds}
+
+\RequirePackage{xcolor}
+\definecolor{bgorange}{RGB}{255,221,81}
+\definecolor{leftgreen}{RGB}{250,242,191}
+\definecolor{rightgreen}{RGB}{255,255,239}
+
+\RequirePackage{graphicx}
+%\RequirePackage{euler}
+\RequirePackage[scr=boondox,cal=esstix]{mathalpha}

@@ -1,0 +1,682 @@
+
+\chapter{Foundation}
+
+\section{Sets}
+
+\begin{comment}
+We begin with na\"ive set theory. A \emph{set} $A$ is an unordered collection of objects. If $x$ is an object and if $x$ lies in $A$, we say that $x$ is an element of $A$, and we write
+    \begin{align*}
+        x \in A,
+    \end{align*}
+otherwise, we write
+    \begin{align*}
+        x \notin A.
+    \end{align*}
+
+If $A, B$ are sets and if every element of $A$ is an element of $B$, we say that $A$ is a \emph{subset} of $B$, and we write
+    \begin{align*}
+        A \subset B.
+    \end{align*}
+\end{comment}
+
+We present one standard way to define the sets, in terms of the axiomatic set theory.
+
+%First axiom of existence
+\begin{comment}
+\begin{axiom}[Axiom of existence]
+    There is a set and every set is an object. Given two sets $A$ and $B$, it is meaningful to ask whether $A$ is an element of $B$. If $A$ is an element of $B$, we write $A \in B$; otherwise, we write $A \notin B$.
+\end{axiom}
+\end{comment}
+
+%Second axiom of existence
+\begin{axiom}[Axiom of existence]\label{axiom:existence}
+    There is a set $A$ such that $A = A$.
+\end{axiom}
+
+Notice that we always use the \emph{first-order logic} as our meta-language, thus the axiom of existence can be rewritten as
+    \begin{align*}
+        \exists A(A = A).
+    \end{align*}
+But we shall not express the statement in this form.
+
+\begin{axiom}[Axiom of extension]
+    Let $A, B$ and $x$ be sets. Two sets $A$ and $B$ are equal, denoted $A = B$, if and only if they contains same elements, i.e., for every $x \in A$ we have $x \in B$ and vice versa.
+\end{axiom}
+
+The axioms of existence and extension including two fundamental concepts that of set and of element. The axiom of existence only asserts that there is a set which must equals to itself. The axiom of extension asserts that sets can contain sets, thus it is meaningful to ask whether a set is an element of a set. You will see that every mathematical object can be constructed as a set.
+
+Since we obtain some fundamental concepts, we can define the \emph{subsets}.
+
+\begin{definition}[Subsets]
+    Let $A, B$ be sets. We say that $A$ is a \emph{subset} of $B$, denoted $A \subset B$, if and only if every element of $A$ is also an element of $B$.
+\end{definition}
+
+Following lemma often use to prove the equality of sets.
+
+\begin{lemma}
+    Let $A$ and $B$ be sets. If $A \subset B$ and $B \subset A$, then $A = B$.
+\end{lemma}
+
+\begin{proof}
+    Proof omitted.
+\end{proof}
+
+Some basic facts about subsets is given by following.
+
+\begin{proposition}
+    Let $A, B$ and $C$ be sets.
+    \begin{enumerate}
+        \item (Reflexivity) $A \subset A$.
+        \item (Transitivity) If $A \subset B$ and $B \subset C$, then $A \subset C$.
+        \item (Anti-symmetry) If $A \subset B$ and $B \subset A$, then $A = B$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Proof omitted.
+\end{proof}
+
+\begin{axiom}[Axiom scheme of specification]
+    Let $A$ be a set, and for each $x \in A$, let $P(x)$ be a property pertaining to $x$. Then there exists a set 
+    \begin{align*}
+        \{x \in A : P(x) \text{ is true}\},
+    \end{align*}
+    whose elements are precisely those elements $x$ in $A$ for which $P(x)$ is true. In other words, for any $y$,
+        \begin{align*}
+            y \in \{x \in A : P(x) \text{ is true}\}
+            \Longleftrightarrow 
+            (y \in A \text{ and } P(y) \text{ is true}).
+        \end{align*}
+\end{axiom}
+
+\begin{remark}
+    This axiom is also known as the \emph{axiom scheme of separation}. We will see later that the intersection of sets and difference sets can be deduced directly from this axiom.
+\end{remark}
+
+
+The axiom of specification assures the existence of empty set which without any elements at all.
+
+\begin{definition}[Empty set]
+    If $A$ is a set, the \emph{empty set} $\emptyset$ is defined to be the set
+    \begin{align*}
+        \emptyset := \{x \in A : x \neq x\}.
+    \end{align*}
+\end{definition}
+
+Since every set $x$ must obeys $x = x$, thus for arbitrary $x$ we have $x \notin \emptyset$, the empty set contains no elements. The axiom of extension implies that there can be only one set with no elements.
+
+\begin{lemma}
+    If $\emptyset_1$ and $\emptyset_2$ are empty set, then $\emptyset_1 = \emptyset_2$.
+\end{lemma}
+
+\begin{proof}
+    Suppose for sake of contradiction that $\emptyset_1 \neq \emptyset_2$. Then by the axiom of extension, we either have there is an element $x$ such that $x \in \emptyset_1$ but $x \notin \emptyset_2$ or $x \in \emptyset_2$ but $x \notin \emptyset_1$. But both cases are impossible by the definition, a contradiction.
+\end{proof}
+
+If a set is not equal to the empty set, we call it \emph{non-empty}. The next Lemma asserts that given any non-empty set $A$, we are allowed to ``choose'' an element $x$ of $A$ which demonstrates this non-emptyness.
+
+\begin{lemma}[Single choice]
+    Let $A$ be a non-empty set. Then there exists $x$ such that $x \in A$.
+\end{lemma}
+
+\begin{proof}
+    We prove by contradiction. Suppose there does not exist any $x$ such that $x \in A$. Then for all $x$, $x \notin A$. Since we have $x \notin \emptyset$. Thus $x \in A$ equivalent to $x \in \emptyset$, and so $A = \emptyset$ by the axiom of extension.
+\end{proof}
+
+Another basic fact about the empty set is that it is a subset of every set.
+\begin{lemma}
+    If $A$ is a set, then $\emptyset \subset A$. In particular, we have $\emptyset \subset \emptyset$.
+\end{lemma}
+
+\begin{proof}
+    Suppose for sake of contradiction that $\emptyset \subset A$ is false. This means that there is an element of $\emptyset$ which doesn't lies in $A$. But it is impossible for that $\emptyset$ contains no elements, a contradiction. In particular, since the emptyset is a set, hence $\emptyset \subset \emptyset$.
+\end{proof}
+
+
+\begin{axiom}[Axiom of pairing]
+    Let $a$ and $b$ be sets. Then there exists a set $\{a, b\}$ whose only elements are $a$ and $b$.
+\end{axiom}
+
+If $A$ is a set such that $a \in A$ and $b \in A$ for arbitrary sets $a, b$, then we can apply the axiom of specification to $A$ with the property ``$x = a$ or $x = b$''. We obtain a set $\{x \in A : x = a \text{ or } x = b\}$ which contains just $a$ and $b$, the axiom of extension assures that such a set is unique, such a set is called the \emph{pair}.
+
+\begin{definition}[Singleton]
+    Define the \emph{singleton} $\{a\}$ of set $a$ to be $\{a\} := \{a, a\}$.
+\end{definition}
+
+\begin{axiom}[Axiom of union]
+    Let $A$ be a set, all of whose elements are sets. Then there exists a set $\bigcup A$ whose elements are precisely those sets which are elements of the elements of $A$. In other words, for all set $x$,
+        \begin{align*}
+            x \in \bigcup A
+            \Longleftrightarrow
+            (x \in S \text{ for some } S \in A).
+        \end{align*}
+\end{axiom}
+
+\begin{comment}
+If $A$ is a set which elements are sets, we usually call it a \emph{collection} instead of a set. By the axiom of union, for every collection $A$ there exists a set $U$ such that if $x \in S$ for some $S \in A$, then $x \in U$. We can apply the axiom of specification to form the set
+    \begin{align*}
+        \{x \in U : x \in S \text{ for some } S \in A\},
+    \end{align*}
+note that the axiom of extension guarantees its uniqueness.
+\end{comment}
+
+Now we can define some important operations on sets, namely unions, intersections and difference sets.
+\begin{comment}
+The \emph{unions} $S_1 \cup S_2$ of two sets is defined to be
+    \begin{align*}
+        S_1 \cup S_2 := \bigcup\{S_1, S_2\}.
+    \end{align*}
+This equivalent to say that for each $x \in S_1 \cup S_2$ we have $x \in S_1$ or $x \in S_2$. Observe that the existence and uniqueness of $S_1 \cup S_2$ are guaranteed by the axioms of pairing, union, and extension.
+\end{comment}
+
+\begin{definition}[Unions]
+    The \emph{union} $S_1 \cup S_2$ of two sets is defined to be the set
+    \begin{align*}
+        S_1 \cup S_2 := \bigcup\{S_1, S_2\}.
+    \end{align*}
+\end{definition}
+This equivalent to say that for each $x \in S_1 \cup S_2$ we have $x \in S_1$ or $x \in S_2$. Observe that the existence and uniqueness of $S_1 \cup S_2$ are guaranteed by the axioms of pairing, union, and extension. Here are some basic facts about unions.
+
+\begin{proposition}[Basic properties of unions]
+    Let $A, B$ be sets.
+    \begin{enumerate}
+        \item (Minimality) $A \cup \emptyset = A$.
+        \item (Commutativity) $A \cup B = B \cup A$.
+        \item (Associativity) $A \cup (B \cup C) = (A \cup B) \cup C$.
+        \item (Idempotence) $A \cup A = A$.
+        \item $A \subset B$ if and only if $A \cup B = B$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Proof omitted.
+%(i) Suppose that $x \in A \cup \emptyset$. Then we either have $x \in A$ or $x \in \emptyset$. Since $x \notin \emptyset$, we only have $x \in A$. Thus $A \cup \emptyset \subset A$. Conversely, suppose $x \in A$. Then $x \in A \cup \emptyset$ by definition.
+\end{proof}
+
+From the axiom scheme of specification, we can define the intersections.
+\begin{definition}[Intersections]
+    The \emph{intersection} $S_1 \cap S_2$ of two sets is defined to be the set
+    \begin{align*}
+        S_1 \cap S_2 := \{x \in S_1 : x \in S_2\}.
+    \end{align*}
+\end{definition}
+
+Here are some basic facts about unions.
+
+\begin{proposition}[Basic properties of intersections]
+    Let $A, B$ be sets.
+    \begin{enumerate}
+        \item (Minimality) $A \cap \emptyset = \emptyset$.
+        \item (Commutativity) $A \cap B = B \cap A$.
+        \item (Associativity) $A \cap (B \cap C) = (A \cap B) \cap C$.
+        \item (Idempotence) $A \cap A = A$.
+        \item $A \subset B$ if and only if $A \cap B = A$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Proof omitted.
+\end{proof}
+
+\begin{proposition}[Distributive laws]
+    Let $A, B$ and $C$ be sets. Then
+        \begin{align*}
+            A \cap (B \cup C) &= (A \cap B) \cup (A \cap C),\\
+            A \cup (B \cap C) &= (A \cup B) \cap (A \cup C).
+        \end{align*}
+\end{proposition}
+
+\begin{proof}
+    We only prove the first one, the second one is similar. If $x \in A \cap (B \cup C)$, then $x \in A$ and $x \in (B \cup C)$. Since $x \in (B \cup C)$ implies $x \in B$ or $x \in C$. If $x \in B$, then we have $x \in A$ and $x \in B$, and conclude that $x \in A \cap B$. If $x \in C$, then we have $x \in A$ and $x \in C$, and conclude that $x \in A \cap C$. Since we either have $x \in B$ or $x \in C$, thus we either have $x \in A \cap B$ or $x \in A \cap C$. Together our conclusions, we have $x \in (A \cap B) \cup (A \cap C)$. To prove the reverse, we see that either $x \in A \cap B$ or $x \in A \cap C$, this implies we either have both $x \in A$ and $x \in B$ or both $x \in A$ and $x \in C$. Since $x \in A$ is always true, we either have $x \in B$ or $x \in C$. Thus, we conclude that $x \in A$, and $x \in B$ or $x \in C$, i.e., $x \in A \cap (B \cup C)$.
+\end{proof}
+
+Similarly, the difference sets can be defined with the axiom scheme of specification.
+
+\begin{definition}[Difference sets]
+    The \emph{difference set} $A \setminus B$ (or $A - B$) is defined to be the set $A$ with any elements of $B$ removed:
+    \begin{align*}
+        A \setminus B := \{x \in A : x \notin B\}.
+    \end{align*}
+\end{definition}
+
+The basic facts about difference sets can be described as follows.
+
+\begin{proposition}[Basic properties of difference sets]
+    Let $A, B, X$ be sets, and let $A, B$ be subsets of $X$.
+    \begin{enumerate}
+        \item $X \setminus (X \setminus A) = A$.
+        \item $X \setminus \emptyset = X$ and $X \setminus X = \emptyset$.
+        \item $A \cap (X \setminus A) = \emptyset$ and $A \cup (X \setminus A) = X$.
+        \item $A \subset B$ if and only if $X \setminus B \subset X \setminus A$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Proof omitted.
+\end{proof}
+
+\begin{proposition}[De Morgan laws]
+    Let $A, B, X$ be sets, and let $A, B$ be subsets of $X$. Then
+    \begin{align*}
+        X \setminus (A \cup B) &= (X \setminus A) \cap (X \setminus B),\\
+        X \setminus (A \cap B) &= (X \setminus A) \cup (X \setminus B).
+    \end{align*}
+\end{proposition}
+
+\begin{proof}
+    Proof omitted.
+\end{proof}
+
+There is a handy operation of sets which is usually used in mathematical proofs, namely symmetric difference.
+
+\begin{definition}[Symmetric differences]
+    The \emph{symmetric difference} $A \triangle B$ of two sets is defined to be the set
+    \begin{align*}
+        A \triangle B := (A \setminus B) \cup (B \setminus A).
+    \end{align*}
+\end{definition}
+
+There is some properties of symmetric differences.
+
+\begin{proposition}[Basic properties of symmetric differences]
+    Let $A, B, C$ and $X$ be sets, and let $A \subset X$.
+    \begin{enumerate}
+        \item (Commutativity) $A \triangle B = B \triangle A$.
+        \item (Associativity) $A \triangle (B \triangle C) = (A \triangle B) \triangle C$.
+        \item $A \cap (B \triangle C) = (A \cap B) \triangle (A \cap C)$.
+        \item $A \triangle \emptyset = A$ and $A \triangle X = X \setminus A$.
+        \item $A \triangle A = \emptyset$ and $A \triangle (X \setminus A) = X$.
+        \item $A \triangle B = (A \cup B) \setminus (A \cap B)$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    Proof omitted.
+\end{proof}
+
+The axiom scheme of specification ensures the existence of certain subsets of a set. But what about the \emph{all subsets} of a set $X$, so-called \emph{power set of $X$}? It is clear that its existence cannot be generally proven with the previous axioms. We therefore require the axiom of power.
+
+\begin{axiom}[Axiom of powers]
+    Let $X$ be a set. Then the set
+    \begin{align*}
+        \{Y : Y \subset X\}
+    \end{align*}
+    is a set, such a set is called the \emph{power set} of $X$.
+\end{axiom}
+
+\begin{axiom}[Axiom scheme of replacement]
+    Let $A$ be a set. For any set $x \in A$, and any set $y$, suppose we have a statement $P(x, y)$ pertaining to $x$ and $y$, such that for each $x \in A$ there is at most one $y$ for which $P(x, y)$ is true. Then there exists a set $\{y : P(x, y) \text{ is true for some } x \in A\}$, such that for any set $z$,
+    \begin{align*}
+        z \in \{y : P(x, y) \text{ is true for some } x \in A\}
+        \Longleftrightarrow
+        P(x, z) \text{ is true for some } x \in A.
+    \end{align*}
+\end{axiom}
+
+\begin{axiom}[Axiom of infinity]
+    There exists a set $X$ containing $\emptyset$ such that if $x \in X$ then $x \cup \{x\} \in X$.
+\end{axiom}
+
+\begin{comment}
+With axioms of pairing and union, one can define singleton $\{x\}$, pair set $\{x, y\}$, triple set $\{x, y, z\} := \{x, y\} \cup \{z\}$, and so forth. This ``and so forth'' can be specified by providing instructions on how to define the $n$-tuple set successively. The instruction can take the form of a so-called \emph{inductive definition}:
+
+\begin{definition}
+    For every $n \geq 2$, we define
+    \begin{align*}
+        \{x_1, \cdots, x_n\} := \{x_1, \cdots, x_{n - 1}\} \cup \{x_n\}.
+    \end{align*}
+\end{definition}
+
+We take this definition as an opportunity to incorporate some fundamental remarks about the \emph{naive natural numbers} and certain induction principles associated with them.
+
+The \emph{naive natural numbers} are not elements of any sets for us; therefore, we will strictly distinguish them from the natural numbers in the set-theoretical sense, which we introduce in Section \ref{}. They are a tool for us to talk about our investigation of the sets, for example, about the expressions of set-theoretical language, about definitions in this language, and so on. The role of naive natural numbers is, as they say, of a meta-linguistic nature.
+\end{comment}
+
+\section{Russell's paradox}
+
+\begin{pseudoaxiom}[Axiom of comprehension]
+    Suppose for every set $x$ we have a property $P(x)$ pertaining to $x$. Then there exists a set $\{x : P(x) \text{ is true}\}$ such that for every set $y$,
+    \begin{align*}
+        y \in \{x : P(x) \text{ is true}\}
+        \Longleftrightarrow
+        P(y) \text{ is true}.
+    \end{align*}
+\end{pseudoaxiom}
+
+This axiom is a pseudo-axiom because it creates a logical contradiction known as \emph{Russell's paradox}, discovered by the philosopher and logician Bertrand Russell (1872 - 1970) in 1901. The paradox runs as follows.
+
+Let $P(x)$ be the statement ``$x$ is a set, and $x \notin x$'', i.e., $P(x)$ is true only when $x$ is a set which does not contain itself. If we let $S$ be the set of all sets (this is possible from the axiom of comprehension), then since $S$ is itself a set, it is an element of $S$, and so $P(x)$ is false. Now use the axiom of comprehension to create the set $\Omega := \{x : P(x)\}$. $\Omega$ is the set of all sets which do not contain themselves. We wonder that is $\Omega \in \Omega$ true? If $\Omega$ did contain itself, then by definition this means that $P(\Omega)$ is true, i.e., $\Omega$ is a set and $\Omega \notin \Omega$. Otherwise, if $\Omega$ did not contain itself, then $P(\Omega)$ would be true, and hence $\Omega \in \Omega$. Thus in either case we have both $\Omega \in \Omega$ and $\Omega \notin \Omega$, which is absurd.
+
+We shall simply postulate an axiom which ensures that absurdities such as Russell's paradox do not occur.
+
+\begin{axiom}[Axiom of regularity]\label{axiom:regularity}
+    If $A$ is a non-empty set, then there is at least one element $x$ of $A$ which is either not a set, or is disjoint from $A$, i.e., $x \cap A = \emptyset$.
+\end{axiom}
+
+One particular consequence of this axiom is that sets are no longer allowed to contain themselves.
+
+\begin{lemma}
+    If $A$ is a set, then $A \notin A$. Furthermore, if $A$ and $B$ are two sets, then either $A \notin B$ or $B \notin A$.
+\end{lemma}
+
+\begin{proof}
+Suppose that $A \neq \emptyset$ and $A \in A$. Then we have $A \in \{A\}$. Since $A$ is a set, by the axiom of regularity, we only have $A \cap \{A\} = \emptyset$. But since $A \in A$ and $A \in \{A\}$, this implies that $A \cap \{A\} = A$ which is not non-empty, a contradiction. While if $A = \emptyset$ which contains no elements, thus $A \notin A$.
+
+Furthermore, suppose that $A, B$ are two sets and we both have $A \in B$ and $B \in A$. Then $A,B \in \{A, B\}$. By the axiom of regularity, we either have $A \cap \{A, B\} = \emptyset$ or $B \cap \{A,B\} = \emptyset$. Since $A \in B$, we have $A \cap \{A, B\} = B$, but $B$ is non-empty for that $A \in B$. With similar reasoning, $B \cap \{A,B\}$ is empty implies $B \cap \{A,B\}$ is non-empty, a contradiction.
+\end{proof}
+
+\begin{remark}
+    The axioms of set theory that we have introduced (Axioms \ref{axiom:existence}-\ref{axiom:regularity}) are known as the \emph{Zermelo-Fraenkel axioms} (ZF axioms) of set theory, after Ernest Zermelo (1871-1953) and Abraham Fraenkel (1891-1965). There is one further axiom we will eventually need, the famous \emph{axiom of choice} (see Section \ref{undefined}), giving rise to the \emph{Zermelo-Fraenkel-Choice axioms} (ZFC axioms) of set theory, but we will not need this axiom for some time.
+\end{remark}
+
+\section{Cartesian product}
+
+Another fundamental operation on sets, the \emph{Cartesian product}. We first define the \emph{ordered pair}.
+
+\begin{definition}[Ordered pair]
+    If $a$ and $b$ are any sets, we define the \emph{ordered pair} $(a, b)$ to be the set
+    \begin{align*}
+        (a, b) := \{\{a\}, \{a, b\}\}.
+    \end{align*}
+\end{definition}
+
+We prove that two pairs are equal if and only if both their components match.
+
+\begin{lemma}[Characterisation of ordered pair]
+    If $(a, b)$ and $(x, y)$ are ordered pairs, then $(a, b) = (x, y)$ if and only if $a = x$ and $b = y$.
+\end{lemma}
+
+\begin{proof}
+    We first show that $(a, b)$ is singleton if and only if $a = b$. If $(a, b)$ is singleton, then $\{a\} = \{a, b\}$, so that $b \in \{a\}$, and hence $b = a$. Conversely, if $a = b$, then $(a, b) = \{\{a\}\}$ which is singleton.
+
+    Now we return to the lemma. If $a = b$, then both $(a, b)$ and $(x, y)$ are singletons, so that $x = y$. Since $\{x\} \in (a, b)$ and $\{a\} \in (x, y)$, this implies that $a, b, x$ and $y$ are all equal.
+
+    If $a \neq b$, then $(a, b)$ and $(x, y)$ contain exactly one singleton, i.e., $\{a\}$ and $\{x\}$. Thus $a = x$. Furthermore, $(a, b)$ and $(x, y)$ contain exactly one pair, i.e., $\{a, b\}$ and $\{x, y\}$, and thus $\{a, b\} = \{x, y\}$. Since $a = x$ and $b \in \{x, y\}$, we only have $b = y$.
+
+    For the other direction, suppose that $a = x$ and $b = y$. We only need to show that case of $a \neq b$. By the hypothesis, we have $\{a\} = \{x\}$ and $\{a, b\} = \{x, y\}$. Thus $(a, b) = (x, y)$ is hold for that $\{\{a\}, \{a, b\}\} = \{\{x\}, \{x, y\}\}$ is hold. This complete the proof.
+\end{proof}
+
+Now we can introduce the \emph{Cartesian product}.
+
+\begin{definition}[Cartesian product]
+    If $X$ and $Y$ are sets, then we define the \emph{Cartesian product} $X \times Y$ to be the collection of ordered pairs, whose first component lies in $X$ and second component lies in $Y$, i.e.,
+    \begin{align*}
+        X \times Y := \{(x, y) : (x, y) \text{ for some }x \in X \text{ and } y \in Y\}.
+    \end{align*}
+\end{definition}
+
+Here are some properties of Cartesian product.
+
+\begin{proposition}
+    Let $A, B, X, Y$ be sets.
+    \begin{enumerate}
+        \item $(A \cup B) \times X = (A \times X) \cup (B \times X)$.
+        \item $(A \cap B) \times (X \cap Y) = (A \times X) \cap (B \times Y)$.
+        \item $(A \setminus B) \times X = (A \times X) \setminus (B \times X)$.
+        \item $(X \times Y) \setminus (A \times B) = ((X \setminus A) \times Y) \cup (X \times (Y \setminus B))$.
+        \item $A \times B = \emptyset$ if and only if $A = \emptyset$ or $B = \emptyset$.
+        \item If $A \subset X$ and $B \subset Y$, then $A \times B \subset X \times Y$.
+        \item Let $A \times B \neq \emptyset$. If $A \times B \subset X \times Y$, then $A \subset X$ and $B \subset Y$.
+        \item If $A = X$ and $B = Y$, then $A \times B = X \times Y$. Conversely, if $A \times B \neq \emptyset$ and $A \times B = X \times Y$, then $A = Y$ and $B = Y$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    %(i) Suppose $(x, y) \in (A \cup B) \times X$, by definition, $(x, y)$ for some $x \in A \cup B$ and $y \in X$. Then we either have $x \in A$ or $x \in B$. If $x \in A$, then $(x, y)$ for some $x \in A$ and $y \in X$, so that $(x, y) \in A \times X$. If $x \in B$, we have $(x, y) \in B \times X$ with similar reasoning. Since we either have $(x, y) \in A \times X$ or $(x, y) \in B \times X$, thus $(x, y) \in (A \times X) \cup (B \times X)$.
+    We only prove (v), (vi) and (vii).
+
+    (v) For the `if' part, assume that $A \times B \neq \emptyset$. Then there is $(x, y) \in A \times B$, which means $x \in A$ and $y \in B$. So that $A \neq \emptyset$ and $B \neq \emptyset$, a contradiction. Conversely, assume that neither $A$ nor $B$ is empty, then there is $x \in A$ and $y \in B$. This implies $(x, y) \in A \times B$, a contradiction.
+
+    (vi) Suppose $A \subset X$ and $B \subset Y$, then for every $x \in A$ and every $y \in B$, we have $(x, y) \in A \times B$. Since $x \in X$ and $y \in Y$, we implies that $(x, y) \in X \times Y$. Thus $A \times B \subset X \times Y$.
+
+    (vii) Suppose that $(x, y) \in A \times B$. Suppose for sake of contradiction that there exists $a \in A$ but $a \notin X$. Then $(a, y) \in A \times B$ and $(a, y) \notin X \times Y$, but it is impossible for that $A \times B \subset X \times Y$. Thus $A \subset X$. A same proof shows that $B \subset Y$.
+
+    Note that we requires $A \times B$ be non-empty, this equivalently requires that both $A$ and $B$ are non-empty from (v). If $A = \emptyset$, we must have $A \times B = \emptyset \subset X \times Y$ for arbitrary $B$. We can let $B \supset Y$ and $B \neq Y$, then the premise is true but the conclusion is false.
+\end{proof}
+
+\begin{definition}[Relations]
+
+    The set $R$ is called a \emph{relation} if it is a set of ordered pairs. The set $R$ is called a \emph{relation over X} if it is a relation such that $R \subset X \times X$. We usually write $x R y$ instead of $(x, y) \in R$. 
+
+    We define the \emph{domain} $\dom{R}$ of relation $R$ and the \emph{range} $\ran{R}$ of relation $R$ to be the sets
+    \begin{align*}
+        \dom{R} := \{x : x R y \text{ for some } y\}
+    \end{align*}
+    and
+    \begin{align*}
+        \ran{R} := \{y : x R y \text{ for some } x\}.
+    \end{align*}
+\end{definition}
+
+
+\section{Functions}
+\begin{comment}
+\begin{definition}[Functions]
+    Let $X, Y$ be sets, and let $P(x, y)$ be a property pertaining to an object $x \in X$ and an object $y \in Y$, such that for every $x \in X$, there is exactly one $y \in Y$ for which $P(x, y)$ is true. Then we define the \emph{function $f : X \to Y$ defined by $P$ on the domain $X$ and range $Y$} to be the object which, given any input $x \in X$, assigns an output $f(x) \in Y$, defined to be the unique object $f(x)$ for which $P(x, f(x))$ is true. Thus for any $x \in X$ and $y \in Y$,
+    \begin{align*}
+        y = f(x) \Longleftrightarrow P(x, y) \text{ is true}.
+    \end{align*}
+\end{definition}
+\end{comment}
+
+We make a few motivating remarks beforehand. In mathematical terms, a function is characterized by three pieces of data: a set $X$ called its \emph{domain}, a set $Y$ called its \emph{range}, and an \emph{assignment} $f$ according to which each element $x \in X$ is assigned exactly one element $f(x) \in Y$. One writes $f : X \to Y$ to indicate that $f$ is a function with domain $X$ and range $Y$. In following, we will try to define the functions, similar to the relations, as certain sets.
+
+%First definition of functions
+\begin{definition}[Functions]
+    Let $X, Y$ be sets. A \emph{function} is a relation $f$ such that for every $x, y, z $, if $(x, y) \in f$ and $(x, z) \in f$, then $y = z$. A \emph{function from $X$ to $Y$}, denote $f : X \to Y$, is a function $f$ such that $\dom{f} = X$ and $\ran{f} \subset Y$. If $f$ is a function and $x \in \dom{f} = X$, we use $f(x)$ to refer the element $y$ with $(x, y) \in f$ where $y$ uniquely determined by $x$, and write $f(x) := y$; otherwise, $f(x) := \emptyset$. Functions are also referred to as \emph{maps}, depending on the context.
+\end{definition}
+
+%Second definition of functions
+\begin{comment}
+\begin{definition}[Functions]
+    Let $X, Y$ be sets. A \emph{function from $X$ to $Y$} is a relation $f$ such that $\dom{f} = X$ and that for each $x \in X$ there is a unique $f(x) := y \in Y$ such that $(x, y) \in f$. In other words, for each $x \in X$, if $(x, y) \in f$ and $(x, z) \in f$, then $y = z$. If $f$ is a function from $X$ to $Y$, we write $f : X \to Y$. Functions are also referred to as \emph{maps}, depending on the context.
+\end{definition}
+\end{comment}
+
+Let $\mathrm{Pow}(X) := \{Y : Y \subset X\}$. If we have $f : X \to Y$ with $f \in \mathrm{Pow}(X \times Y)$, then we can define the set $Y^X$ of all the functions from $X$ to $Y$ (thanks to the axiom of powers).
+
+\begin{definition}[Set of all functions]
+    Let $f : X \to Y$ with $f \in \mathrm{Pow}(X \times Y)$. The set of all functions from $X$ to $Y$ is defined as
+    \begin{align*}
+        Y^X := \{f \in \mathrm{Pow}(X \times Y) : f \text{ is a function from } X \text{ to } Y\}.
+    \end{align*}
+\end{definition}
+
+The first basic fact about functions is that the equality of functions are consistent with that of sets.
+
+\begin{lemma}[Equality of functions]
+    Let $f : X \to Y$ and $g : X \to Y$ be functions. Then $f = g$ if and only if $f(x) = g(x)$ for every $x \in X$.
+\end{lemma}
+
+\begin{proof}
+    Suppose for sake of contradiction that there exists $x \in X$ such that $f(x) \neq g(x)$, then $(x, f(x)) \in f$ and $(x, g(x)) \in g$. Since $f = g$ containing same elements, we have $(x, g(x)) \in f$, thus by definition, $f(x) = g(x)$, a contradiction. Conversely, suppose that $f \neq g$. We assume without loss of generality that there is $(x, f(x)) \in f$ but $(x, f(x)) \notin g$. But by hypothesis, we have $(x, f(x)) = (x, g(x)) \notin g$, a contradiction.
+\end{proof}
+
+\begin{definition}[Composition]
+    Let $f : X \to Y$ and $g : Y \to Z$ be two functions. We define the \emph{composition} $g \circ f : X \to Z$ of the two functions $g$ and $f$ to be the function defined by $(g \circ f)(x) := g(f(x))$; otherwise, $(g \circ f) := \emptyset$.
+\end{definition}
+
+\begin{remark}
+    It is frequently useful to represent compositions of functions in a \emph{diagram}. The diagram
+    \[
+    \begin{tikzcd}
+        X \arrow[r, "f"] \arrow[dr, swap, "h"] & Y \arrow[d, "g"]\\
+        & Z
+    \end{tikzcd}
+    \]
+    is \emph{commutative} if $h = g \circ f$.
+\end{remark}
+
+\begin{lemma}[Composition is associative]
+    Let $f : Y \to Z$, $g : X \to Y$, and $h : W \to X$ be functions. Then $f \circ (g \circ h) = (f \circ g) \circ h$.
+\end{lemma}
+
+\begin{proof}
+    This is easy to see that $f \circ (g \circ h) : W \to Z$ and $(f \circ g) \circ h : W \to Z$. By definition, for all $x \in W$ we have
+    \begin{align*}
+        (f \circ (g \circ h))(x)
+        &= f((g\circ h)(x))\\
+        &= f(g(h(x)))\\
+        &= (f \circ g)(h(x))\\
+        &= ((f \circ g) \circ h)(x),
+    \end{align*}
+    as desired.
+\end{proof}
+
+
+There are certain special types of functions which are important to deserve a name.
+
+\begin{definition}[Injective, surjective, and bijective functions]
+    Let $f : X \to Y$ be a function.
+    \begin{itemize}
+        \item A function $f$ is \emph{injective} or \emph{one-to-one} if different elements map to different elements, i.e.,
+            \begin{align*}
+                f(x) = f(x') \implies x = x'.
+            \end{align*}
+        \item A function $f$ is \emph{surjective} or \emph{onto} if $\ran{f} = Y$.
+        \item A function $f$ is \emph{bijective} or \emph{invertible} if it is surjective and injective.
+    \end{itemize}
+\end{definition}
+
+\begin{lemma}\label{lem:properties of injective and surjective}
+    Let $f : X \to Y$ and $g : Y \to Z$ be functions.
+    \begin{enumerate}
+        \item If $f, g$ are injective, then $g \circ f$ is injective.
+        \item If $f, g$ are surjective, then $g \circ f$ is surjective.
+    \end{enumerate}
+    For the converse, we only have
+    \begin{enumerate}[resume]
+        \item If $g \circ f$ is injective, then $f$ is injective.
+        \item If $g \circ f$ is surjective, then $g$ is surjective.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    (i) By definition, for every $x, x' \in X$, if $f(x) = f(x')$ then $x = x'$, and for every $y, y' \in Y$, if $g(y) = f(y')$ then $y = y'$. Since $f(x), f(x') \in Y$ for every $x, x' \in X$. Then for every $x, x' \in X$, if $g(f(x)) = g(f(x'))$ then $x = x'$. Thus $g \circ f$ is injective.
+
+    (ii) By definition, we have $\ran{f} = Y$ and $\ran{g} = Z$. This means that for every $y \in Y$ there is some $x \in X$ such that $y = f(x) \in \ran{f}$. Similarly, for every $z \in Z$ there is $y \in Y$ such that $z = g(y) \in \ran{g}$. Then we can see that for every $z \in Z$, there is some $x \in X$ such that $z = g(f(x)) \in \ran{g} = Z$. Since $g(f(x)) = z \in \ran{g \circ f}$, we have $Z \subset \ran{g \circ f}$. Because $Z \supset \ran{g \circ f}$ is obvious, hence $Z = \ran{g \circ f}$.
+
+    (iii) We use contradiction. Suppose that $f$ is not injective, this means that there exists $x,x' \in X$ such that $f(x) = f(x')$ but $x \neq x'$. Since $g \circ f$ is injective, by definition, $x \neq x'$ implies $g(f(x)) \neq g(f(x'))$. Then by the definition of function, we only have $f(x) \neq f(x')$, a contradiction. Thus, $f$ is injective.
+
+    (iv) Suppose for sake of contradiction that there exists $z \in Z$ such that $z \notin \ran{g}$, this means for every $y \in Y$ there is no $g(y) = z$ such that $z \in \ran{g}$. Since $g \circ f$ is surjective, we have $\ran{g \circ f} = Z$. Then for every $z \in Z$, there is an $x \in X$ such that $z = (g \circ f)(x) \in \ran{g \circ f}$. Let $y = f(x)$, then we have $z = g(f(x)) = g(y) \in \ran{g}$, a contradiction. Thus, $g$ is surjective.
+\end{proof}
+
+\begin{example}[Empty function]
+    Let $X$ be a set. Then $f : \emptyset \to X$ is a function from empty set to $X$. We see that $f \subset \emptyset \times X$ is a relation such that $\dom{f} = \emptyset$ and for every $x \in \emptyset$ the property of functions is vacuously true. Thus $f : \emptyset \to X$ is indeed a function. Let $f : \emptyset \to X$ and $g : \emptyset \to Y$, since for $x \in \emptyset$, $f(x) = g(x)$ is vacuously true, thus we have $f = g$ for arbitrary $X, Y$. Because $\emptyset = \emptyset \times X$, we call $\emptyset : \emptyset \to X$ the \emph{empty function}. The empty function $\emptyset$ is injective, but is not surjective when $X \neq \emptyset$.
+\end{example}
+
+\begin{example}[Inclusion and identity maps]
+    Let $X \subset Y$ be sets. The map $f : X \hookrightarrow Y$ is called the \emph{inclusion map} defined by $f(x) = x$ for all $x \in X$. The map $\id_X : X \to X$ is called the \emph{identity map} on $X$ if it is a inclusion map from $X$ to $X$.
+\end{example}
+
+\begin{proposition}\label{lem:inverse functions}
+    Let $f : X \to Y$ be a function. Then $f$ is bijective if and only if there is a unique function $g : Y \to X$ such that $g \circ f = \id_X$ and $f \circ g = \id_Y$.
+\end{proposition}
+
+\begin{proof}
+    For the `only if' part, suppose that $f$ is bijective. Since $f$ is surjective, for each $y \in Y$ there is some $x \in X$ with $y = f(x)$. Since $f$ is injective, this $x$ is uniquely determined by $y$. This defines a function $g : Y \to X$ with the desired properties. For the `if' part. Since $f \circ g = \id_Y$, it follows that $f$ is surjective. Since $g \circ f = \id_X$, it follows that $f$ is injective. Thus, $f$ is bijective.
+
+    Now we show the uniqueness of $g$. Let $h : Y \to X$ with $h \circ f = \id_X$ and $f \circ h = \id_Y$, then we have
+        \begin{align*}
+            g
+            = g \circ \id_Y
+            = g \circ (f \circ h)
+            = (g \circ f) \circ h
+            = \id_X \circ h
+            = h.
+        \end{align*}
+    Thus $g$ is uniquely determined by $f$.
+\end{proof}
+
+Proposition \ref{lem:inverse functions} motivates the following definition.
+
+\begin{definition}[Inverse functions]
+    Let $f : X \to Y$ be a bijective function. Then the \emph{inverse function} or \emph{inverse} $f^{-1}$ of $f$ is the unique function $f^{-1} : Y \to X$ such that $f \circ f^{-1} = \id_Y$ and $f^{-1} \circ f = \id_X$.
+\end{definition}
+
+\begin{proposition}[inverse of composition]
+    Let $f : X \to Y$ and $g : Y \to Z$ be bijective functions. Then $g \circ f : X \to Z$ is bijective and
+    \begin{align*}
+        (g \circ f)^{-1} = f^{-1} \circ g^{-1}.
+    \end{align*}
+\end{proposition}
+
+\begin{proof}
+    The first claim follows immediately from Proposition \ref{lem:properties of injective and surjective}, we show the second one.
+
+    Let $(g \circ f)^{-1} : Z \to X$ be the inverse of $g \circ f$. Since
+    \begin{align*}
+        (f^{-1} \circ g^{-1}) \circ (g \circ f)
+        = f^{-1} \circ (g^{-1} \circ g) \circ f
+        = f^{-1} \circ \id_Y \circ f
+        = f^{-1} \circ f
+        = \id_X,
+    \end{align*}
+    and
+    \begin{align*}
+        (g \circ f) \circ (f^{-1} \circ g^{-1})
+        = g \circ (f \circ f^{-1}) \circ g^{-1}
+        = g \circ \id_Y \circ g^{-1}
+        = g \circ g^{-1}
+        = \id_Z,
+    \end{align*}
+    $f^{-1} \circ g^{-1}$ is the inverse of $g \circ f$. By the uniqueness of inverse, we have $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$.
+\end{proof}
+
+We know that a function $f : X \to Y$ from a set $X$ to a set $Y$ can take elements $x \in X$ to elements $f(x) \in Y$. Use the axiom scheme of replacement, we can define functions take subsets of $X$ to subsets of $Y$, and functions take subsets of $Y$ to subsets of $X$.
+
+\begin{definition}[Images and preimages of sets]
+    Let $f : X \to Y$ be a function, and let $S \subset X$ and $U \subset Y$.
+    \begin{itemize}
+        \item The \emph{image $f(S)$ of $S$ under $f$} is defined to be the set
+        \begin{align*}
+            f(S) := \{f(x) \in Y : x \in S\}.
+        \end{align*}
+        \item The \emph{preimage $f^{-1}(U)$ of $U$ under $f$} is defined to be the set
+        \begin{align*}
+            f^{-1}(U) := \{x \in X : f(x) \in U\}.
+        \end{align*}
+    \end{itemize}
+\end{definition}
+
+\section{Families}
+
+Let $f$ be a function on the set $X$. In certain contexts, the function $f$ is also written as
+    \begin{align*}
+        (f_x)_{x \in X}.
+    \end{align*}
+Here, $f_x$ is another notation for $f(x)$. The element $x \in X$ is called an \emph{index}, $X$ is called the \emph{indexed set}, $(f_x)_{x \in X}$ is called a \emph{family}, and $f_x := f(x)$ is called a \emph{term} of family.
+
+\begin{definition}[Union and intersection of family]
+    Let $(X_\alpha)_{\alpha \in A}$ be family. We define the union $\bigcap_{\alpha \in A}X_\alpha$ and the intersection $\bigcap_{\alpha \in A} X_\alpha$ of family $(X_\alpha)_{\alpha \in A}$ to be the sets
+    \begin{align*}
+        \bigcup_{\alpha \in A}X_\alpha
+        := \bigcup\{X_\alpha : \alpha \in A\}
+        = \bigcup\ran{f}
+    \end{align*}
+    and
+    \begin{align*}
+        \bigcap_{\alpha \in A}X_\alpha
+        := \{x \in X_\beta : x \in X_\alpha \text{ for all } \alpha \in A\}
+    \end{align*}
+\end{definition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

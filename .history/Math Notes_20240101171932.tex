@@ -1,0 +1,55 @@
+\documentclass{book}
+\usepackage[a4paper, left=.6in,right=.6in,top=1in,bottom=1in]{geometry}%papersize={6.5in,9.5in}
+
+
+\usepackage{HsinMathBook}
+\usepackage{HsinMathPac}
+
+
+%Revision标签
+%\texorpdfstring{$\mathbf{R}$}{R}
+
+
+\usepackage{makeidx}
+\makeindex
+
+
+
+\begin{document}
+
+\include{Ch0/Ch0}
+
+\setlength{\headheight}{14pt}
+\large
+\setlength\parindent{2em}
+
+\begin{titlepage}
+   {\indent\fontsize{30pt}{0pt}\textbf{Math Notes}}
+
+   \vfill
+   {\indent\small{\textsc{Author: Hsin}}}\\
+   {\indent\small{\textsc{E-Mail}: grammcyao@icloud.com}}\\
+   {\indent\small{\textsc{Update}: \today}}
+\end{titlepage}
+
+\thispagestyle{empty}
+\pdfbookmark[1]{Bookmarktitle}{internal_label}\tableofcontents
+\thispagestyle{empty}
+\cleardoublepage
+\setcounter{page}{1}
+
+\include{Ch0/Ch0}
+
+\include{Ch1/Ch1}
+
+\include{Ch2/Ch2}
+
+\include{Ch3/Ch3}
+
+\include{Ch4/Ch4}
+
+\include{Ch5/Ch5}
+
+
+\printindex
+\end{document}

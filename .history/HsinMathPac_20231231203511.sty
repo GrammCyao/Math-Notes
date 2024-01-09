@@ -1,0 +1,136 @@
+%V20231230
+\ProvidesPackage{HsinMathPac}
+
+
+\RequirePackage{bm}%board math
+\RequirePackage{amssymb, amsmath, amsthm, mathrsfs}
+
+
+%draw
+\RequirePackage{tikz-cd}
+\RequirePackage[tikz]{mdframed}
+%\usepackage{tcolorbox}
+\usetikzlibrary{patterns}
+
+
+\titleformat{\chapter}[display]{\bfseries\Large}{\filright\MakeUppercase{\chaptertitlename} \huge\arabic{chapter}}{2ex}{\filright\LARGE}
+\titleformat{\section}{\normalfont}{\filright\bfseries\Large\S\thesection}{8pt}{\Large\bfseries}
+
+
+\titleformat{\chapter}[display]{\bfseries\Large}{\filright\MakeUppercase{\chaptertitlename}\Huge\Roman{chapter}}{4ex}{\titlerule[1pt]\vspace{1pt}\titlerule\vspace{1pc}\filright\huge}[\vspace{2ex}\titlerule]
+%\titleformat{\section}[frame]{\normalfont}{\filright\bfseries\fbox\thesection\enspace}{8pt}{\Large\bfseries\hspace{2.5em}}
+
+
+%Other Settings
+    \makeatletter%公式行间距调整
+    \renewcommand\normalsize{
+       \@setfontsize\normalsize\@xpt\@xiipt
+       \abovedisplayskip 3\p@ \@plus2\p@ \@minus2\p@
+       \abovedisplayshortskip \z@ \@plus3\p@
+       \belowdisplayshortskip 3\p@ \@plus2\p@ \@minus2\p@
+       \belowdisplayskip \abovedisplayskip
+       \let\@listi\@listI}
+    \makeatother
+
+\allowdisplaybreaks[2]%公式换页,强度从0-4.
+\newcommand{\remark}{\vspace{.5em}\noindent\textbf{Remark.}~}
+
+
+%counter
+\newcounter{thmCTR}[chapter]
+\renewcommand*\thethmCTR{\arabic{thmCTR}}
+
+\newcounter{theo}[section] \newenvironment{theo}[1][]{%
+\stepcounter{theo}% \ifstrempty{#1}% {\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+
+
+
+
+
+%math environment
+
+%Title and font style
+\newtheoremstyle{defstyle}% ⟨name⟩
+{0em}% ⟨Space above⟩
+{0pt}% ⟨Space below⟩
+{\upshape}% ⟨Body font⟩
+{}% ⟨Indent amount⟩
+{\bfseries}% ⟨Theorem head font⟩
+{.}% ⟨Punctuation after theorem head⟩
+{.5em}% ⟨Space after theorem head⟩
+{}% ⟨Theorem head spec (can be left empty, meaning ‘normal’)⟩
+
+\newtheoremstyle{thmstyle}% ⟨name⟩
+{0.em}% ⟨Space above⟩
+{0pt}% ⟨Space below⟩
+{\itshape}% ⟨Body font⟩
+{}% ⟨Indent amount⟩
+{\bfseries}% ⟨Theorem head font⟩
+{.}% ⟨Punctuation after theorem head⟩
+{.5em}% ⟨Space after theorem head⟩
+{}% ⟨Theorem head spec (can be left empty, meaning ‘normal’)⟩
+
+%Background style
+\mdfdefinestyle{axiomstyle}{%Axiom
+    outerlinewidth=1, roundcorner=10pt, leftmargin=40, rightmargin=40,%
+    backgroundcolor=yellow!20, outerlinecolor=red!70!black,%
+    innertopmargin=.5em, skipabove=1em,%
+    splittopskip=\topskip,
+}
+\mdfdefinestyle{definitionstyle}{%Definition
+    outerlinewidth=1, roundcorner=10pt, leftmargin=40, rightmargin=40,%
+    backgroundcolor=yellow!40, outerlinecolor=red!70!black,%
+    innertopmargin=.5em, skipabove=1em,%
+    splittopskip = \topskip,
+}
+\mdfdefinestyle{propositionstyle}{%Proposition,Lemma,Theorem,Corollary
+    outerlinewidth=1, roundcorner=10pt, leftmargin=40, rightmargin=40,%
+    backgroundcolor=blue!10, outerlinecolor=red!70!black,%
+    innertopmargin=.5em, skipabove=1em,%
+    splittopskip = \topskip,
+}
+\mdfdefinestyle{examplestyle}{%Example
+    outerlinewidth=1, roundcorner=10pt, leftmargin=40, rightmargin=40,%
+    backgroundcolor=brown!15, outerlinecolor=red!70!black,%
+    innertopmargin=.5em, skipabove=1em,%
+    splittopskip=\topskip,
+}
+
+\theoremstyle{defstyle}%
+\newtheorem*{pseudoaxiom}{Pseudo-Axiom}\surroundwithmdframed[style=axiomstyle]{pseudoaxiom}%unnumbering
+\newmdtheoremenv[style=axiomstyle]{axiom}{Axiom}[chapter]
+\newmdtheoremenv[style=definitionstyle]{definition}{Definition}[thmCTR]
+\newmdtheoremenv[style=axiomstyle]{notation}[definition]{Notation}
+\newmdtheoremenv[style=examplestyle]{example}[definition]{Example}
+
+\theoremstyle{thmstyle}%
+\newmdtheoremenv[style=propositionstyle]{proposition}[definition]{Proposition}
+\newmdtheoremenv[style=propositionstyle]{theorem}[definition]{Theorem}
+\newmdtheoremenv[style=propositionstyle]{lemma}[definition]{Lemma}
+\newmdtheoremenv[style=propositionstyle]{corollary}[definition]{Corollary}
+
+
+%Math Symbols
+\DeclareMathOperator{\dom}{dom}%domain
+\DeclareMathOperator{\ran}{ran}%range
+\DeclareMathOperator{\real}{Re}%real part
+\DeclareMathOperator{\im}{im}%image part
+\DeclareMathOperator{\sgn}{sgn}%sign permutation
+\DeclareMathOperator{\id}{\mathbf{1}}%identity map
+\DeclareMathOperator{\spans}{span}%spans space
+\DeclareMathOperator{\rank}{rank}%rank
+
+
+
+
+
+
+
+
+
+
+
+
+
