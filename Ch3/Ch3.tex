@@ -1,4 +1,3 @@
-
 \chapter{Manifold}
 
 What is manifold? A good example to keep in mind is the surface of a smooth ball. If you look at a small portion of it from very close up, then it looks like a portion of a flat plane. More generally, an $n$-dimensional manifold, is a geometrical object that looks ``locally'' like $n$-dimensional \emph{Euclidean space}.
@@ -304,17 +303,11 @@ How does one go about constructing smooth maps from one smooth manifold to anoth
 
     (ii) Let $p \in M$ be arbitrary, there exist $(U, \varphi)$ containing $p$. Then $U \cap \id_M^{-1}(U) = U$ is open in $M$ and $\varphi \circ \id_M \circ \varphi^{-1}$ is $C^\infty$ from $\varphi(U)$ to $\varphi(U)$. Thus, $\id_M$ is $C^\infty$.
 
-<<<<<<< HEAD
     (iii) Let $p\in U$ be arbitrary. Let $(W,\varphi)$ be a chart on $U$ containing $p$. Then $(W,\varphi)$ is also a chart on $M$ containing $\iota(p) = p$. Then, $\varphi \circ \iota \circ \varphi^{-1} : \varphi(U) \to \varphi(U)$ is the identity map, which is smooth. Hence $\iota$ is smooth.
 
     (iv) By definition, there exist charts $(V, \varrho)$ containing $F(p)$ and $(W, \psi)$ containing $G(F(p))$ such that $G(V) \subset W$ and $\psi \circ G \circ \varrho^{-1}$ is $C^\infty$ from $\varrho(V)$ to $\psi(W)$. Since $F$ is continuous and $F^{-1}(V)$ is a neighborhood of $p \in M$, so there is a chart $(U, \varphi)$ for $M$ such that $p \in U \subset F^{-1}(V)$. By Corollary \ref{lem:smoothness is independent of chars}, $\psi \circ F \circ \varphi^{-1}$ is $C^\infty$ from $\varphi(U)$ to $\psi(V)$. Then we have $(G \circ F)(U) \subset G(U) \subset W$, and $\varrho \circ (G \circ F) \circ \varphi^{-1} = (\varrho \circ G \circ \psi^{-1}) \circ (\psi \circ F \circ \varphi^{-1})$ is $C^\infty$ from $\varphi(U)$ to $\varrho(W)$.
 
     (v) Suppose that $F$ is smooth. Let $p \in M$ be arbitrary. Since $F$ is $C^\infty$, there are charts $(U, \varphi)$ containing $p$ and $(V, \psi)$ containing $F(p)$ such that $\psi \circ F \circ \varphi^{-1}$ is $C^\infty$. By Example \ref{ex:open submanifolds}, $U$ is an open submanifold. Thus for every $p \in U$, there exist $(U, \varphi)$ containing $p$ and $(V, \psi)$ containing $F(p)$ such that $\psi \circ F|_U \circ \varphi^{-1}$ is $C^\infty$. Thus $F|_U$ is $C^\infty$.
-=======
-    (iii) By definition, there exist charts $(V, \varrho)$ containing $F(p)$ and $(W, \psi)$ containing $G(F(p))$ such that $G(V) \subset W$ and $\psi \circ G \circ \varrho^{-1}$ is $C^\infty$ from $\varrho(V)$ to $\psi(W)$. Since $F$ is continuous and $F^{-1}(V)$ is a neighborhood of $p \in M$, so there is a chart $(U, \varphi)$ for $M$ such that $p \in U \subset F^{-1}(V)$. By Corollary \ref{lem:smoothness is independent of chars}, $\psi \circ F \circ \varphi^{-1}$ is $C^\infty$ from $\varphi(U)$ to $\psi(V)$. Then we have $(G \circ F)(U) \subset G(U) \subset W$, and $\varrho \circ (G \circ F) \circ \varphi^{-1} = (\varrho \circ G \circ \psi^{-1}) \circ (\psi \circ F \circ \varphi^{-1})$ is $C^\infty$ from $\varphi(U)$ to $\varrho(W)$.
-
-    (iv) Suppose that $F$ is smooth. Let $p \in M$ be arbitrary. Since $F$ is $C^\infty$, there are charts $(U, \varphi)$ containing $p$ and $(V, \psi)$ containing $F(p)$ such that $\psi \circ F \circ \varphi^{-1}$ is $C^\infty$. By Example \ref{ex:open submanifolds}, $U$ is an open submanifold. Thus for every $p \in U$, there exist $(U, \varphi)$ containing $p$ and $(V, \psi)$ containing $F(p)$ such that $\psi \circ F|_U \circ \varphi^{-1}$ is $C^\infty$. Thus $F|_U$ is $C^\infty$.
->>>>>>> 53c256507d2a398e47311a8dc90d4ac4dc69f63c
 
     Conversely, suppose that for every $p \in M$ there exists a neighborhood $U$ such that $F|_U$ is $C^\infty$. Then by definition, there exist charts $(V, \varphi)$ containing $p$ and $(W, \psi)$ containing $F|_U(p)$ such that $V \cap (F|_U)^{-1}(W)$ is open in $U$ and $\psi \circ F|_U \circ \varphi^{-1}$ is $C^\infty$. Since $V$ is an open subset of $U$, and $U$ is open in $M$. Thus $V$ is open subset of $M$. Similarly, $V \cap (F|_U)^{-1}(W)$ is open in $M$. Thus $F$ is $C^\infty$.
 \end{proof}

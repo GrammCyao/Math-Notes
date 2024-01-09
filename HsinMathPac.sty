@@ -9,8 +9,16 @@
 %draw
 \RequirePackage{tikz-cd}
 \RequirePackage[tikz]{mdframed}
-\usepackage{tcolorbox}
+%\usepackage{tcolorbox}
 \usetikzlibrary{patterns}
+
+
+\titleformat{\chapter}[display]{\bfseries\Large}{\filright\MakeUppercase{\chaptertitlename} \huge\arabic{chapter}}{2ex}{\filright\LARGE}
+\titleformat{\section}{\normalfont}{\filright\bfseries\Large\S\thesection}{8pt}{\Large\bfseries}
+
+
+\titleformat{\chapter}[display]{\bfseries\Large}{\filright\MakeUppercase{\chaptertitlename}\Huge\Roman{chapter}}{4ex}{\titlerule[1pt]\vspace{1pt}\titlerule\vspace{1pc}\filright\huge}[\vspace{2ex}\titlerule]
+%\titleformat{\section}[frame]{\normalfont}{\filright\bfseries\fbox\thesection\enspace}{8pt}{\Large\bfseries\hspace{2.5em}}
 
 
 %Other Settings
@@ -24,20 +32,12 @@
 %       \let\@listi\@listI}
 %    \makeatother
 
-\allowdisplaybreaks[4]%公式换页,强度从0-4.
+\allowdisplaybreaks[2]%公式换页,强度从0-4.
 \newcommand{\remark}{\vspace{.5em}\noindent\textbf{Remark.}~}
 
 
 %counter
-\newcounter{Proposition}[section]
-\renewcommand{\theProposition}{\thesection.\arabic{Proposition}}
-\titleformat{\chapter}[display]{\bfseries\Large}{\filright\MakeUppercase{\chaptertitlename} \huge\arabic{chapter}}{2ex}{\filright\LARGE}
-\titleformat{\section}{\normalfont}{\filright\bfseries\Large\S\thesection}{8pt}{\Large\bfseries}
-%\usepackage{fontspec}
 
-\titleformat{\chapter}[display]{\bfseries\Large}{\filright\MakeUppercase{\chaptertitlename}\Huge\Roman{chapter}}{4ex}{\titlerule[1pt]\vspace{1pt}\titlerule\vspace{1pc}\filright\huge}[\vspace{2ex}\titlerule]
-
-%\titleformat{\section}[frame]{\normalfont}{\filright\bfseries\fbox\thesection\enspace}{8pt}{\Large\bfseries\hspace{2.5em}}
 
 
 %math environment
@@ -92,15 +92,15 @@
 \theoremstyle{defstyle}%
 \newtheorem*{pseudoaxiom}{Pseudo-Axiom}\surroundwithmdframed[style=axiomstyle]{pseudoaxiom}%unnumbering
 \newmdtheoremenv[style=axiomstyle]{axiom}{Axiom}[chapter]
-\newmdtheoremenv[style=definitionstyle]{definition}{Definition}[section]
-\newmdtheoremenv[style=axiomstyle]{notation}{Notation}[definition]
-\newmdtheoremenv[style=examplestyle]{example}{Example}[definition]
+\newmdtheoremenv[style=definitionstyle]{definition}{Definition}[chapter]
+\newmdtheoremenv[style=axiomstyle]{notation}[definition]{Notation}
+\newmdtheoremenv[style=examplestyle]{example}[definition]{Example}
 
 \theoremstyle{thmstyle}%
-\newmdtheoremenv[style=propositionstyle]{proposition}{Proposition}[definition]
-\newmdtheoremenv[style=propositionstyle]{theorem}{Theorem}[definition]
-\newmdtheoremenv[style=propositionstyle]{lemma}{Lemma}[definition]
-\newmdtheoremenv[style=propositionstyle]{corollary}{Corollary}[definition]
+\newmdtheoremenv[style=propositionstyle]{proposition}[definition]{Proposition}
+\newmdtheoremenv[style=propositionstyle]{theorem}[definition]{Theorem}
+\newmdtheoremenv[style=propositionstyle]{lemma}[definition]{Lemma}
+\newmdtheoremenv[style=propositionstyle]{corollary}[definition]{Corollary}
 
 
 %Math Symbols
